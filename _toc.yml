@@ -1,0 +1,21 @@
+# Table of contents
+
+format: jb-book
+root: index
+
+parts:
+- caption: Lectures
+  chapters:
+    - file: episodes/01-introduction
+    - file: episodes/02-intro-to-c.md
+    - file: episodes/03-data-representation.md
+    - file: episodes/04-machine-language.md
+    - file: episodes/05-memory-cache.md
+    - file: episodes/06-optimizing-program-performance.md
+    - file: episodes/07-network-programming.md
+- caption: Appendix
+  chapters:
+    - file: extras/setup.md
+    - file: extras/intro-linux.md
+    - file: extras/gdb.md
+    - file: extras/github.md
