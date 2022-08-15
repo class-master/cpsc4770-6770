@@ -1,0 +1,668 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>MPI: Functional parallelism and collectives &#8212; Distributed and Cluster Computing</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MPI: pleasantly parallel and workload allocation" href="10-pleasantly-parallel.html" />
+    <link rel="prev" title="MPI: point-to-point, data types, and communicators" href="08-point-to-point.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Distributed and Cluster Computing</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Syllabus
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-computational-demand.html">
+   The demand for computational speed”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-intro-to-parallel-distributed-computing.html">
+   Introduction to paralel and distributed computing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-intro-to-c.html">
+   Introduction to C
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-intro-openmp.html">
+   Introduction to OpenMP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-loop-parallelism.html">
+   OpenMP: parallel regions and loop parallelism
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-works-sharing.html">
+   OpenMP: Work sharing and controlling thread data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-intro-mpi.html">
+   Introduction to MPI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-point-to-point.html">
+   MPI: point-to-point, data types, and communicators
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   MPI: Functional parallelism and collectives
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-pleasantly-parallel.html">
+   MPI: pleasantly parallel and workload allocation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-data-intensive-computing.html">
+   Introduction to Big Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12-mapreduce.html">
+   MapReduce Programming Paradigm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-spark.html">
+   Spark computing environment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-data-parallel.html">
+   Data parallel computing with Spark
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-page-rank.html">
+   Page Rank”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-locality-sensitive-hashing.html">
+   Locality Sensitive Hashing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="17-frequent-itemsets.html">
+   Frequent Itemsets
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendix
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extras/setup.html">
+   Setup
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extras/intro-linux.html">
+   Introduction to the Linux Shell
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extras/gdb.html">
+   GDB Debugger
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extras/github.html">
+   Working with GitHub
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/episodes/09-functional-collectives.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#collective-communication">
+   1. Collective communication
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hands-on-mpi-bcast">
+   2. Hands-on: MPI_Bcast
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hands-on-mpi-scatter">
+   3. Hands-on: MPI_Scatter
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hands-on-mpi-gather">
+   4. Hands-on: MPI_Gather
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hands-on-mpi-reduce">
+   5. Hands-on: MPI_Reduce
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>MPI: Functional parallelism and collectives</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#collective-communication">
+   1. Collective communication
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hands-on-mpi-bcast">
+   2. Hands-on: MPI_Bcast
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hands-on-mpi-scatter">
+   3. Hands-on: MPI_Scatter
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hands-on-mpi-gather">
+   4. Hands-on: MPI_Gather
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hands-on-mpi-reduce">
+   5. Hands-on: MPI_Reduce
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="mpi-functional-parallelism-and-collectives">
+<h1>MPI: Functional parallelism and collectives<a class="headerlink" href="#mpi-functional-parallelism-and-collectives" title="Permalink to this headline">#</a></h1>
+<section id="collective-communication">
+<h2>1. Collective communication<a class="headerlink" href="#collective-communication" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Must involve ALL processes within the scope of a communicator.</p></li>
+<li><p>Unexpected behavior, including programming failure, if even one process does
+not participate.</p></li>
+<li><p>Types of collective communications:</p>
+<ul>
+<li><p>Synchronization: barrier</p></li>
+<li><p>Data movement: broadcast, scatter/gather</p></li>
+<li><p>Collective computation (aggregate data to perform computation): Reduce</p></li>
+</ul>
+</li>
+</ul>
+<img src="../assets/figure/09-collectives/01.png" alt="collective communication patterns" style="height:600px">
+</section>
+<p>{: .slide}</p>
+<section id="hands-on-mpi-bcast">
+<h2>2. Hands-on: MPI_Bcast<a class="headerlink" href="#hands-on-mpi-bcast" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">MPI_Bcast(void</span> <span class="pre">*buf,</span> <span class="pre">int</span> <span class="pre">count,</span> <span class="pre">MPI_Datatype</span> <span class="pre">datatype,</span> <span class="pre">int</span> <span class="pre">root,</span> <span class="pre">MPI_Comm</span> <span class="pre">comm)</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">*buf</span></code>:</p>
+<ul>
+<li><p>If on <code class="docutils literal notranslate"><span class="pre">root</span></code>, pointer to the address containing the data elements to be
+broadcasted</p></li>
+<li><p>If not on <code class="docutils literal notranslate"><span class="pre">root</span></code>, pointer to the address where broadcasted data to be stored.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">count</span></code>: how many data elements will be broadcasted.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MPI_Datatype</span></code>: <code class="docutils literal notranslate"><span class="pre">MPI_BYTE</span></code>, <code class="docutils literal notranslate"><span class="pre">MPI_PACKED</span></code>, <code class="docutils literal notranslate"><span class="pre">MPI_CHAR</span></code>, <code class="docutils literal notranslate"><span class="pre">MPI_SHORT</span></code>, <code class="docutils literal notranslate"><span class="pre">MPI_INT</span></code>,
+<code class="docutils literal notranslate"><span class="pre">MPI_LONG</span></code>, <code class="docutils literal notranslate"><span class="pre">MPI_FLOAT</span></code>, <code class="docutils literal notranslate"><span class="pre">MPI_DOUBLE</span></code>, <code class="docutils literal notranslate"><span class="pre">MPI_LONG_DOUBLE</span></code>, <code class="docutils literal notranslate"><span class="pre">MPI_UNSIGNED_CHAR</span></code>,
+and other user-defined types.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">root</span></code>: rank of the process where the original data will be broadcasted.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tag</span></code>: an integer identify the message. Programmer is responsible for managing tag.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">comm</span></code>: communicator (typically just used MPI_COMM_WORLD)</p></li>
+</ul>
+</li>
+<li><p>Don’t need to specify a TAG or DESTINATION</p></li>
+<li><p>Must specify the SENDER (root)</p></li>
+<li><p>Blocking call for all processes</p></li>
+<li><p>Inside <code class="docutils literal notranslate"><span class="pre">intro-mpi</span></code>, create a file named <code class="docutils literal notranslate"><span class="pre">bcast.c</span></code> with the following
+contents</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=bcast.c"></script>
+<ul class="simple">
+<li><p>Compile and run <code class="docutils literal notranslate"><span class="pre">bcast.c</span></code>:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mpicc -o bcast bcast.c
+$ mpirun -np 4 ./bcast
+</pre></div>
+</div>
+<p>{: .language-bash}</p>
+<img src="../assets/figure/09-collectives/02.png" alt="compile and run bcast.c" style="height:300px">
+</section>
+<p>{: .slide}</p>
+<section id="hands-on-mpi-scatter">
+<h2>3. Hands-on: MPI_Scatter<a class="headerlink" href="#hands-on-mpi-scatter" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">MPI_Scatter(void</span> <span class="pre">*sendbuf,</span> <span class="pre">int</span> <span class="pre">sendcount,</span> <span class="pre">MPI_Datatype</span> <span class="pre">sendtype,</span> <span class="pre">void</span> <span class="pre">*recvbuf,int</span> <span class="pre">recvcount,MPI_Datatype</span> <span class="pre">recvtype,</span> <span class="pre">int</span> <span class="pre">root,</span> <span class="pre">MPI_Comm</span> <span class="pre">comm)</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">*sendbuf</span></code>: pointer to the address containing the array of data elements to be
+scattered.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sendcount</span></code>: how many data elements to be sent to each process of the communicator.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*recvbuf</span></code>: pointer to the address on each process of the communicator, where
+the scattered portion will be written.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">recvcount</span></code>: how many data elements to be received by each process of the communicator.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">root</span></code>: rank of the process from where the original data will be scattered.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">comm</span></code>: communicator (typically just used MPI_COMM_WORLD)</p></li>
+</ul>
+</li>
+<li><p>Inside <code class="docutils literal notranslate"><span class="pre">intro-mpi</span></code>, create a file named <code class="docutils literal notranslate"><span class="pre">scatter.c</span></code> with the following
+contents</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=scatter.c"></script>
+<ul class="simple">
+<li><p>Compile and run <code class="docutils literal notranslate"><span class="pre">scatter.c</span></code>:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mpicc -o scatter scatter.c
+$ mpirun -np 4 ./scatter
+</pre></div>
+</div>
+<p>{: .language-bash}</p>
+<img src="../assets/figure/09-collectives/03.png" alt="compile and run scatter.c" style="height:300px">
+</section>
+<p>{: .slide}</p>
+<section id="hands-on-mpi-gather">
+<h2>4. Hands-on: MPI_Gather<a class="headerlink" href="#hands-on-mpi-gather" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">MPI_Gather(void</span> <span class="pre">*sendbuf,</span> <span class="pre">int</span> <span class="pre">sendcount,</span> <span class="pre">MPI_Datatype</span> <span class="pre">sendtype,</span> <span class="pre">void</span> <span class="pre">*recvbuf,int</span> <span class="pre">recvcount,MPI_Datatype</span> <span class="pre">recvtype,</span> <span class="pre">int</span> <span class="pre">root,</span> <span class="pre">MPI_Comm</span> <span class="pre">comm)</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">*sendbuf</span></code>: pointer to the address on each process of the communicator, containing
+the array of data elements to be gathered.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sendcount</span></code>: how many data elements from each process of the communicator to be sent
+back to the root process.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*recvbuf</span></code>: pointer to the address on the root process where all gathered data
+will be written.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">recvcount</span></code>: how many data elements to be received from each process of the
+communicator.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">root</span></code>: rank of the process from where the original data will be gathered.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">comm</span></code>: communicator (typically just used MPI_COMM_WORLD)</p></li>
+</ul>
+</li>
+<li><p>Inside <code class="docutils literal notranslate"><span class="pre">intro-mpi</span></code>, create a file named <code class="docutils literal notranslate"><span class="pre">gather.c</span></code> with the following
+contents</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=gather.c"></script>
+<ul class="simple">
+<li><p>Compile and run <code class="docutils literal notranslate"><span class="pre">gather.c</span></code>:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mpicc -o gather gather.c
+$ mpirun -np 4 ./gather
+</pre></div>
+</div>
+<p>{: .language-bash}</p>
+<img src="../assets/figure/09-collectives/04.png" alt="compile and run gather.c" style="height:300px">
+</section>
+<p>{: .slide}</p>
+<section id="hands-on-mpi-reduce">
+<h2>5. Hands-on: MPI_Reduce<a class="headerlink" href="#hands-on-mpi-reduce" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">MPI_Reduce(void</span> <span class="pre">*sendbuf,</span> <span class="pre">void</span> <span class="pre">*recvbuf,</span> <span class="pre">int</span> <span class="pre">count,</span> <span class="pre">MPI_Datatype</span> <span class="pre">datatype,</span> <span class="pre">MPI_OP</span> <span class="pre">op,int</span> <span class="pre">root,</span> <span class="pre">MPI_Comm</span> <span class="pre">comm)</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">*sendbuf</span></code>: pointer to the address on each process of the communicator, containing
+the array of data elements to be reduced.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*recvbuf</span></code>: pointer to the address on the root process where all final reduced
+data will be written.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">count</span></code>: how many data elements to be received from each process of the communicator.
+If count &gt; 1, then operation is performed element-wise.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">op</span></code>: may be MPI_MIN, MPI_MAX, MPI_SUM, MPI_PROD (twelve total). Programmer may add
+operations, must be commutative and associative.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">root</span></code>: rank of the process from where the original data will be gathered.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">comm</span></code>: communicator (typically just used MPI_COMM_WORLD).</p></li>
+</ul>
+</li>
+<li><p>Inside <code class="docutils literal notranslate"><span class="pre">intro-mpi</span></code>, create a file named <code class="docutils literal notranslate"><span class="pre">gather.c</span></code> with the following
+contents</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=reduce.c"></script>
+<ul class="simple">
+<li><p>Compile and run <code class="docutils literal notranslate"><span class="pre">reduce.c</span></code>:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mpicc -o reduce reduce.c
+$ mpirun -np 4 ./reduce
+</pre></div>
+</div>
+<p>{: .language-bash}</p>
+<img src="../assets/figure/09-collectives/05.png" alt="compile and run reduce.c" style="height:300px">
+</section>
+<p>{: .slide}</p>
+<p>{% include <a class="reference external" href="http://links.md">links.md</a> %}</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./episodes"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="08-point-to-point.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">MPI: point-to-point, data types, and communicators</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="10-pleasantly-parallel.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">MPI: pleasantly parallel and workload allocation</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Linh Ngo<br/>
+  
+    <div class="extra_footer">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Computer Systems</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -6,13 +6,23 @@ root: index
 parts:
 - caption: Lectures
   chapters:
-    - file: episodes/01-introduction
-    - file: episodes/02-intro-to-c.md
-    - file: episodes/03-data-representation.md
-    - file: episodes/04-machine-language.md
-    - file: episodes/05-memory-cache.md
-    - file: episodes/06-optimizing-program-performance.md
-    - file: episodes/07-network-programming.md
+    - file: episodes/01-computational-demand.md
+    - file: episodes/02-intro-to-parallel-distributed-computing.md
+    - file: episodes/03-intro-to-c.md
+    - file: episodes/04-intro-openmp.md
+    - file: episodes/05-loop-parallelism.md
+    - file: episodes/06-works-sharing.md
+    - file: episodes/07-intro-mpi.md
+    - file: episodes/08-point-to-point.md
+    - file: episodes/09-functional-collectives.md
+    - file: episodes/10-pleasantly-parallel.md
+    - file: episodes/11-data-intensive-computing.md
+    - file: episodes/12-mapreduce.md
+    - file: episodes/13-spark.md
+    - file: episodes/14-data-parallel.md
+    - file: episodes/15-page-rank.md
+    - file: episodes/16-locality-sensitive-hashing.md
+    - file: episodes/17-frequent-itemsets.md
 - caption: Appendix
   chapters:
     - file: extras/setup.md
