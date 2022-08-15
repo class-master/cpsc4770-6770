@@ -1,4 +1,4 @@
-# The demand for computational speed"
+# The demand for computational speed
 
 ## How do we measure speed in computation?
 
