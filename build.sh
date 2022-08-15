@@ -4,9 +4,7 @@
 source activate jupyter-book
 jupyter-book build .
 
-if [[ $1 == "docs" ]]
+if [[ $1 == "pages" ]]
 then
-  rm -Rf docs
-  mkdir docs
-  rsync -a _build/html/ docs/
+  ghp-import -n -p -f _build/html
 fi
