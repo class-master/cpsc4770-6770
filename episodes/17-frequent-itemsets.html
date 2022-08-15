@@ -1,0 +1,846 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Frequent Itemsets &#8212; Distributed and Cluster Computing</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Setup" href="../extras/setup.html" />
+    <link rel="prev" title="Locality Sensitive Hashing" href="16-locality-sensitive-hashing.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Distributed and Cluster Computing</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Syllabus
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-computational-demand.html">
+   The demand for computational speed
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-intro-to-parallel-distributed-computing.html">
+   Introduction to paralel and distributed computing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-intro-to-c.html">
+   Introduction to C
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-intro-openmp.html">
+   Introduction to OpenMP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-loop-parallelism.html">
+   OpenMP: parallel regions and loop parallelism
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-works-sharing.html">
+   OpenMP: Work sharing and controlling thread data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-intro-mpi.html">
+   Introduction to MPI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-point-to-point.html">
+   MPI: point-to-point, data types, and communicators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-functional-collectives.html">
+   MPI: Functional parallelism and collectives
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-pleasantly-parallel.html">
+   MPI: pleasantly parallel and workload allocation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-data-intensive-computing.html">
+   Introduction to Big Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12-mapreduce.html">
+   MapReduce Programming Paradigm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-spark.html">
+   Spark computing environment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-data-parallel.html">
+   Data parallel computing with Spark
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-page-rank.html">
+   Page Rank
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-locality-sensitive-hashing.html">
+   Locality Sensitive Hashing
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Frequent Itemsets
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendix
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extras/setup.html">
+   Setup
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extras/intro-linux.html">
+   Introduction to the Linux Shell
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extras/gdb.html">
+   GDB Debugger
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extras/github.html">
+   Working with GitHub
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/episodes/17-frequent-itemsets.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-market-basket-model">
+   1. The market-basket model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#definition-of-a-frequent-itemsets">
+   2. Definition of a frequent itemsets.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-frequent-itemsets">
+   3. Example: frequent itemsets
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applications">
+   4. Applications
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scale-of-the-problem">
+   5. Scale of the problem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#association-rules">
+   6. Association Rules:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#finding-association-rules">
+   7. Finding association rules
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computation-model">
+   8. Computation model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#main-memory-bottleneck">
+   9. Main-memory bottleneck
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#naive-algorithm">
+   10. Naive algorithm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#naive-algorithm-how-do-we-count">
+   11. Naive algorithm: how do we count.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-priori-algorithm">
+   12. A-Priori algorithm.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-priori-at-scale">
+   13. A-Priori at scale
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hands-on-son-on-spark">
+   14. Hands-on: SON on Spark
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hands-on-processing-xml-data">
+   15. Hands-on: Processing XML data
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Frequent Itemsets</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-market-basket-model">
+   1. The market-basket model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#definition-of-a-frequent-itemsets">
+   2. Definition of a frequent itemsets.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-frequent-itemsets">
+   3. Example: frequent itemsets
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applications">
+   4. Applications
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scale-of-the-problem">
+   5. Scale of the problem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#association-rules">
+   6. Association Rules:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#finding-association-rules">
+   7. Finding association rules
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computation-model">
+   8. Computation model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#main-memory-bottleneck">
+   9. Main-memory bottleneck
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#naive-algorithm">
+   10. Naive algorithm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#naive-algorithm-how-do-we-count">
+   11. Naive algorithm: how do we count.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-priori-algorithm">
+   12. A-Priori algorithm.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-priori-at-scale">
+   13. A-Priori at scale
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hands-on-son-on-spark">
+   14. Hands-on: SON on Spark
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hands-on-processing-xml-data">
+   15. Hands-on: Processing XML data
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="frequent-itemsets">
+<h1>Frequent Itemsets<a class="headerlink" href="#frequent-itemsets" title="Permalink to this headline">#</a></h1>
+<section id="the-market-basket-model">
+<h2>1. The market-basket model<a class="headerlink" href="#the-market-basket-model" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Describe a common form of many-to-many relationship between two kinds of objects.</p>
+<ul>
+<li><p>A large set of <code class="docutils literal notranslate"><span class="pre">items</span></code>. e.g.: things sold in a supermarket.</p></li>
+<li><p>A large set of <code class="docutils literal notranslate"><span class="pre">baskets</span></code>, each of which is a small set of items. e.g.: things one
+customer buys on one trip to the supermarket.</p>
+<ul>
+<li><p>Number of <code class="docutils literal notranslate"><span class="pre">baskets</span></code> cannot fit into memory.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="definition-of-a-frequent-itemsets">
+<h2>2. Definition of a frequent itemsets.<a class="headerlink" href="#definition-of-a-frequent-itemsets" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>A set of items that appears in many baskets is said to be <code class="docutils literal notranslate"><span class="pre">frequent</span></code>.</p></li>
+<li><p>Assume a value <code class="docutils literal notranslate"><span class="pre">s</span></code>: <em>support threshold</em>.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">I</span></code> is a set of items.</p>
+<ul>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">support</span></code> for <code class="docutils literal notranslate"><span class="pre">I</span></code> is the number of baskets in which <code class="docutils literal notranslate"><span class="pre">I</span></code> is a subset.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">I</span></code> is frequent if its support is <code class="docutils literal notranslate"><span class="pre">s</span></code> or higher.</p></li>
+</ul>
+</section>
+<section id="example-frequent-itemsets">
+<h2>3. Example: frequent itemsets<a class="headerlink" href="#example-frequent-itemsets" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>items = {milk, coke, pepsi, beer, juice}</p>
+<ul>
+<li><p>B1: m,c,b</p></li>
+<li><p>B2: m,p,j</p></li>
+<li><p>B3: m,b</p></li>
+<li><p>B4: c,j</p></li>
+<li><p>B5: m,p,b</p></li>
+<li><p>B6: m,c,b,j</p></li>
+<li><p>B7: c,b,j</p></li>
+<li><p>B8: b,c</p></li>
+</ul>
+</li>
+<li><p>Support value <code class="docutils literal notranslate"><span class="pre">s</span></code> = 3 (three baskets)</p></li>
+<li><p>Frequent itemsets:</p>
+<ul>
+<li><p>{m}, {c}, {b}, {j}, {m,b}, {b,c}, {c,j}</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="applications">
+<h2>4. Applications<a class="headerlink" href="#applications" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Items: products; Baskets: sets of products.</p>
+<ul>
+<li><p>Given that many people buy beer and diapers together: run a sale on diapers
+and raise price of beer.</p></li>
+<li><p>Given that many people buy hotdog and mustards together: run a sale of hotdog
+and raise price of mustards.</p></li>
+</ul>
+</li>
+<li><p>Items = documents; baskets = sentences/phrases.</p>
+<ul>
+<li><p>Items that appear together too often could represent plagiarism.</p></li>
+</ul>
+</li>
+<li><p>Items = words, basket = documents.</p>
+<ul>
+<li><p>Unusual words appearing together in large number of documents indicating
+interesting relationship.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="scale-of-the-problem">
+<h2>5. Scale of the problem<a class="headerlink" href="#scale-of-the-problem" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Walmart sells hundreds of thousands of items, and has billions of transactions
+(shopping basket/cart at checkout).</p></li>
+<li><p>The Web has billions of words and many billions of pages.</p></li>
+</ul>
+</section>
+<section id="association-rules">
+<h2>6. Association Rules:<a class="headerlink" href="#association-rules" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">If-then</span></code> rules abou the contents of baskets.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{i_1,</span> <span class="pre">i_2,</span> <span class="pre">...,</span> <span class="pre">i_k}</span> <span class="pre">-&gt;</span> <span class="pre">j</span></code> means: “If a basket contains all of i_1,…,i_k then it is
+<code class="docutils literal notranslate"><span class="pre">likely</span></code> to contain j.”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Confidence</span></code> of this association rule is the probability of j given {i_1,…,i_k}.</p>
+<ul>
+<li><p>The fraction of the basket with {i_1,…,i_k} that also contain j.</p></li>
+</ul>
+</li>
+<li><p>Example:</p>
+<ul>
+<li><p>B1: m,c,b</p></li>
+<li><p>B2: m,p,j</p></li>
+<li><p>B3: m,b</p></li>
+<li><p>B4: c,j</p></li>
+<li><p>B5: m,p,b</p></li>
+<li><p>B6: m,c,b,j</p></li>
+<li><p>B7: c,b,j</p></li>
+<li><p>B8: b,c</p></li>
+</ul>
+</li>
+<li><p>An association rule: {m,b} -&gt; c</p>
+<ul>
+<li><p>Basket contains m and b: B1, B3, B5, B6</p></li>
+<li><p>Basket contains m, b, and c: B1, B6</p></li>
+<li><p>C = 2 / 4 = 50%</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="finding-association-rules">
+<h2>7. Finding association rules<a class="headerlink" href="#finding-association-rules" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><strong>Find all association rules with support &gt;= s and confidence &gt;=c</strong></p></li>
+<li><p>Hard part: funding the frequent itemsets.</p></li>
+</ul>
+</section>
+<section id="computation-model">
+<h2>8. Computation model<a class="headerlink" href="#computation-model" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Data is stored in flat files on disk.</p></li>
+<li><p>Most likely basket-by-basket.</p></li>
+<li><p>Expand baskets into pairs, triples, etc as you read the baskets.</p>
+<ul>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">k</span></code> nested loops to generate all sets of size <code class="docutils literal notranslate"><span class="pre">k</span></code>.</p></li>
+</ul>
+</li>
+<li><p>I/O cost: per passes (all baskets read).</p></li>
+</ul>
+</section>
+<section id="main-memory-bottleneck">
+<h2>9. Main-memory bottleneck<a class="headerlink" href="#main-memory-bottleneck" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>For many frequent-itemset algorithms, main memory is the critical resource.</p></li>
+<li><p>We need to keep count of things (occurrences of pairs/triples/…) when we read baskets.</p></li>
+<li><p>The number of different things we can count is limited by main memory.</p></li>
+<li><p>Swapping counts is going to be horrible.</p></li>
+</ul>
+</section>
+<section id="naive-algorithm">
+<h2>10. Naive algorithm<a class="headerlink" href="#naive-algorithm" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Hardest problem is finding <code class="docutils literal notranslate"><span class="pre">frequent</span> <span class="pre">pairs</span></code> because they are the most common.</p></li>
+<li><p>Read file once, counting in main memory the occurences of each pair.</p></li>
+<li><p>For each basket of <code class="docutils literal notranslate"><span class="pre">n</span></code> items, there will be <code class="docutils literal notranslate"><span class="pre">n(n-1)/2</span></code> pairs, generated by
+double-nested loops.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">n^2</span></code> exceeds main memory, we fails.</p></li>
+</ul>
+</section>
+<section id="naive-algorithm-how-do-we-count">
+<h2>11. Naive algorithm: how do we count.<a class="headerlink" href="#naive-algorithm-how-do-we-count" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Count all pairs using a triangular matrix.</p>
+<ul>
+<li><p>Requires 4 bytes per pair for all possible pairs: 2n^2</p></li>
+</ul>
+</li>
+<li><p>Keep a table ot triples [i, j, c] with c is the count of pair {i,j}.</p>
+<ul>
+<li><p>Requires 12 bytes only for pairs with count &gt; 0: 12p with p is the number
+of pairs that actually occur.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="a-priori-algorithm">
+<h2>12. A-Priori algorithm.<a class="headerlink" href="#a-priori-algorithm" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Limit the need for main memory.</p></li>
+<li><p>Key idea: <code class="docutils literal notranslate"><span class="pre">monotonicity</span></code></p>
+<ul>
+<li><p>If a set of items appears at least <code class="docutils literal notranslate"><span class="pre">s</span></code> times, so does every subset of this set.</p></li>
+</ul>
+</li>
+<li><p>Contrapositive: If an item <code class="docutils literal notranslate"><span class="pre">i</span></code> does not appear in <code class="docutils literal notranslate"><span class="pre">s</span></code> baskets, then no pair
+containing <code class="docutils literal notranslate"><span class="pre">i</span></code> can appear in s baskets.</p></li>
+<li><p>A-Priori algorithm:</p>
+<ul>
+<li><p>Pass 1: read baskets and count the item occurrences. Only keep items that appear
+at least <code class="docutils literal notranslate"><span class="pre">s</span></code> times - <code class="docutils literal notranslate"><span class="pre">frequent</span> <span class="pre">items</span></code>.</p></li>
+<li><p>Pass 2: read baskets again and only count in main memory only those pairs whose
+both items were found to be frequent from Pass 1.</p></li>
+<li><p>Repeat the process with increasing number of items added to only sets found to be
+<code class="docutils literal notranslate"><span class="pre">frequent</span></code>.
+<img src="../fig/07-frequent-items/01.png" style="height:500px"></p></li>
+<li><p>C1 = all items</p></li>
+<li><p>In general, L_k are members of C_k with support greater than or equal to <code class="docutils literal notranslate"><span class="pre">s</span></code>.</p></li>
+<li><p>C_(k+1) includes (k+1) sets, each k of which is in L_k.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="a-priori-at-scale">
+<h2>13. A-Priori at scale<a class="headerlink" href="#a-priori-at-scale" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Under two passes.</p></li>
+<li><p>SON: Savasere-Omiecinski-Navathe</p></li>
+<li><p>Adaptable to a distributed data model (mapreduce).</p>
+<ul>
+<li><p>Repeatedly read small subsets of the baskets into main memory
+and perform <code class="docutils literal notranslate"><span class="pre">a-priori</span></code> on these subsets, using a support that is
+equal to the main support divided by the total numbers of subsets.</p></li>
+<li><p>Aggregate all candidate itemsets and determine which are frequent
+in the entire set.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="hands-on-son-on-spark">
+<h2>14. Hands-on: SON on Spark<a class="headerlink" href="#hands-on-son-on-spark" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Download the <a class="reference external" href="https://files.grouplens.org/datasets/movielens/ml-latest-small.zip">small movie dataset</a></p></li>
+</ul>
+</section>
+<section id="hands-on-processing-xml-data">
+<h2>15. Hands-on: Processing XML data<a class="headerlink" href="#hands-on-processing-xml-data" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Download the <a class="reference external" href="https://www.nsf.gov/awardsearch/download.jsp">NSF Awards Data</a> between 2011 and 2021.</p></li>
+<li><p>Review the XML Schema</p></li>
+<li><p>What is an interesting question?</p></li>
+</ul>
+<p>{% include <a class="reference external" href="http://links.md">links.md</a> %}</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./episodes"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="16-locality-sensitive-hashing.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Locality Sensitive Hashing</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../extras/setup.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Setup</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Linh Ngo<br/>
+  
+    <div class="extra_footer">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Computer Systems</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,981 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>GDB Debugger &#8212; Distributed and Cluster Computing</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Working with GitHub" href="github.html" />
+    <link rel="prev" title="Introduction to the Linux Shell" href="intro-linux.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Distributed and Cluster Computing</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Syllabus
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../episodes/01-computational-demand.html">
+   The demand for computational speed
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../episodes/02-intro-to-parallel-distributed-computing.html">
+   Introduction to paralel and distributed computing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../episodes/03-intro-to-c.html">
+   Introduction to C
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../episodes/04-intro-openmp.html">
+   Introduction to OpenMP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../episodes/05-loop-parallelism.html">
+   OpenMP: parallel regions and loop parallelism
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../episodes/06-works-sharing.html">
+   OpenMP: Work sharing and controlling thread data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../episodes/07-intro-mpi.html">
+   Introduction to MPI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../episodes/08-point-to-point.html">
+   MPI: point-to-point, data types, and communicators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../episodes/09-functional-collectives.html">
+   MPI: Functional parallelism and collectives
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../episodes/10-pleasantly-parallel.html">
+   MPI: pleasantly parallel and workload allocation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../episodes/11-data-intensive-computing.html">
+   Introduction to Big Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../episodes/12-mapreduce.html">
+   MapReduce Programming Paradigm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../episodes/13-spark.html">
+   Spark computing environment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../episodes/14-data-parallel.html">
+   Data parallel computing with Spark
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../episodes/15-page-rank.html">
+   Page Rank
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../episodes/16-locality-sensitive-hashing.html">
+   Locality Sensitive Hashing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../episodes/17-frequent-itemsets.html">
+   Frequent Itemsets
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendix
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="setup.html">
+   Setup
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro-linux.html">
+   Introduction to the Linux Shell
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   GDB Debugger
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="github.html">
+   Working with GitHub
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/extras/gdb.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#in-a-nutshell">
+   1. In a nutshell
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#brief-technical-details">
+   2. Brief Technical Details
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cheatsheet">
+   3. Cheatsheet
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tmux">
+   4. tmux
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tmux-quickstart-1-multiple-sessions">
+   5. tmux quickstart 1: multiple sessions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hands-on-navigating-among-multiple-tmux-sessions">
+   6. Hands on: navigating among multiple tmux sessions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tmux-quickstart-2-multiple-panes">
+   7. tmux quickstart 2: multiple panes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hands-on-creating-multiple-panes">
+   8. Hands on: creating multiple panes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tmux-quickstart-3-resizing">
+   9. tmux quickstart 3: resizing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge">
+   10. Challenge
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-and-exiting-gdb">
+   11. Running and exiting gdb
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup-an-application-with-gdb">
+   12. Setup an application with gdb
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#debugging-with-gdb">
+   13. Debugging with gdb
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scrolling-within-tmux-s-panes">
+   15. Scrolling within tmux’s panes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hands-on-finish-running-hello">
+   16. Hands on: finish running hello
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examining-contents-of-program-while-debugging">
+   17. Examining contents of program while debugging
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   18. Examining contents of program while debugging
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hands-on-finish-running-array-4">
+   19. Hands on: finish running array-4
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>GDB Debugger</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#in-a-nutshell">
+   1. In a nutshell
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#brief-technical-details">
+   2. Brief Technical Details
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cheatsheet">
+   3. Cheatsheet
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tmux">
+   4. tmux
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tmux-quickstart-1-multiple-sessions">
+   5. tmux quickstart 1: multiple sessions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hands-on-navigating-among-multiple-tmux-sessions">
+   6. Hands on: navigating among multiple tmux sessions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tmux-quickstart-2-multiple-panes">
+   7. tmux quickstart 2: multiple panes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hands-on-creating-multiple-panes">
+   8. Hands on: creating multiple panes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tmux-quickstart-3-resizing">
+   9. tmux quickstart 3: resizing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge">
+   10. Challenge
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-and-exiting-gdb">
+   11. Running and exiting gdb
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup-an-application-with-gdb">
+   12. Setup an application with gdb
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#debugging-with-gdb">
+   13. Debugging with gdb
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scrolling-within-tmux-s-panes">
+   15. Scrolling within tmux’s panes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hands-on-finish-running-hello">
+   16. Hands on: finish running hello
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examining-contents-of-program-while-debugging">
+   17. Examining contents of program while debugging
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   18. Examining contents of program while debugging
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hands-on-finish-running-array-4">
+   19. Hands on: finish running array-4
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="gdb-debugger">
+<h1>GDB Debugger<a class="headerlink" href="#gdb-debugger" title="Permalink to this headline">#</a></h1>
+<section id="in-a-nutshell">
+<h2>1. In a nutshell<a class="headerlink" href="#in-a-nutshell" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Developed in 1986 by Richard Stallman at MIT.</p></li>
+<li><p>Current official maintainers come from RedHat, AdaCore, and Google.</p></li>
+<li><p>Significant contribution from the open source community.</p></li>
+</ul>
+</section>
+<section id="brief-technical-details">
+<h2>2. Brief Technical Details<a class="headerlink" href="#brief-technical-details" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Allows programmers to see inside and interact/modify with all components of a programs,
+including information inside the registers.</p></li>
+<li><p>Allows programmers to walk through the program step by step, including down to
+instruction level, to debug the program.</p></li>
+</ul>
+</section>
+<section id="cheatsheet">
+<h2>3. Cheatsheet<a class="headerlink" href="#cheatsheet" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Study this <a class="reference external" href="https://cs.brown.edu/courses/cs033/docs/guides/gdb.pdf">cheatsheet</a></p></li>
+<li><p>Developed by Dr. Doeppner at Brown University.</p></li>
+<li><p>Become very comfortable with terminal!</p></li>
+<li><p>We will work on the terminal extensively here, say goodbye to VSCode.
+<em>You can certainly use VSCode, but you will miss out on a fine tool!</em></p></li>
+</ul>
+</section>
+<section id="tmux">
+<h2>4. tmux<a class="headerlink" href="#tmux" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Our workspace is limited within the scope of a single terminal (a single shell)
+to interact with the operating system.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tmux</span></code>: <em>terminal multiplexer</em>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tmux</span></code> allows user to open multiple terminals and organize split-views (panes)
+within these terminals within a single original terminal.</p></li>
+<li><p>We can run/keep track off multiple programs within a single terminal.</p></li>
+</ul>
+</section>
+<section id="tmux-quickstart-1-multiple-sessions">
+<h2>5. tmux quickstart 1: multiple sessions<a class="headerlink" href="#tmux-quickstart-1-multiple-sessions" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>SSH into <code class="docutils literal notranslate"><span class="pre">molly</span></code></p></li>
+<li><p>Start new with a session name:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tmux new -s csc231
+</pre></div>
+</div>
+<img src="../fig/gdb/01.png" style="height:600px">
+>
+- You are now in the new tmux session. 
+- You can list all active tmux sessions. 
+>
+~~~
+$ tmux ls
+~~~
+<img src="../fig/gdb/02.png" style="height:600px">
+>
+- **Notation**: Key press combinations connected with a single dash (`-`) means to 
+be pressed together, otherwise, it means **lift your finger, then press ...**. 
+- To go back to the main terminal, press `Ctrl-b`, then press `d`. 
+>
+<img src="../fig/gdb/03.png" style="height:50px">
+>
+- To go back into the `csc231` session: `tmux attach-session -t csc231`. 
+>
+<img src="../fig/gdb/04.png" style="height:600px">
+>
+- To kill a session: 
+  - From inside the session: `exit`, or
+  - From outside the session: `tmux kill-session -t csc231`
+</section>
+<section id="hands-on-navigating-among-multiple-tmux-sessions">
+<h2>6. Hands on: navigating among multiple tmux sessions<a class="headerlink" href="#hands-on-navigating-among-multiple-tmux-sessions" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">ls</span></code> to check and <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">kill-session</span></code> to clean up all existing
+tmux sessions.</p></li>
+<li><p>Create a new session called <code class="docutils literal notranslate"><span class="pre">s1</span></code>.</p></li>
+<li><p>Detach from <code class="docutils literal notranslate"><span class="pre">s1</span></code> and go back to the main terminal.</p></li>
+<li><p>Create a second session called <code class="docutils literal notranslate"><span class="pre">s2</span></code>.</p></li>
+<li><p>Detach from <code class="docutils literal notranslate"><span class="pre">s2</span></code>, go back to the main terminal, and create a third session called <code class="docutils literal notranslate"><span class="pre">s3</span></code>.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">ls</span></code> to view the list of tmux sessions.</p></li>
+<li><p>Navigate back and forth between the three sessions several times.</p></li>
+<li><p>Kill all three sessions using only <code class="docutils literal notranslate"><span class="pre">exit</span></code>!</p></li>
+</ul>
+<img src="../fig/gdb/05.png" style="height:600px">
+>
+</section>
+<section id="tmux-quickstart-2-multiple-panes">
+<h2>7. tmux quickstart 2: multiple panes<a class="headerlink" href="#tmux-quickstart-2-multiple-panes" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Create a new session called <code class="docutils literal notranslate"><span class="pre">p1</span></code>.</p></li>
+<li><p>Splits terminal into vertical panels: <code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code> then <code class="docutils literal notranslate"><span class="pre">Shift-5</span></code> (technical documents
+often write this as <code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code> and <code class="docutils literal notranslate"><span class="pre">%</span></code>).</p></li>
+</ul>
+<img src="../fig/gdb/06.png" style="height:600px">
+>
+- Splits terminal (the current pane) into horizontal panels: `Ctrl-b` then `Shift-'` 
+( technical documents often write this as `Ctrl-b` and `"`).
+>
+<img src="../fig/gdb/07.png" style="height:600px">
+>
+- Toggle between panels: `Ctrl-b` then `Space`.
+- To move from one panel to other directionally: `Ctrl-b`then the corresponding 
+arrow key. 
+- Typing `exit` will close the pane with the activate cursor.  
+- Run `exit` multiple times to completely close out the `p1` session. Pay attention 
+to not get out of the container. 
+</section>
+<section id="hands-on-creating-multiple-panes">
+<h2>8. Hands on: creating multiple panes<a class="headerlink" href="#hands-on-creating-multiple-panes" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">ls</span></code> to check and <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">kill-session</span></code> to clean up all existing
+tmux sessions.</p></li>
+<li><p>Create a new session called <code class="docutils literal notranslate"><span class="pre">p1</span></code>.</p></li>
+<li><p>Organize <code class="docutils literal notranslate"><span class="pre">p1</span></code> such that:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">p1</span></code> has four vertical panes.</p></li>
+<li><p>The last vertical pane of <code class="docutils literal notranslate"><span class="pre">p1</span></code> has three internal horizontal panes.</p></li>
+</ul>
+</li>
+<li><p>Kill all panes using <code class="docutils literal notranslate"><span class="pre">exit</span></code>!</p></li>
+</ul>
+<img src="../fig/gdb/08.png" style="height:600px">
+>
+</section>
+<section id="tmux-quickstart-3-resizing">
+<h2>9. tmux quickstart 3: resizing<a class="headerlink" href="#tmux-quickstart-3-resizing" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>What we did in Hands-on 8 was not quite usable.</p></li>
+<li><p>We need to be able to adjust the panes to the proper sizes.</p></li>
+<li><p>This can be done by issuing additional commands via tmux’s command line terminal.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">ls</span></code> to check and <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">kill-session</span></code> to clean up all existing
+tmux sessions.</p></li>
+<li><p>Create a new session called <code class="docutils literal notranslate"><span class="pre">p1</span></code>.</p></li>
+<li><p>Split the session horizontally.</p></li>
+<li><p>You can adjust the size of two adjacent horizontal panes by <strong>press and hold</strong> <code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code> then
+the left/right arrows.</p></li>
+<li><p>You can adjust the size of two adjacent vertical panes by <strong>press and hold</strong> <code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code> then
+the up/down arrows.</p></li>
+</ul>
+</section>
+<section id="challenge">
+<h2>10. Challenge<a class="headerlink" href="#challenge" title="Permalink to this headline">#</a></h2>
+<p>Redo the hands-on activity of slide 8 so that all the panes are aesthetically
+proportional.</p>
+<p>{: .challenge}</p>
+</section>
+<section id="running-and-exiting-gdb">
+<h2>11. Running and exiting gdb<a class="headerlink" href="#running-and-exiting-gdb" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Create a new session tmux called <code class="docutils literal notranslate"><span class="pre">gdb</span></code>.</p></li>
+<li><p>Run the following command in the <code class="docutils literal notranslate"><span class="pre">gdb</span></code> session.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd 
+$ git clone https://github.com/longld/peda.git
+$ echo &quot;source $HOME/peda/peda.py&quot; $HOME/.gdbinit
+$ gdb
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>To exit from gdb type <code class="docutils literal notranslate"><span class="pre">q</span></code> and hit <code class="docutils literal notranslate"><span class="pre">Enter</span></code>.</p></li>
+</ul>
+<img src="../fig/gdb/09.png" style="height:600px">
+>
+</section>
+<section id="setup-an-application-with-gdb">
+<h2>12. Setup an application with gdb<a class="headerlink" href="#setup-an-application-with-gdb" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>To use <code class="docutils literal notranslate"><span class="pre">gdb</span></code> to debug, we need to compile the program with a <code class="docutils literal notranslate"><span class="pre">-g</span></code> flag.</p></li>
+<li><p>Split the <code class="docutils literal notranslate"><span class="pre">gdb</span></code> session into two <strong>horizontal</strong> panes.</p></li>
+<li><p>In the top pane, run the followings command:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/csc231/intro-c
+$ gcc -g -o hello hello.c
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>In the bottom pane, run the followings command:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/intro-c
+$ gdb hello
+gdb-peda$ run
+</pre></div>
+</div>
+<img src="../fig/gdb/10.png" style="height:800px">
+>
+</section>
+<section id="debugging-with-gdb">
+<h2>13. Debugging with gdb<a class="headerlink" href="#debugging-with-gdb" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>We need to set a <code class="docutils literal notranslate"><span class="pre">breakpoint</span></code>:</p>
+<ul>
+<li><p>Could be a line number or</p></li>
+<li><p>Could be a function name</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>gdb-peda$ b main
+gdb-peda$ run
+</pre></div>
+</div>
+<img src="../fig/gdb/11.png" style="height:800px">
+>
+</section>
+<section id="scrolling-within-tmux-s-panes">
+<h2>15. Scrolling within tmux’s panes<a class="headerlink" href="#scrolling-within-tmux-s-panes" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Mouse scrolling does not work with tmux.</p></li>
+<li><p>To enable scrolling mode in tmux, type <code class="docutils literal notranslate"><span class="pre">Ctr-b</span></code> then <code class="docutils literal notranslate"><span class="pre">[</span></code>.</p></li>
+<li><p>You can use the <code class="docutils literal notranslate"><span class="pre">Up</span></code>/<code class="docutils literal notranslate"><span class="pre">Down</span></code>/<code class="docutils literal notranslate"><span class="pre">PgUp</span></code>/<code class="docutils literal notranslate"><span class="pre">PgDn</span></code> keys to navigate.</p></li>
+<li><p>To quit scrolling mode, type <code class="docutils literal notranslate"><span class="pre">q</span></code> or <code class="docutils literal notranslate"><span class="pre">Esc</span></code>.</p></li>
+</ul>
+<img src="../fig/gdb/12.png" style="height:800px">
+>
+- At a glance
+  - Registers' contents
+  - Code
+  - Stack contents
+  - Assembly codes
+- `gdb` stops at our breakpoint, just before function `main`. 
+- The last line (before the `gdb-peda$` prompt) indicates the next line of code to 
+be executed. 
+</section>
+<section id="hands-on-finish-running-hello">
+<h2>16. Hands on: finish running hello<a class="headerlink" href="#hands-on-finish-running-hello" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">q</span></code> or <code class="docutils literal notranslate"><span class="pre">Esc</span></code> to quit scrolling mode.</p></li>
+<li><p>To continue executing the next line of code, type <code class="docutils literal notranslate"><span class="pre">n</span></code> then <code class="docutils literal notranslate"><span class="pre">Enter</span></code>.</p></li>
+<li><p>Turn back into the scrolling mode and scroll back up
+to observe what happens after typing <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p></li>
+<li><p>What is the next line of code to be executed?</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">n</span></code> three more times to observe the line of codes being executed
+and the final warning from <code class="docutils literal notranslate"><span class="pre">gdb</span></code>.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">q</span></code> to exit from <code class="docutils literal notranslate"><span class="pre">gdb</span></code>.</p></li>
+</ul>
+</section>
+<section id="examining-contents-of-program-while-debugging">
+<h2>17. Examining contents of program while debugging<a class="headerlink" href="#examining-contents-of-program-while-debugging" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>In the top pane, compile <code class="docutils literal notranslate"><span class="pre">malloc-1.c</span></code> in debugging mode.</p></li>
+<li><p>In the bottom pane, quit the current gdb session and
+rerun it on the recently created <code class="docutils literal notranslate"><span class="pre">malloc-1</span></code> executable.</p></li>
+<li><p>Setup <code class="docutils literal notranslate"><span class="pre">main</span></code> as the <code class="docutils literal notranslate"><span class="pre">breakpoint</span></code> and start running.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>gdb-peda$ b main
+gdb-peda$ run
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">n</span></code> and <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to run the next line of code: <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">*p</span> <span class="pre">=</span> <span class="pre">malloc(4);</span></code></p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">p</span></code>: the first <code class="docutils literal notranslate"><span class="pre">p</span></code> is short for <code class="docutils literal notranslate"><span class="pre">print</span></code> and the second <code class="docutils literal notranslate"><span class="pre">p</span></code> is the
+void pointer variable <code class="docutils literal notranslate"><span class="pre">p</span></code> in the program.</p></li>
+<li><p>Try running <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">*p</span></code>. What does that feedback mean?</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">n</span></code> and <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to run the next line of code: <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">*ip</span> <span class="pre">=</span> <span class="pre">(int</span> <span class="pre">*)p;</span></code></p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">ip</span></code>: what is the printed value?</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">n</span></code> and <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to run the next line of code: <code class="docutils literal notranslate"><span class="pre">*ip</span> <span class="pre">=</span> <span class="pre">98765;</span></code></p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">ip</span></code>: what is the printed value?</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">*ip</span></code>: what is the printed value?</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">/t</span> <span class="pre">*ip</span></code>: what type of data is value? what is the corresponding value in
+decimal?</p></li>
+<li><p>Keep hitting <code class="docutils literal notranslate"><span class="pre">n</span></code> until you finish stepping through all the remain lines of code.</p></li>
+</ul>
+</section>
+<section id="id1">
+<h2>18. Examining contents of program while debugging<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>In the top pane, compile <code class="docutils literal notranslate"><span class="pre">array-4.c</span></code> in debugging mode.</p></li>
+<li><p>In the bottom pane, quit the current gdb session and
+rerun it on the recently created <code class="docutils literal notranslate"><span class="pre">array-4</span></code> executable as follows:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gdb array_4
+gdb-peda$ b main
+gdb-peda$ run
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The next line of code to be run is <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">=</span> <span class="pre">atoi(argv[1]);</span></code></p></li>
+<li><p>Run the following commands and observe the outcomes:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">argc</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">argv[0]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">argv[1]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">argv[2]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">argv[3]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">argv[4]</span></code></p></li>
+<li><p>…</p></li>
+</ul>
+</li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">n</span></code> and <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to run the next line of code: <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">=</span> <span class="pre">atoi(argv[1]);</span></code></p></li>
+<li><p>Turn into scrolling mode to observe that dreaded <code class="docutils literal notranslate"><span class="pre">Segmentation</span> <span class="pre">fault</span></code> notice.</p></li>
+<li><p>Scrolling down to see if <code class="docutils literal notranslate"><span class="pre">gdb</span></code> helps identify the issue?</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">q</span></code> to exit <code class="docutils literal notranslate"><span class="pre">gdb</span></code>.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Rerun gdb on <code class="docutils literal notranslate"><span class="pre">array_4</span></code> executable as follows:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gdb array_4
+gdb-peda$ b main
+gdb-peda$ run 3
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The next line of code to be run is <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">=</span> <span class="pre">atoi(argv[1]);</span></code></p></li>
+<li><p>Run the following commands and observe the outcomes:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">argc</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">argv[0]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">argv[1]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">argv[2]</span></code></p></li>
+<li><p>…</p></li>
+</ul>
+</li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">n</span></code> and <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to run the next line of code: <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">=</span> <span class="pre">atoi(argv[1]);</span></code></p></li>
+<li><p>Run the following commands and observe the outcomes:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">size</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">&amp;size</span></code></p></li>
+</ul>
+</li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">n</span></code> and <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to run the next line of code: <code class="docutils literal notranslate"><span class="pre">printf(&quot;Before</span> <span class="pre">malloc,</span> <span class="pre">p</span> <span class="pre">is</span> <span class="pre">pointing</span> <span class="pre">to</span> <span class="pre">address</span> <span class="pre">(%p)\n&quot;,</span> <span class="pre">p);</span></code></p></li>
+<li><p>Run the following commands and observe the outcomes: <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">p</span></code></p></li>
+</ul>
+</section>
+<section id="hands-on-finish-running-array-4">
+<h2>19. Hands on: finish running array-4<a class="headerlink" href="#hands-on-finish-running-array-4" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Step through the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop and printing out values of <code class="docutils literal notranslate"><span class="pre">i</span></code>, <code class="docutils literal notranslate"><span class="pre">p[i]</span></code>, <code class="docutils literal notranslate"><span class="pre">&amp;p[i]</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">+</span> <span class="pre">i</span></code> at every iteration.</p></li>
+<li><p>Make sure that you understand the lines of code that cause these variables to
+change value.</p></li>
+<li><p>Utilize scrolling as needed.</p></li>
+</ul>
+<p>{% include <a class="reference external" href="http://links.md">links.md</a> %}</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./extras"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="intro-linux.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Introduction to the Linux Shell</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="github.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Working with GitHub</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Linh Ngo<br/>
+  
+    <div class="extra_footer">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Computer Systems</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
