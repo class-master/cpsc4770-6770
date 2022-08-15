@@ -92,12 +92,6 @@ will also be listed and/or embedded in the slides.
 ```
 
 
-```{dropdown} Lateness Policy:
-Assignments that are late are assessed a 10% per day late penalty.
-Saturday and Sunday are each days.
-```
-
-
 ## General Policy
 
 ```{dropdown} Attendance
@@ -134,9 +128,13 @@ stealing in any form.
 
 
 ```{dropdown} Collaboration Policy
-Collaboration between students on homework assignments in this class is permitted. 
+- Collaboration between students on homework assignments in this class is permitted. 
 Plagiarism is not allowed. Taking assignments from other classmates or downloading 
 completed assignments from websites is not allowed. 
+- Collaborative work must cite the names of your student collaborators. Failure to 
+do so will nullify this collaboration policy and result in the submitted work being 
+considered plagiarized. 
+- No collaboration is permitted on quizzes and exams. 
 ```
 
 ```{dropdown} Disability Accommodations 
