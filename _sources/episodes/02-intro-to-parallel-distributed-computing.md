@@ -139,7 +139,7 @@ according to Amdahl's Law on 5 processors?
 
  $p=5$
 
- $S=\frac{p}{(p-1)f + 1}=\frac{5}{4 \times 0.04 +1}=1.9231$
+ $S=\frac{p}{(p-1)f + 1}=\frac{5}{4 \times 0.04 +1}=4.3103$
 
 :::
 
