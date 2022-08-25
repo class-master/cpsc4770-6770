@@ -23,9 +23,9 @@ parts:
     - file: episodes/15-page-rank.md
     - file: episodes/16-locality-sensitive-hashing.md
     - file: episodes/17-frequent-itemsets.md
-- caption: Appendix
-  chapters:
-    - file: extras/setup.md
-    - file: extras/intro-linux.md
-    - file: extras/gdb.md
-    - file: extras/github.md
+#- caption: Appendix
+#  chapters:
+#    - file: extras/setup.md
+#    - file: extras/intro-linux.md
+#    - file: extras/gdb.md
+#    - file: extras/github.md
