@@ -134,11 +134,13 @@ Suppose that 4% of my application is serial. What is my predicted speedup
 according to Amdahl's Law on 5 processors?
  
 :::{dropdown} Solution
+ 
  $f=0.04$
 
  $p=5$
- 
+
  $S=\frac{p}{(p-1)f + 1}=\frac{5}{4 \times 0.4 +1}=1.9231$
+
 :::
 
 ```
@@ -148,30 +150,46 @@ Suppose that I get a speedup of 8 when I run my application on
 10 processors. According to Amdahl's Law:
  
  :::{dropdown} What portion of my code is serial?
+ 
  $S=8$  
+
  $p=10$
+
  $S=\frac{p}{(p-1)f + 1}$
+ 
  $8=\frac{10}{9f+1}$
+ 
  $9f + 1 = \frac{10}{8}$
+ 
  $f=\frac{1}{36}$
 :::
 
 :::{dropdown} What is the speedup on 20 processors?
+
 $f=\frac{1}{36}$  
+
 $p=20$ 
+
 $S_{20}=\frac{p}{(p-1)f + 1}=\frac{20}{\frac{19}{36}+1} \approx 13.0909$
+
 :::
 
 :::{dropdown} What is the efficiency on 5 processors? 20 processors?
- $$E=\frac{1}{(p-1)f + 1}$$  
- $$E_5=\frac{1}{\frac{4}{36}+1} = 90\% $$  
- $$E_{20}=\frac{1}{\frac{19}{36} + 1} \approx 65.45\% $$ 
+
+$E=\frac{1}{(p-1)f + 1}$
+
+$E_5=\frac{1}{\frac{4}{36}+1} = 90\% $
+
+$E_{20}=\frac{1}{\frac{19}{36} + 1} \approx 65.45\% $
+
 :::
 
 :::{dropdown} What is the best speedup that I could achieve?
 
 $f=\frac{1}{36}$  
+
 $S_{\infty}=\lim_{p \to +\infty} \frac{p}{(p-1)f + 1} = \lim_{p \to +\infty} \frac{1}{\frac{p}{p-1}f + \frac{1}{p}}=\frac{1}{f}$
+
 $S_{\infty}= 36$
  
 - In other word, the highest number of processors one should add to this problem is 36.
@@ -189,7 +207,9 @@ $S_{\infty}= 36$
 - No communication overhead.   
 
 $S_{\infty}=\lim_{f \to 0} \frac{p}{(p-1)f + 1} = p$
+
 $S \leq p$  
+
 ```
 
 ```{dropdown} Superlinear speedup
