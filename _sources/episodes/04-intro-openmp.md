@@ -5,9 +5,23 @@
 ```{dropdown}
 - Single computing node, multiple sockets, multiple cores.  
 - Dell PowerEdge M600 Blade Server. 
-<img src="../assets/figure/03-intro-openmp/01.jpg" alt="multi-socket motherboard" style="height:400px">
+
+:::{image} ../fig/intro-openmp/01.jpg
+:alt: multi-socket motherboard
+:class: bg-primary mb-1
+:height: 400px
+:align: center
+:::
+
 - Intel Sandy Bridge CPU. 
-<img src="../assets/figure/03-intro-openmp/02.jpg" alt="Intel Sandy Bridge CPU" style="height:400px">
+
+:::{image} ../fig/intro-openmp/02.jpg
+:alt: Intel Sandy Bridge CPU
+:class: bg-primary mb-1
+:height: 400px
+:align: center
+:::
+
 - In summary
   - Node with up to four sockets.
   - Each socker has up to 60 cores. 
