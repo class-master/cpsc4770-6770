@@ -150,34 +150,8 @@ $ ./thread_hello 4
 - In the **EXPLORER** window, right-click on `openmp` and select `New File`.
 - Type `hello_omp.c` as the file name and hits Enter. 
 - Enter the following source code in the editor windows:
-- Save the file when you are done: 
-  - `Ctrl-S` for Windows/Linux
-  - `Command-S` for Macs
-- **Memorize your key-combos!**.
 
-~~~c
-
-#include <omp.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-int main (int argc, char *argv[]) {
-  /* Fork a team of threads giving them their own copies of variables */
-  #pragma omp parallel 
-  {
-    /* Obtain thread number */
-    int tid = omp_get_thread_num();
-    printf("Hello World from thread = %d\n", tid);
-
-    /* Only master thread does this */
-    if (tid == 0) {
-      int nthreads = omp_get_num_threads();
-      printf("Number of threads = %d\n", nthreads);
-    }
-  } /* All threads join master thread and disband */
-}
-
-~~~
+<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=hello_openmp.c"></script> 
 
 - Line 1: Include `omp.h` to have libraries that support OpenMP. 
 - Line 7: Declare the beginning of the `parallel` region. **Pay attention to how the curly bracket
@@ -224,43 +198,7 @@ four threads.
 - Type `trapezoid.c` as the file name and hits Enter. 
 - Enter the following source code in the editor windows:
 
-~~~c
-#include <omp.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-int main (int argc, char *argv[]) {
-  //init parameters and evaluators
-  double a = atof(argv[1]);
-  double b = atof(argv[2]);
-  int N = atoi(argv[3]);
-  int nthreads = atoi(argv[4]);
-  double partial_sum[nthreads];
-  double h = ((b - a) / nthreads);    
-
-  omp_set_num_threads(nthreads);
-  #pragma omp parallel 
-  {
-    int tid = omp_get_thread_num();
-    /* number of trapezoids per thread */
-    int partial_n = N / nthreads;
-    double delta = (b - a)/N;
-    double local_a = a + h * tid;
-    double local_b = local_a + delta;
-    for (int i = 0; i < partial_n; i++) {
-      partial_sum[tid] += (local_a * local_a + local_b * local_b) * delta / 2;
-      local_a = local_b;
-      local_b += delta;
-    }
-  } 
-  double sum = 0;
-  for (int i = 0; i < nthreads; i++) {
-    sum += partial_sum[i];
-  }
-  printf("The integral is: %.4f\n", sum);
-  return 0;
-}
-~~~
+<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=trapezoid_openmp_1.c"></script> 
 
 - Compile and run `trapezoid.c`. 
 
@@ -273,44 +211,7 @@ int main (int argc, char *argv[]) {
 
 - Modify the `trapezoid.c` so that it looks like below. 
 
-~~~c
-#include <omp.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-int main (int argc, char *argv[]) {
-  //init parameters and evaluators
-  double a = atof(argv[1]);
-  double b = atof(argv[2]);
-  int N = atoi(argv[3]);
-  int nthreads = atoi(argv[4]);
-  double partial_sum[nthreads];
-  double h = ((b - a) / nthreads);    
-
-  omp_set_num_threads(nthreads);
-  #pragma omp parallel 
-  {
-    int tid = omp_get_thread_num();
-    /* number of trapezoids per thread */
-    int partial_n = N / nthreads;
-    double delta = (b - a)/N;
-    double local_a = a + h * tid;
-    double local_b = local_a + delta;
-    for (int i = 0; i < partial_n; i++) {
-      partial_sum[tid] += (local_a * local_a + local_b * local_b) * delta / 2;
-      local_a = local_b;
-      local_b += delta;
-    }
-    printf("Thread %d calculate a partial sum of %.4f from %.4f to %.4f\n", tid, partial_sum[tid], a + h*tid, local_a);
-  } 
-  double sum = 0;
-  for (int i = 0; i < nthreads; i++) {
-    sum += partial_sum[i];
-  }
-  printf("The integral is: %.4f\n", sum);
-  return 0;
-}
-~~~
+<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=trapezoid_openmp_2.c"></script> 
 
 ```
 
@@ -322,48 +223,8 @@ Alternate the `trapezoid.c` code so that the parallel region will
 invokes a function to calculate the partial sum. 
  
 :::{dropdown} Solution
-~~~
-#include <omp.h>
-#include <stdio.h>
-#include <stdlib.h>
 
-double trap(double a, double b, int N, int nthreads, int tid) {
-  double h = ((b - a) / nthreads);  
-  int partial_n = N / nthreads;
-  double delta = (b - a)/N;
-  double local_a = a + h * tid;
-  double local_b = local_a + delta;
-  double p_sum = 0;
-  for (int i = 0; i < partial_n; i++) {
-    p_sum += (local_a * local_a + local_b * local_b) * delta / 2;
-    local_a = local_b;
-    local_b += delta;
-  }
-  return p_sum;
-}
-
-int main (int argc, char *argv[]) {
-   //init parameters and evaluators
-  double a = atof(argv[1]);
-  double b = atof(argv[2]);
-  int N = atoi(argv[3]);
-  int nthreads = atoi(argv[4]);
-  double partial_sum[nthreads];
-
-  omp_set_num_threads(nthreads);
-  #pragma omp parallel 
-  {
-    int tid = omp_get_thread_num();
-    partial_sum[tid] = trap(a, b, N, nthreads, tid) ;
-  } 
-  double sum = 0;
-  for (int i = 0; i < nthreads; i++) {
-    sum += partial_sum[i];
-  }
-  printf("The integral is: %.4f\n", sum);
-  return 0;
-} 
-~~~
+<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=sum_series_1.c"></script> 
 
 :::
 
@@ -379,40 +240,7 @@ line argument and calculate the sum of the first `N` non-negative integers.
  
 :::{dropdown} Solution
 
-~~~c
-#include <omp.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-int sum(int N, int nthreads, int tid) {
-  int count = N / nthreads;  
-  int start = count * tid + 1;
-  int p_sum = 0;
-  for (int i = start; i < start + count; i++) {
-    p_sum += i;
-  }
-  return p_sum;
-}
-
-int main (int argc, char *argv[]) {
-  int N = atoi(argv[1]);
-  int nthreads = atoi(argv[2]);
-  int partial_sum[nthreads];
-   
-  omp_set_num_threads(nthreads);
-  #pragma omp parallel 
-  {
-    int tid = omp_get_thread_num();
-    partial_sum[tid] = sum(N, nthreads, tid) ;
-  } 
-  int sum = 0;
-  for (int i = 0; i < nthreads; i++) {
-    sum += partial_sum[i];
-  }
-  printf("The sum of series is: %.4f\n", sum);
-  return 0;
-} 
-~~~
+<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=sum_series_2.c"></script> 
 
 :::
 
@@ -429,47 +257,6 @@ line argument and calculate the sum of the first `N` non-negative integers.
 
 <script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=sum_series_3.c"></script> 
 
-~~~
-#include <omp.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-int sum(int N, int nthreads, int tid) {
-  int count = N / nthreads;  
-  int start = count * tid;
-  int end = start + count;
-  int p_sum = 0;
-
-  for (int i = start; i < end; i++) {
-    p_sum += i;
-  } 
-  if (tid < remainder) {
-    p_sum += count * remainder + tid + 1;
-  }
-
-  return p_sum;
-}
-
-int main (int argc, char *argv[]) {
-  int N = atoi(argv[1]);
-  int nthreads = atoi(argv[2]);
-  int partial_sum[nthreads];
-   
-  omp_set_num_threads(nthreads);
-  #pragma omp parallel 
-  {
-    int tid = omp_get_thread_num();
-    partial_sum[tid] = sum(N, nthreads, tid) ;
-  } 
-  int sum = 0;
-  for (int i = 0; i < nthreads; i++) {
-    sum += partial_sum[i];
-  }
-  printf("The sum of series is: %.4f\n", sum);
-  return 0;
-} 
-~~~
-
 :::
 
 ```
@@ -483,48 +270,7 @@ int main (int argc, char *argv[]) {
 - Enter the following source code in the editor windows (You can copy the contents of `trapezoid.c` with function from **Challenge 1** as a starting point):
 - Save the file when you are done: 
 
-~~~c
-#include <omp.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-
-int main (int argc, char *argv[]) {
-  //init parameters and evaluators
-  double a = atof(argv[1]);
-  double b = atof(argv[2]);
-  int N = atoi(argv[3]);
-  int nthreads = atoi(argv[4]);
-  double partial_sum[nthreads];
-  double h = ((b - a) / nthreads);  
-  clock_t start, end;  
-
-  omp_set_num_threads(nthreads);
-  start = clock();
-  #pragma omp parallel 
-  {
-    int tid = omp_get_thread_num();
-    /* number of trapezoids per thread */
-    int partial_n = N / nthreads;
-    double delta = (b - a)/N;
-    double local_a = a + h * tid;
-    double local_b = local_a + delta;
-    for (int i = 0; i < partial_n; i++) {
-      partial_sum[tid] += (local_a * local_a + local_b * local_b) * delta / 2;
-      local_a = local_b;
-      local_b += delta;
-    }
-  } 
-  end = clock();
-  double sum = 0;
-  for (int i = 0; i < nthreads; i++) {
-    sum += partial_sum[i];
-  }
-  printf("The integral is: %.4f\n", sum);
-  printf("The run time is: %.4f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
-  return 0;
-}
-~~~
+<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=trapezoid_openmp_time.c"></script> 
 
 - How's the run time?
 ```

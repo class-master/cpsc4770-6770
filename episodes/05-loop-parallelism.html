@@ -425,51 +425,8 @@ title="Print to PDF"
 <ul class="simple">
 <li><p class="sd-card-text">In the <strong>EXPLORER</strong> window, right-click on <code class="docutils literal notranslate"><span class="pre">csc466/openmp</span></code> and select <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">File</span></code>.</p></li>
 <li><p class="sd-card-text">Type <code class="docutils literal notranslate"><span class="pre">sum_series_for.c</span></code> as the file name and hits Enter.</p></li>
-<li><p class="sd-card-text">Enter the following source code in the editor windows:</p></li>
-<li><p class="sd-card-text">Save the file when you are done:</p>
-<ul>
-<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">Ctrl-S</span></code> for Windows/Linux</p></li>
-<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">Command-S</span></code> for Macs</p></li>
 </ul>
-</li>
-<li><p class="sd-card-text"><strong>Memorize your key-combos!</strong>.</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;omp.h&gt;</span>
-<span class="c1">#include &lt;stdio.h&gt;</span>
-<span class="c1">#include &lt;stdlib.h&gt;</span>
-<span class="c1">#include &lt;time.h&gt;</span>
-
-<span class="nb">int</span> <span class="n">main</span> <span class="p">(</span><span class="nb">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
-  <span class="nb">int</span> <span class="n">N</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
-  <span class="nb">int</span> <span class="n">nthreads</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
-  <span class="nb">int</span> <span class="n">partial_sum</span><span class="p">[</span><span class="n">nthreads</span><span class="p">];</span>
-  <span class="n">clock_t</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">;</span>
-
-  <span class="n">omp_set_num_threads</span><span class="p">(</span><span class="n">nthreads</span><span class="p">);</span>
-  <span class="n">start</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
-  <span class="c1">#pragma omp parallel</span>
-  <span class="p">{</span>
-    <span class="nb">int</span> <span class="n">tid</span> <span class="o">=</span> <span class="n">omp_get_thread_num</span><span class="p">();</span>
-    <span class="n">partial_sum</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="c1">#pragma omp for</span>
-    <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span>  <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">partial_sum</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="n">end</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
-
-  <span class="nb">int</span> <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nthreads</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nb">sum</span> <span class="o">+=</span> <span class="n">partial_sum</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-  <span class="p">}</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;The integral is: </span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">);</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;The run time is: </span><span class="si">%.4f</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">((</span><span class="n">double</span><span class="p">)</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span> <span class="o">/</span> <span class="n">CLOCKS_PER_SEC</span><span class="p">);</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p class="sd-card-text">{: .language-c}</p>
-<img src="../assets/figure/05-loop-parallelism/01.png" alt="compile and run sum_series_for.c" style="height:300px">
+<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=sum_series_openmp_for.c"></script> 
 </div>
 </details></section>
 <section id="hands-on-2-improving-sum-series-implementation">
@@ -484,53 +441,8 @@ title="Print to PDF"
 <ul class="simple">
 <li><p class="sd-card-text">In the <strong>EXPLORER</strong> window, right-click on <code class="docutils literal notranslate"><span class="pre">csc466/openmp</span></code> and select <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">File</span></code>.</p></li>
 <li><p class="sd-card-text">Type <code class="docutils literal notranslate"><span class="pre">sum_series_for_2.c</span></code> as the file name and hits Enter.</p></li>
-<li><p class="sd-card-text">Enter the following source code in the editor windows:</p></li>
-<li><p class="sd-card-text">Save the file when you are done:</p>
-<ul>
-<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">Ctrl-S</span></code> for Windows/Linux</p></li>
-<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">Command-S</span></code> for Macs</p></li>
 </ul>
-</li>
-<li><p class="sd-card-text"><strong>Memorize your key-combos!</strong>.</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;omp.h&gt;</span>
-<span class="c1">#include &lt;stdio.h&gt;</span>
-<span class="c1">#include &lt;stdlib.h&gt;</span>
-<span class="c1">#include &lt;time.h&gt;</span>
-
-<span class="nb">int</span> <span class="n">main</span> <span class="p">(</span><span class="nb">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
-  <span class="nb">int</span> <span class="n">N</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
-  <span class="nb">int</span> <span class="n">nthreads</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
-  <span class="nb">int</span> <span class="n">partial_sum</span><span class="p">[</span><span class="n">nthreads</span><span class="p">];</span>
-  <span class="n">clock_t</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">;</span>
-
-  <span class="n">omp_set_num_threads</span><span class="p">(</span><span class="n">nthreads</span><span class="p">);</span>
-  <span class="n">start</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
-  <span class="c1">#pragma omp parallel</span>
-  <span class="p">{</span>
-    <span class="nb">int</span> <span class="n">tid</span> <span class="o">=</span> <span class="n">omp_get_thread_num</span><span class="p">();</span>
-    <span class="n">partial_sum</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="nb">int</span> <span class="n">psum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="c1">#pragma omp for</span>
-    <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span>  <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">psum</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="n">partial_sum</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span> <span class="o">=</span> <span class="n">psum</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="n">end</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
-
-  <span class="nb">int</span> <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nthreads</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nb">sum</span> <span class="o">+=</span> <span class="n">partial_sum</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-  <span class="p">}</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;The integral is: </span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">);</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;The run time is: </span><span class="si">%.4f</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">((</span><span class="n">double</span><span class="p">)</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span> <span class="o">/</span> <span class="n">CLOCKS_PER_SEC</span><span class="p">);</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p class="sd-card-text">{: .language-c}</p>
-<img src="../assets/figure/05-loop-parallelism/02.png" alt="compile and run sum_series_for_2.c" style="height:300px">
+<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=sum_series_openmp_for_2.c"></script> 
 </div>
 </details></section>
 </section>
