@@ -427,6 +427,8 @@ line argument and calculate the sum of the first `N` non-negative integers.
  
 :::{dropdown} Solution
 
+<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=sum_series_3.c"></script> 
+
 ~~~
 #include <omp.h>
 #include <stdio.h>
