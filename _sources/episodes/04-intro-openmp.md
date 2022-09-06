@@ -221,7 +221,9 @@ four threads.
 ```{dropdown} Part 1
 Alternate the `trapezoid.c` code so that the parallel region will 
 invokes a function to calculate the partial sum. 
- 
+
+<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=trapezoid_openmp_template.c"></script> 
+
 :::{dropdown} Solution
 
 <script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=sum_series_1.c"></script> 
