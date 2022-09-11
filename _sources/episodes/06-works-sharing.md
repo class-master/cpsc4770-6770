@@ -29,7 +29,7 @@ following contents:
 
 <script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=hello_sections.c"></script>
 
-:::{image} ../fig/work-sharing/work_01.jpg
+:::{image} ../fig/work-sharing/work_01.png
 :alt: compile and run hello_sections.c
 :class: bg-primary mb-1
 :height: 400px
@@ -77,7 +77,7 @@ before moving on.
 
 Compile and run the above files:
 
-:::{image} ../fig/work-sharing/work_02.jpg
+:::{image} ../fig/work-sharing/work_02.png
 :alt: compile and run singles
 :class: bg-primary mb-1
 :height: 500px
@@ -99,7 +99,7 @@ following contents:
 
 <script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=counter_openmp.c"></script>
 
-:::{image} ../fig/work-sharing/work_03.jpg
+:::{image} ../fig/work-sharing/work_03.png
 :class: bg-primary mb-1
 :height: 400px
 :align: center
