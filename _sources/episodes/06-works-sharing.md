@@ -2,17 +2,18 @@
 
 
 ## 1. Work sharing constructs
-```{dropdown}
+
 - OpenMP utilizes **work sharing constructs** to facilitate dividing 
 parallelizable work among a number of threads. 
 - The work sharing constructs are:
   - **for**: divide loop iterations among threads. 
   - **sections**: divide sections of codes among themselves. 
   - **single**: the section is executed by a single thread. 
-```
 
-## 2. Work sharing construct: sections
-```{dropdown}
+
+## 2. Work sharing constructs: sections
+
+```{dropdown} Definition
 - Used when parallelize predetermined number of independent work units. 
 - Within a primary `sections` construct, there can be multiple `section`
 construct. 
@@ -20,39 +21,46 @@ construct.
 team, including having multiple sections done by the same thread. 
 ```
 
-## 3. Hands on: sections
-```{dropdown}
-- In the **EXPLORER** window, double-click on `csc466/openmp` and select 
+```{dropdown} Hands-on
+- In the **EXPLORER** window, double-click on `openmp` and select 
 `New Dir` to create a new directory in `openmp` called `sections`. 
 - Inside `sections`, create a file named `hello_sections.c` with the
 following contents:
 
 <script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=hello_sections.c"></script>
 
-<img src="../assets/figure/06-work-sharing/work_01.png" alt="compile and run hello_sections.c" style="height:400px">
+:::{image} ../fig/work-sharing/work_01.jpg
+:alt: compile and run hello_sections.c
+:class: bg-primary mb-1
+:height: 400px
+:align: center
+:::
+
 ```
 
-## 4. Challenge
-```{dropdown}
+```{dropdown} Challenge
+
 Given the following functions: y=x<sup>4</sup> + 15x<sup>3</sup> + 10x<sup>2</sup> + 2x  
 develop an OpenMP program called `poly_openmp.c` with `sections`/`section` directives. Each
 section should handle the calculations for one term of the polynomial. 
  
- ## Solution
+ :::{dropdown} Solution
  
  <script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=poly_openmp.c"></script>
-{: .solution}
-{: .challenge}
 
-## 5. Work sharing construct: single
+:::
+```
+
+## 3. Work sharing construct: single
+
+```{dropdown} Definition
 - Limits the execution of a block to a single thread. 
 - All other threads will skip the execution of this block **but** wait until the block is finished
 before moving on. 
 - To enable proceed without waiting, a **nowait** clause can be added. 
 ```
 
-## 6. Hands on: single
-```{dropdown}
+```{dropdown} Hands on: single
 - Inside `sections`, create the following files: 
 
 `hello_sections_nosingle.c`: 
@@ -69,21 +77,32 @@ before moving on.
 
 Compile and run the above files:
 
-<img src="../assets/figure/06-work-sharing/work_02.png" alt="compile and run singles" style="height:500px">
+:::{image} ../fig/work-sharing/work_02.jpg
+:alt: compile and run singles
+:class: bg-primary mb-1
+:height: 500px
+:align: center
+:::
+
 ```
 
-## 7. Shared and private data
-```{dropdown}
+## 4. Shared and private data
+
+```{dropdown} Definition
 - Data declared outside of a parallel region will be shared among all threads.  
 - Data declared inside of a parallel region will be private to individual thread. 
 ```
 
-## 8. Hands on: problem with shared data
-```{dropdown}
+```{dropdown} Hands-on: potential problems with shared data
 - Inside `sections`, create a file named `counter_openmp.c` with the
 following contents:
 
 <script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=counter_openmp.c"></script>
 
-<img src="../assets/figure/06-work-sharing/work_03.png" alt="compile and run hello_sections.c" style="height:400px">
+:::{image} ../fig/work-sharing/work_03.jpg
+:class: bg-primary mb-1
+:height: 400px
+:align: center
+:::
+
 ```

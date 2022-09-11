@@ -342,43 +342,18 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#work-sharing-construct-sections">
-   2. Work sharing construct: sections
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hands-on-sections">
-   3. Hands on: sections
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#challenge">
-   4. Challenge
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solution">
-   Solution
+  <a class="reference internal nav-link" href="#work-sharing-constructs-sections">
+   2. Work sharing constructs: sections
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#work-sharing-construct-single">
-   5. Work sharing construct: single
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hands-on-single">
-   6. Hands on: single
+   3. Work sharing construct: single
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#shared-and-private-data">
-   7. Shared and private data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hands-on-problem-with-shared-data">
-   8. Hands on: problem with shared data
+   4. Shared and private data
   </a>
  </li>
 </ul>
@@ -406,43 +381,18 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#work-sharing-construct-sections">
-   2. Work sharing construct: sections
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hands-on-sections">
-   3. Hands on: sections
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#challenge">
-   4. Challenge
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solution">
-   Solution
+  <a class="reference internal nav-link" href="#work-sharing-constructs-sections">
+   2. Work sharing constructs: sections
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#work-sharing-construct-single">
-   5. Work sharing construct: single
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hands-on-single">
-   6. Hands on: single
+   3. Work sharing construct: single
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#shared-and-private-data">
-   7. Shared and private data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hands-on-problem-with-shared-data">
-   8. Hands on: problem with shared data
+   4. Shared and private data
   </a>
  </li>
 </ul>
@@ -459,31 +409,23 @@ title="Print to PDF"
 <h1>OpenMP: Work sharing and controlling thread data<a class="headerlink" href="#openmp-work-sharing-and-controlling-thread-data" title="Permalink to this headline">#</a></h1>
 <section id="work-sharing-constructs">
 <h2>1. Work sharing constructs<a class="headerlink" href="#work-sharing-constructs" title="Permalink to this headline">#</a></h2>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p class="sd-card-text">OpenMP utilizes <strong>work sharing constructs</strong> to facilitate dividing
+<li><p>OpenMP utilizes <strong>work sharing constructs</strong> to facilitate dividing
 parallelizable work among a number of threads.</p></li>
-<li><p class="sd-card-text">The work sharing constructs are:</p>
+<li><p>The work sharing constructs are:</p>
 <ul>
-<li><p class="sd-card-text"><strong>for</strong>: divide loop iterations among threads.</p></li>
-<li><p class="sd-card-text"><strong>sections</strong>: divide sections of codes among themselves.</p></li>
-<li><p class="sd-card-text"><strong>single</strong>: the section is executed by a single thread.</p></li>
+<li><p><strong>for</strong>: divide loop iterations among threads.</p></li>
+<li><p><strong>sections</strong>: divide sections of codes among themselves.</p></li>
+<li><p><strong>single</strong>: the section is executed by a single thread.</p></li>
 </ul>
 </li>
 </ul>
-</div>
-</details></section>
-<section id="work-sharing-construct-sections">
-<h2>2. Work sharing construct: sections<a class="headerlink" href="#work-sharing-construct-sections" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="work-sharing-constructs-sections">
+<h2>2. Work sharing constructs: sections<a class="headerlink" href="#work-sharing-constructs-sections" title="Permalink to this headline">#</a></h2>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+Definition<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
@@ -496,31 +438,25 @@ construct.</p></li>
 team, including having multiple sections done by the same thread.</p></li>
 </ul>
 </div>
-</details></section>
-<section id="hands-on-sections">
-<h2>3. Hands on: sections<a class="headerlink" href="#hands-on-sections" title="Permalink to this headline">#</a></h2>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+Hands-on<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p class="sd-card-text">In the <strong>EXPLORER</strong> window, double-click on <code class="docutils literal notranslate"><span class="pre">csc466/openmp</span></code> and select
+<li><p class="sd-card-text">In the <strong>EXPLORER</strong> window, double-click on <code class="docutils literal notranslate"><span class="pre">openmp</span></code> and select
 <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">Dir</span></code> to create a new directory in <code class="docutils literal notranslate"><span class="pre">openmp</span></code> called <code class="docutils literal notranslate"><span class="pre">sections</span></code>.</p></li>
 <li><p class="sd-card-text">Inside <code class="docutils literal notranslate"><span class="pre">sections</span></code>, create a file named <code class="docutils literal notranslate"><span class="pre">hello_sections.c</span></code> with the
 following contents:</p></li>
 </ul>
 <script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=hello_sections.c"></script>
-<img src="../assets/figure/06-work-sharing/work_01.png" alt="compile and run hello_sections.c" style="height:400px">
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/work-sharing/work_01.jpg"><img alt="compile and run hello_sections.c" class="bg-primary mb-1 align-center" src="fig/work-sharing/work_01.jpg" style="height: 400px;" /></a>
 </div>
-</details></section>
-<section id="challenge">
-<h2>4. Challenge<a class="headerlink" href="#challenge" title="Permalink to this headline">#</a></h2>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+Challenge<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
@@ -528,28 +464,36 @@ following contents:</p></li>
 <p class="sd-card-text">Given the following functions: y=x<sup>4</sup> + 15x<sup>3</sup> + 10x<sup>2</sup> + 2x<br />
 develop an OpenMP program called <code class="docutils literal notranslate"><span class="pre">poly_openmp.c</span></code> with <code class="docutils literal notranslate"><span class="pre">sections</span></code>/<code class="docutils literal notranslate"><span class="pre">section</span></code> directives. Each
 section should handle the calculations for one term of the polynomial.</p>
-</div>
-</details></section>
-<section id="solution">
-<h2>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">#</a></h2>
- <script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=poly_openmp.c"></script>
-<p>{: .solution}
-{: .challenge}</p>
-</section>
-<section id="work-sharing-construct-single">
-<h2>5. Work sharing construct: single<a class="headerlink" href="#work-sharing-construct-single" title="Permalink to this headline">#</a></h2>
-<ul class="simple">
-<li><p>Limits the execution of a block to a single thread.</p></li>
-<li><p>All other threads will skip the execution of this block <strong>but</strong> wait until the block is finished
-before moving on.</p></li>
-<li><p>To enable proceed without waiting, a <strong>nowait</strong> clause can be added.</p></li>
-</ul>
-</section>
-<section id="hands-on-single">
-<h2>6. Hands on: single<a class="headerlink" href="#hands-on-single" title="Permalink to this headline">#</a></h2>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=poly_openmp.c"></script>
+</div>
+</details></div>
+</details></section>
+<section id="work-sharing-construct-single">
+<h2>3. Work sharing construct: single<a class="headerlink" href="#work-sharing-construct-single" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Definition<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Limits the execution of a block to a single thread.</p></li>
+<li><p class="sd-card-text">All other threads will skip the execution of this block <strong>but</strong> wait until the block is finished
+before moving on.</p></li>
+<li><p class="sd-card-text">To enable proceed without waiting, a <strong>nowait</strong> clause can be added.</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Hands on: single<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
@@ -564,14 +508,14 @@ before moving on.</p></li>
 <p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">hello_sections_single_nowait.c</span></code>:</p>
 <script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=hello_sections_single_nowait.c"></script>
 <p class="sd-card-text">Compile and run the above files:</p>
-<img src="../assets/figure/06-work-sharing/work_02.png" alt="compile and run singles" style="height:500px">
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/work-sharing/work_02.jpg"><img alt="compile and run singles" class="bg-primary mb-1 align-center" src="fig/work-sharing/work_02.jpg" style="height: 500px;" /></a>
 </div>
 </details></section>
 <section id="shared-and-private-data">
-<h2>7. Shared and private data<a class="headerlink" href="#shared-and-private-data" title="Permalink to this headline">#</a></h2>
+<h2>4. Shared and private data<a class="headerlink" href="#shared-and-private-data" title="Permalink to this headline">#</a></h2>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+Definition<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
@@ -581,12 +525,9 @@ before moving on.</p></li>
 <li><p class="sd-card-text">Data declared inside of a parallel region will be private to individual thread.</p></li>
 </ul>
 </div>
-</details></section>
-<section id="hands-on-problem-with-shared-data">
-<h2>8. Hands on: problem with shared data<a class="headerlink" href="#hands-on-problem-with-shared-data" title="Permalink to this headline">#</a></h2>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+Hands-on: potential problems with shared data<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
@@ -596,7 +537,7 @@ before moving on.</p></li>
 following contents:</p></li>
 </ul>
 <script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=counter_openmp.c"></script>
-<img src="../assets/figure/06-work-sharing/work_03.png" alt="compile and run hello_sections.c" style="height:400px">
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/work-sharing/work_03.jpg"><img alt="fig/work-sharing/work_03.jpg" class="bg-primary mb-1 align-center" src="fig/work-sharing/work_03.jpg" style="height: 400px;" /></a>
 </div>
 </details></section>
 </section>
