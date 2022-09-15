@@ -1,16 +1,15 @@
 # Introduction to MPI
 
-## 1. Message passing
-```{dropdown}
+## 1. History of MPI
+
+```{dropdown} Message passing
 - Processes communicate via messages
 - Messages can be:
   - Raw data used in actual calculations
   - Signals and acknowledgements for the receiving processes regarding the workflow.
 ```
 
-
-## 2. History of MPI: early 80s
-```{dropdown}
+```{dropdown} Early 80s
 - Various message passing environments were developed.
 - Many similar fundamental concepts:
   - Cosmic Cube and nCUBE/2 (Caltech), 
@@ -19,20 +18,22 @@
   - LAM (Ohio SC)
 ```
 
-
-## 3. History of MPI: 1991-1992
-```{dropdown}
+```{dropdown} 1991-1992
 - More than 80 researchers from different institutions in US and Europe agreed 
 to develop and implement a common standard for message passing.
 - Follow-up first meeting of the working group hosted at Supercomputing 1992 in 
 Minnesota. 
 
-<img src="../assets/figure/07-intro-mpi/01.png" alt="MPI letters" style="height:600px">
+:::{image} ../fig/intro-mpi/01.png
+:alt: MPI letters
+:class: bg-primary mb-1
+:height: 600px
+:align: center
+:::
+
 ```
 
-
-## 4. After finalization of working technical draft
-```{dropdown}
+```{dropdown} After finalization of working technical draft
 - MPI becomes the *de-facto* standard for distributed memory parallel 
 programming.
 - Available on every popular operating system and architecture.
@@ -44,9 +45,7 @@ for their hardware.
   - Java (no longer active)
 ```
 
-
-## 5. 1994: MPI-1
-```{dropdown}
+```{dropdown} 1994: MPI-1
 - Communicators
   - Information about the runtime environments
   - Creation of customized topologies
@@ -58,9 +57,7 @@ for their hardware.
   - Gather and scatter
 ```
 
-
-## 6. 1998: MPI-2
-```{dropdown}
+```{dropdown} 1998: MPI-2
 - One-sided communication (non-blocking)
   - Get & Put (remote memory access)
 - Dynamic process management
@@ -71,8 +68,7 @@ for their hardware.
 ```
 
 
-## 7. 2012: MPI-3
-```{dropdown}
+```{dropdown} 2012: MPI-3
 - Revised remote-memory access semantic
 - Fault tolerance model
 - Non-blocking collective communication
@@ -80,47 +76,21 @@ for their hardware.
 evaluation purposes
 ```
 
-
-## 8. Hands-on: taz and submitty
-```{dropdown}
-- Your account (login/password) will work on both `taz` and `submitty`. 
-- `USERNAME` represents the login name that you received in email.
-- To access `taz` from a terminal:
-
-~~~
-$ ssh USERNAME@taz.cs.wcupa.edu
-~~~
-{: .language-bash}
-
-- To access `submitty` from a terminal: 
-
-~~~
-$ ssh USERNAME@submitty.cs.wcupa.edu
-~~~
-{: .language-bash}
-
-- The environments on `taz` and `submitty` are similar to one another. 
-In the remainder of these lectures, example screenshots will be taken 
-from `submitty`, but all commands will work on `taz` as well. 
+```{dropdown} 2021: MPI-4
+- Big Count operations (beyond int)
+- Persistent Collectives
+- Partitioned Communication
+- Topology Solutions
+- Simple fault handling to enable fault tolerance solutions
+- ...
 ```
 
-
-## 9. Hands-on: create and compile MPI codes
+## 2. Hands-on: create and compile MPI codes
 ```{dropdown}
-- Create a directory named `intro-mpi`
-- Change into `intro-mpi`
-
-~~~
-$ cd
-$ mkdir intro-mpi
-$ cd intro-mpi
-~~~
-{: .language-bash}
-
-- To create a file from terminal, run `nano -c file_name`. 
-- When finish editing, press `Ctrl-X` to select `Quit and Save`. 
-- Press `Y` to confirm that you want to save. 
-- Press `Enter` to confirm that you are saving to `file_name`. 
+- In your VSCode launch app, add `openmpi/4.1.3-gcc/9.5.0-ucx` to the `List of modules to be loaded, separate by an empty space' box. 
+- Once the Code Server app is launched:
+  - Create a directory named `intro-mpi`
+  - Change into `intro-mpi`
 - Inside `intro-mpi`, create a file named `first.c` with the following
 contents
 
@@ -128,23 +98,19 @@ contents
 
 - Compile and run `first.c`:
 
-~~~
+~~~bash
 $ mpicc -o first first.c
 $ mpirun -np 1 ./first
 $ mpirun -np 2 ./first
 $ mpirun -np 4 ./first
 ~~~
-{: .language-bash}
 
-- Both `taz` and `submitty` only have four computing cores, therefore we can (should) 
-only run to a maximum of four processes. 
-
-<img src="../assets/figure/07-intro-mpi/02.png" alt="compile and run first.c" style="height:350px">
 ```
 
 
-## 10. MPI in a nutshell
-```{dropdown}
+## 3. MPI in a nutshell
+
+```{dropdown} Overview
 - All processes are launched at the beginning of the program execution.
   - The number of processes are user-specified
   - This number could be modified during runtime (MPI-2 standards)
@@ -156,9 +122,7 @@ only run to a maximum of four processes.
 (only one process active) and there are no more message-passing activities. 
 ```
 
-
-## 11. MPI in a nutshell
-```{dropdown}
+```{dropdown} Core functions
 - `MPI_COMM_WORLD`: Global communicator
 - `MPI_Comm_rank`: return the rank of the calling process
 - `MPI_Comm_size`: return the total number of processes that are part of 
@@ -166,9 +130,7 @@ the specified communicator.
 - `MPI_Get_processor_name`: return the name of the processor (core) running the process. 
 ```
 
-
-## 12. MPI communicators (first defined in MPI-1)
-```{dropdown}
+```{dropdown} MPI communicators  (first defined in MPI-1)
 MPI defines communicator groups for point-to-point and collective 
 communications:
 - Unique IDs (rank) are defined for individual processes within a communicator 
@@ -178,9 +140,7 @@ group.
 - For `N` processes, ranks go from `0` to `N−1`. 
 ```
 
-
-## 13. Hands-on: hello.c
-```{dropdown}
+```{dropdown} Hands-on: hello.c
 - Inside `intro-mpi`, create a file named `hello.c` with the following
 contents
 
@@ -188,20 +148,16 @@ contents
 
 - Compile and run `hello.c`:
 
-~~~
+~~~bash
 $ mpicc -o hello hello.c
 $ mpirun -np 1 ./hello
 $ mpirun -np 2 ./hello
 $ mpirun -np 4 ./hello
 ~~~
-{: .language-bash}
 
-<img src="../assets/figure/07-intro-mpi/03.png" alt="compile and run hello.c" style="height:350px">
 ```
 
-
-## 14. Hands-on: evenodd.c
-```{dropdown}
+```{dropdown} Hands-on: evenodd.c
 - In MPI, processes' ranks are used to enforce execution/exclusion of code 
 segments within the original source code. 
 - Inside `intro-mpi`, create a file named `evenodd.c` with the following
@@ -211,20 +167,16 @@ contents
 
 - Compile and run `evenodd.c`:
 
-~~~
+~~~bash
 $ mpicc -o evenodd evenodd.c
 $ mpirun -np 1 ./evenodd
 $ mpirun -np 2 ./evenodd
 $ mpirun -np 4 ./evenodd
 ~~~
-{: .language-bash}
 
-<img src="../assets/figure/07-intro-mpi/04.png" alt="compile and run evenodd.c" style="height:350px">
 ```
 
-
-## 15. Hands-on: rank_size.c
-```{dropdown}
+```{dropdown} Hands-on: rank_size.c
 - In MPI, the values of ranks and size can be used as means to calculate 
 and distribute workload (data) among the processes. 
 - Inside `intro-mpi`, create a file named `rank_size.c` with the following
@@ -234,15 +186,12 @@ contents
 
 - Compile and run `rank_size.c`:
 
-~~~
+~~~bash
 $ mpicc -o rank_size rank_size.c
 $ mpirun -np 1 ./rank_size
 $ mpirun -np 2 ./rank_size
 $ mpirun -np 4 ./rank_size
 ~~~
-{: .language-bash}
-
-<img src="../assets/figure/07-intro-mpi/05.png" alt="compile and run rank_size.c" style="height:800px">
 
 ```
 
