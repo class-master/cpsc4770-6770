@@ -2,27 +2,25 @@
 
 
 
-## 1. Addresses in MPI
-```{dropdown}
+## 1. Overview of MPI communications
+
+```{dropdown} Addresses in MPI
 Data messages (objects) being sent/received (passed around) in MPI 
 are referred to by their addresses:
 - Memory location to read from to send
 - Memory location to write to after receiving.
 ```
 
-
-## 2. Parallel workflow
-```{dropdown}
+```{dropdown} Parallel workflow
 Individual processes rely on communication (message passing) to enforce workflow
 - Point-to-point communication: `MPI_Send`, `MPI_Recv`
 - Collective communication: `MPI_Broadcast`, `MPI_Scatter`, 
 `MPI_Gather`, `MPI_Reduce`, `MPI_Barrier`.
 ```
 
-
-## 3. Point-to-point: MPI_Send and MPI_Recv
-```{dropdown}
-- `int MPI_Send(void *buf, int count, MPI_Datatype datatype, int dest, int tag,     MPI_Comm comm)`
+## 2. Point-to-point: MPI_Send and MPI_Recv
+```{dropdown} MPI_Send
+- `int MPI_Send(void *buf, int count, MPI_Datatype datatype, int dest, int tag, MPI_Comm comm)`
   - `*buf`: pointer to the address containing the data elements to be sent. 
   - `count`: how many data elements will be sent.
   - `MPI_Datatype`: `MPI_BYTE`, `MPI_PACKED`, `MPI_CHAR`, `MPI_SHORT`, `MPI_INT`, 
@@ -31,6 +29,9 @@ Individual processes rely on communication (message passing) to enforce workflow
   - `dest`: rank of the process these data elements are sent to.
   - `tag`: an integer identify the message. Programmer is responsible for managing tag.
   - `comm`: communicator (typically just used MPI_COMM_WORLD)
+```
+
+```{dropdown} MPI_Recv
 - `int MPI_Recv(void *buf, int count, MPI_Datatype datatype, int source, int tag, MPI_Comm comm, MPI_Status *status)`
   - `*buf`: pointer to the address containing the data elements to be written to. 
   - `count`: how many data elements will be received.
@@ -44,9 +45,7 @@ Individual processes rely on communication (message passing) to enforce workflow
   carries additional information about the send/receive process. 
 ```
 
-
-## 4. Hands-on: send_recv.c
-```{dropdown}
+```{dropdown} Hands-on: send_recv.c
 - We want to write a program called send_recv.c that allows two processes to 
 exchange their ranks: 
   - Process 0 receives 1 from process 1.
@@ -58,24 +57,26 @@ contents
 
 - Compile and run `send_recv.c`:
 
-~~~
+~~~bash
 $ mpicc -o send_recv send_recv.c
 $ mpirun -np 2 ./send_recv
 ~~~
-{: .language-bash}
 
 - Did we get what we want? Why?
 
-<img src="../assets/figure/08-point-to-point/01.png" alt="compile and run send_recv.c" style="height:150px">
+:::{image} ../fig/point-to-point/01.png
+:alt: Compile and run send_recv.c
+:class: bg-primary mb-1
+:height: 150px
+:align: center
+:::
 
 - Correction: separate sending and receiving buffers. 
 
 <script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=send_recv_fixed.c"></script>
 ```
 
-
-## 5. Hands-on: p2p communication at scale
-```{dropdown}
+```{dropdown} Hands-on: p2p communication at scale
 - Rely on rank and size and math.  
 - We want to shift the data elements with only message passing among 
 adjacent processes. 
@@ -86,20 +87,23 @@ contents
 
 - Compile and run `multi_send_recv.c`:
 
-~~~
+~~~bash
 $ mpicc -o multi_send_recv multi_send_recv.c
 $ mpirun -np 4 ./multi_send_recv
 ~~~
-{: .language-bash}
 
 - Did we get what we want? Why?
 
-<img src="../assets/figure/08-point-to-point/02.png" alt="compile and run multi_send_recv.c" style="height:350px">
+:::{image} ../fig/point-to-point/02.png
+:alt: Compile and run multi_send_recv.c
+:class: bg-primary mb-1
+:height: 350px
+:align: center
+:::
+
 ```
-
-
-## 6. Hands-on: blocking risk
-```{dropdown}
+ 
+```{dropdown} Hands-on: blocking risk
 - `MPI_Recv` is a blocking call.  
 - Meaning the process will stop until it receives the message. 
   - What if the message never arrives?
@@ -110,16 +114,20 @@ contents
 
 - Compile and run `deadlock_send_recv.c`:
 
-~~~
+~~~bash
 $ mpicc -o deadlock_send_recv deadlock_send_recv.c
 $ mpirun -np 2 ./deadlock_send_recv
 ~~~
-{: .language-bash}
 
 - What happens?
 - To get out of deadlock, press `Ctrl-C`. 
 
-<img src="../assets/figure/08-point-to-point/03.png" alt="compile and run deadlock_send_recv.c" style="height:150px">
+:::{image} ../fig/point-to-point/03.png
+:alt: compile and run deadlock_send_recv.c
+:class: bg-primary mb-1
+:height: 150px
+:align: center
+:::
 
 - Correction:
   - Pay attention to send/receive pairs. 
