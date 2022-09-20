@@ -337,33 +337,13 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#addresses-in-mpi">
-   1. Addresses in MPI
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#parallel-workflow">
-   2. Parallel workflow
+  <a class="reference internal nav-link" href="#overview-of-mpi-communications">
+   1. Overview of MPI communications
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#point-to-point-mpi-send-and-mpi-recv">
-   3. Point-to-point: MPI_Send and MPI_Recv
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hands-on-send-recv-c">
-   4. Hands-on: send_recv.c
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hands-on-p2p-communication-at-scale">
-   5. Hands-on: p2p communication at scale
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hands-on-blocking-risk">
-   6. Hands-on: blocking risk
+   2. Point-to-point: MPI_Send and MPI_Recv
   </a>
  </li>
 </ul>
@@ -386,33 +366,13 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#addresses-in-mpi">
-   1. Addresses in MPI
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#parallel-workflow">
-   2. Parallel workflow
+  <a class="reference internal nav-link" href="#overview-of-mpi-communications">
+   1. Overview of MPI communications
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#point-to-point-mpi-send-and-mpi-recv">
-   3. Point-to-point: MPI_Send and MPI_Recv
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hands-on-send-recv-c">
-   4. Hands-on: send_recv.c
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hands-on-p2p-communication-at-scale">
-   5. Hands-on: p2p communication at scale
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hands-on-blocking-risk">
-   6. Hands-on: blocking risk
+   2. Point-to-point: MPI_Send and MPI_Recv
   </a>
  </li>
 </ul>
@@ -427,11 +387,11 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="mpi-point-to-point-data-types-and-communicators">
 <h1>MPI: point-to-point, data types, and communicators<a class="headerlink" href="#mpi-point-to-point-data-types-and-communicators" title="Permalink to this headline">#</a></h1>
-<section id="addresses-in-mpi">
-<h2>1. Addresses in MPI<a class="headerlink" href="#addresses-in-mpi" title="Permalink to this headline">#</a></h2>
+<section id="overview-of-mpi-communications">
+<h2>1. Overview of MPI communications<a class="headerlink" href="#overview-of-mpi-communications" title="Permalink to this headline">#</a></h2>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+Addresses in MPI<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
@@ -443,12 +403,9 @@ are referred to by their addresses:</p>
 <li><p class="sd-card-text">Memory location to write to after receiving.</p></li>
 </ul>
 </div>
-</details></section>
-<section id="parallel-workflow">
-<h2>2. Parallel workflow<a class="headerlink" href="#parallel-workflow" title="Permalink to this headline">#</a></h2>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+Parallel workflow<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
@@ -462,16 +419,16 @@ are referred to by their addresses:</p>
 </div>
 </details></section>
 <section id="point-to-point-mpi-send-and-mpi-recv">
-<h2>3. Point-to-point: MPI_Send and MPI_Recv<a class="headerlink" href="#point-to-point-mpi-send-and-mpi-recv" title="Permalink to this headline">#</a></h2>
+<h2>2. Point-to-point: MPI_Send and MPI_Recv<a class="headerlink" href="#point-to-point-mpi-send-and-mpi-recv" title="Permalink to this headline">#</a></h2>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+MPI_Send<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">MPI_Send(void</span> <span class="pre">*buf,</span> <span class="pre">int</span> <span class="pre">count,</span> <span class="pre">MPI_Datatype</span> <span class="pre">datatype,</span> <span class="pre">int</span> <span class="pre">dest,</span> <span class="pre">int</span> <span class="pre">tag,</span>&#160;&#160;&#160;&#160; <span class="pre">MPI_Comm</span> <span class="pre">comm)</span></code></p>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">MPI_Send(void</span> <span class="pre">*buf,</span> <span class="pre">int</span> <span class="pre">count,</span> <span class="pre">MPI_Datatype</span> <span class="pre">datatype,</span> <span class="pre">int</span> <span class="pre">dest,</span> <span class="pre">int</span> <span class="pre">tag,</span> <span class="pre">MPI_Comm</span> <span class="pre">comm)</span></code></p>
 <ul>
 <li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">*buf</span></code>: pointer to the address containing the data elements to be sent.</p></li>
 <li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">count</span></code>: how many data elements will be sent.</p></li>
@@ -483,6 +440,16 @@ and other user-defined types.</p></li>
 <li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">comm</span></code>: communicator (typically just used MPI_COMM_WORLD)</p></li>
 </ul>
 </li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+MPI_Recv<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
 <li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">MPI_Recv(void</span> <span class="pre">*buf,</span> <span class="pre">int</span> <span class="pre">count,</span> <span class="pre">MPI_Datatype</span> <span class="pre">datatype,</span> <span class="pre">int</span> <span class="pre">source,</span> <span class="pre">int</span> <span class="pre">tag,</span> <span class="pre">MPI_Comm</span> <span class="pre">comm,</span> <span class="pre">MPI_Status</span> <span class="pre">*status)</span></code></p>
 <ul>
 <li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">*buf</span></code>: pointer to the address containing the data elements to be written to.</p></li>
@@ -499,12 +466,9 @@ carries additional information about the send/receive process.</p></li>
 </li>
 </ul>
 </div>
-</details></section>
-<section id="hands-on-send-recv-c">
-<h2>4. Hands-on: send_recv.c<a class="headerlink" href="#hands-on-send-recv-c" title="Permalink to this headline">#</a></h2>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+Hands-on: send_recv.c<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
@@ -524,26 +488,22 @@ contents</p></li>
 <ul class="simple">
 <li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">send_recv.c</span></code>:</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mpicc -o send_recv send_recv.c
-$ mpirun -np 2 ./send_recv
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mpicc -o send_recv send_recv.c
+$ mpirun -np <span class="m">2</span> ./send_recv
 </pre></div>
 </div>
-<p class="sd-card-text">{: .language-bash}</p>
 <ul class="simple">
 <li><p class="sd-card-text">Did we get what we want? Why?</p></li>
 </ul>
-<img src="../assets/figure/08-point-to-point/01.png" alt="compile and run send_recv.c" style="height:150px">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/011.png"><img alt="Compile and run send_recv.c" class="bg-primary mb-1 align-center" src="../_images/011.png" style="height: 150px;" /></a>
 <ul class="simple">
 <li><p class="sd-card-text">Correction: separate sending and receiving buffers.</p></li>
 </ul>
 <script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=send_recv_fixed.c"></script>
 </div>
-</details></section>
-<section id="hands-on-p2p-communication-at-scale">
-<h2>5. Hands-on: p2p communication at scale<a class="headerlink" href="#hands-on-p2p-communication-at-scale" title="Permalink to this headline">#</a></h2>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+Hands-on: p2p communication at scale<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
@@ -559,22 +519,18 @@ contents</p></li>
 <ul class="simple">
 <li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">multi_send_recv.c</span></code>:</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mpicc -o multi_send_recv multi_send_recv.c
-$ mpirun -np 4 ./multi_send_recv
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mpicc -o multi_send_recv multi_send_recv.c
+$ mpirun -np <span class="m">4</span> ./multi_send_recv
 </pre></div>
 </div>
-<p class="sd-card-text">{: .language-bash}</p>
 <ul class="simple">
 <li><p class="sd-card-text">Did we get what we want? Why?</p></li>
 </ul>
-<img src="../assets/figure/08-point-to-point/02.png" alt="compile and run multi_send_recv.c" style="height:350px">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/021.png"><img alt="Compile and run multi_send_recv.c" class="bg-primary mb-1 align-center" src="../_images/021.png" style="height: 350px;" /></a>
 </div>
-</details></section>
-<section id="hands-on-blocking-risk">
-<h2>6. Hands-on: blocking risk<a class="headerlink" href="#hands-on-blocking-risk" title="Permalink to this headline">#</a></h2>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+Hands-on: blocking risk<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
@@ -593,16 +549,15 @@ contents</p></li>
 <ul class="simple">
 <li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">deadlock_send_recv.c</span></code>:</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mpicc -o deadlock_send_recv deadlock_send_recv.c
-$ mpirun -np 2 ./deadlock_send_recv
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mpicc -o deadlock_send_recv deadlock_send_recv.c
+$ mpirun -np <span class="m">2</span> ./deadlock_send_recv
 </pre></div>
 </div>
-<p class="sd-card-text">{: .language-bash}</p>
 <ul class="simple">
 <li><p class="sd-card-text">What happens?</p></li>
 <li><p class="sd-card-text">To get out of deadlock, press <code class="docutils literal notranslate"><span class="pre">Ctrl-C</span></code>.</p></li>
 </ul>
-<img src="../assets/figure/08-point-to-point/03.png" alt="compile and run deadlock_send_recv.c" style="height:150px">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/031.png"><img alt="compile and run deadlock_send_recv.c" class="bg-primary mb-1 align-center" src="../_images/031.png" style="height: 150px;" /></a>
 <ul class="simple">
 <li><p class="sd-card-text">Correction:</p>
 <ul>
