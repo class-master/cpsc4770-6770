@@ -419,155 +419,189 @@ title="Print to PDF"
 <h1>MPI: Functional parallelism and collectives<a class="headerlink" href="#mpi-functional-parallelism-and-collectives" title="Permalink to this headline">#</a></h1>
 <section id="collective-communication">
 <h2>1. Collective communication<a class="headerlink" href="#collective-communication" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p>Must involve ALL processes within the scope of a communicator.</p></li>
-<li><p>Unexpected behavior, including programming failure, if even one process does
+<li><p class="sd-card-text">Must involve ALL processes within the scope of a communicator.</p></li>
+<li><p class="sd-card-text">Unexpected behavior, including programming failure, if even one process does
 not participate.</p></li>
-<li><p>Types of collective communications:</p>
+<li><p class="sd-card-text">Types of collective communications:</p>
 <ul>
-<li><p>Synchronization: barrier</p></li>
-<li><p>Data movement: broadcast, scatter/gather</p></li>
-<li><p>Collective computation (aggregate data to perform computation): Reduce</p></li>
+<li><p class="sd-card-text">Synchronization: barrier</p></li>
+<li><p class="sd-card-text">Data movement: broadcast, scatter/gather</p></li>
+<li><p class="sd-card-text">Collective computation (aggregate data to perform computation): Reduce</p></li>
 </ul>
 </li>
 </ul>
-<img src="../assets/figure/09-collectives/01.png" alt="collective communication patterns" style="height:600px">
-</section>
-<p>{: .slide}</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/012.png"><img alt="collective communication patterns" class="bg-primary mb-1 align-center" src="../_images/012.png" style="height: 600px;" /></a>
+</div>
+</details></section>
 <section id="hands-on-mpi-bcast">
 <h2>2. Hands-on: MPI_Bcast<a class="headerlink" href="#hands-on-mpi-bcast" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">MPI_Bcast(void</span> <span class="pre">*buf,</span> <span class="pre">int</span> <span class="pre">count,</span> <span class="pre">MPI_Datatype</span> <span class="pre">datatype,</span> <span class="pre">int</span> <span class="pre">root,</span> <span class="pre">MPI_Comm</span> <span class="pre">comm)</span></code></p>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">MPI_Bcast(void</span> <span class="pre">*buf,</span> <span class="pre">int</span> <span class="pre">count,</span> <span class="pre">MPI_Datatype</span> <span class="pre">datatype,</span> <span class="pre">int</span> <span class="pre">root,</span> <span class="pre">MPI_Comm</span> <span class="pre">comm)</span></code></p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">*buf</span></code>:</p>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">*buf</span></code>:</p>
 <ul>
-<li><p>If on <code class="docutils literal notranslate"><span class="pre">root</span></code>, pointer to the address containing the data elements to be
+<li><p class="sd-card-text">If on <code class="docutils literal notranslate"><span class="pre">root</span></code>, pointer to the address containing the data elements to be
 broadcasted</p></li>
-<li><p>If not on <code class="docutils literal notranslate"><span class="pre">root</span></code>, pointer to the address where broadcasted data to be stored.</p></li>
+<li><p class="sd-card-text">If not on <code class="docutils literal notranslate"><span class="pre">root</span></code>, pointer to the address where broadcasted data to be stored.</p></li>
 </ul>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">count</span></code>: how many data elements will be broadcasted.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">MPI_Datatype</span></code>: <code class="docutils literal notranslate"><span class="pre">MPI_BYTE</span></code>, <code class="docutils literal notranslate"><span class="pre">MPI_PACKED</span></code>, <code class="docutils literal notranslate"><span class="pre">MPI_CHAR</span></code>, <code class="docutils literal notranslate"><span class="pre">MPI_SHORT</span></code>, <code class="docutils literal notranslate"><span class="pre">MPI_INT</span></code>,
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">count</span></code>: how many data elements will be broadcasted.</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">MPI_Datatype</span></code>: <code class="docutils literal notranslate"><span class="pre">MPI_BYTE</span></code>, <code class="docutils literal notranslate"><span class="pre">MPI_PACKED</span></code>, <code class="docutils literal notranslate"><span class="pre">MPI_CHAR</span></code>, <code class="docutils literal notranslate"><span class="pre">MPI_SHORT</span></code>, <code class="docutils literal notranslate"><span class="pre">MPI_INT</span></code>,
 <code class="docutils literal notranslate"><span class="pre">MPI_LONG</span></code>, <code class="docutils literal notranslate"><span class="pre">MPI_FLOAT</span></code>, <code class="docutils literal notranslate"><span class="pre">MPI_DOUBLE</span></code>, <code class="docutils literal notranslate"><span class="pre">MPI_LONG_DOUBLE</span></code>, <code class="docutils literal notranslate"><span class="pre">MPI_UNSIGNED_CHAR</span></code>,
 and other user-defined types.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">root</span></code>: rank of the process where the original data will be broadcasted.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">tag</span></code>: an integer identify the message. Programmer is responsible for managing tag.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">comm</span></code>: communicator (typically just used MPI_COMM_WORLD)</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">root</span></code>: rank of the process where the original data will be broadcasted.</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">tag</span></code>: an integer identify the message. Programmer is responsible for managing tag.</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">comm</span></code>: communicator (typically just used MPI_COMM_WORLD)</p></li>
 </ul>
 </li>
-<li><p>Don’t need to specify a TAG or DESTINATION</p></li>
-<li><p>Must specify the SENDER (root)</p></li>
-<li><p>Blocking call for all processes</p></li>
-<li><p>Inside <code class="docutils literal notranslate"><span class="pre">intro-mpi</span></code>, create a file named <code class="docutils literal notranslate"><span class="pre">bcast.c</span></code> with the following
+<li><p class="sd-card-text">Don’t need to specify a TAG or DESTINATION</p></li>
+<li><p class="sd-card-text">Must specify the SENDER (root)</p></li>
+<li><p class="sd-card-text">Blocking call for all processes</p></li>
+<li><p class="sd-card-text">Inside <code class="docutils literal notranslate"><span class="pre">intro-mpi</span></code>, create a file named <code class="docutils literal notranslate"><span class="pre">bcast.c</span></code> with the following
 contents</p></li>
 </ul>
 <script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=bcast.c"></script>
 <ul class="simple">
-<li><p>Compile and run <code class="docutils literal notranslate"><span class="pre">bcast.c</span></code>:</p></li>
+<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">bcast.c</span></code>:</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mpicc -o bcast bcast.c
 $ mpirun -np 4 ./bcast
 </pre></div>
 </div>
-<p>{: .language-bash}</p>
-<img src="../assets/figure/09-collectives/02.png" alt="compile and run bcast.c" style="height:300px">
-</section>
-<p>{: .slide}</p>
+<p class="sd-card-text">{: .language-bash}</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/022.png"><img alt="compile and run bcast.c" class="bg-primary mb-1 align-center" src="../_images/022.png" style="height: 300px;" /></a>
+</div>
+</details></section>
 <section id="hands-on-mpi-scatter">
 <h2>3. Hands-on: MPI_Scatter<a class="headerlink" href="#hands-on-mpi-scatter" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">MPI_Scatter(void</span> <span class="pre">*sendbuf,</span> <span class="pre">int</span> <span class="pre">sendcount,</span> <span class="pre">MPI_Datatype</span> <span class="pre">sendtype,</span> <span class="pre">void</span> <span class="pre">*recvbuf,int</span> <span class="pre">recvcount,MPI_Datatype</span> <span class="pre">recvtype,</span> <span class="pre">int</span> <span class="pre">root,</span> <span class="pre">MPI_Comm</span> <span class="pre">comm)</span></code></p>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">MPI_Scatter(void</span> <span class="pre">*sendbuf,</span> <span class="pre">int</span> <span class="pre">sendcount,</span> <span class="pre">MPI_Datatype</span> <span class="pre">sendtype,</span> <span class="pre">void</span> <span class="pre">*recvbuf,int</span> <span class="pre">recvcount,MPI_Datatype</span> <span class="pre">recvtype,</span> <span class="pre">int</span> <span class="pre">root,</span> <span class="pre">MPI_Comm</span> <span class="pre">comm)</span></code></p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">*sendbuf</span></code>: pointer to the address containing the array of data elements to be
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">*sendbuf</span></code>: pointer to the address containing the array of data elements to be
 scattered.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">sendcount</span></code>: how many data elements to be sent to each process of the communicator.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">*recvbuf</span></code>: pointer to the address on each process of the communicator, where
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">sendcount</span></code>: how many data elements to be sent to each process of the communicator.</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">*recvbuf</span></code>: pointer to the address on each process of the communicator, where
 the scattered portion will be written.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">recvcount</span></code>: how many data elements to be received by each process of the communicator.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">root</span></code>: rank of the process from where the original data will be scattered.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">comm</span></code>: communicator (typically just used MPI_COMM_WORLD)</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">recvcount</span></code>: how many data elements to be received by each process of the communicator.</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">root</span></code>: rank of the process from where the original data will be scattered.</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">comm</span></code>: communicator (typically just used MPI_COMM_WORLD)</p></li>
 </ul>
 </li>
-<li><p>Inside <code class="docutils literal notranslate"><span class="pre">intro-mpi</span></code>, create a file named <code class="docutils literal notranslate"><span class="pre">scatter.c</span></code> with the following
+<li><p class="sd-card-text">Inside <code class="docutils literal notranslate"><span class="pre">intro-mpi</span></code>, create a file named <code class="docutils literal notranslate"><span class="pre">scatter.c</span></code> with the following
 contents</p></li>
 </ul>
 <script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=scatter.c"></script>
 <ul class="simple">
-<li><p>Compile and run <code class="docutils literal notranslate"><span class="pre">scatter.c</span></code>:</p></li>
+<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">scatter.c</span></code>:</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mpicc -o scatter scatter.c
 $ mpirun -np 4 ./scatter
 </pre></div>
 </div>
-<p>{: .language-bash}</p>
-<img src="../assets/figure/09-collectives/03.png" alt="compile and run scatter.c" style="height:300px">
-</section>
-<p>{: .slide}</p>
+<p class="sd-card-text">{: .language-bash}</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/032.png"><img alt="compile and run scatter.c" class="bg-primary mb-1 align-center" src="../_images/032.png" style="height: 300px;" /></a>
+</div>
+</details></section>
 <section id="hands-on-mpi-gather">
 <h2>4. Hands-on: MPI_Gather<a class="headerlink" href="#hands-on-mpi-gather" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">MPI_Gather(void</span> <span class="pre">*sendbuf,</span> <span class="pre">int</span> <span class="pre">sendcount,</span> <span class="pre">MPI_Datatype</span> <span class="pre">sendtype,</span> <span class="pre">void</span> <span class="pre">*recvbuf,int</span> <span class="pre">recvcount,MPI_Datatype</span> <span class="pre">recvtype,</span> <span class="pre">int</span> <span class="pre">root,</span> <span class="pre">MPI_Comm</span> <span class="pre">comm)</span></code></p>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">MPI_Gather(void</span> <span class="pre">*sendbuf,</span> <span class="pre">int</span> <span class="pre">sendcount,</span> <span class="pre">MPI_Datatype</span> <span class="pre">sendtype,</span> <span class="pre">void</span> <span class="pre">*recvbuf,int</span> <span class="pre">recvcount,MPI_Datatype</span> <span class="pre">recvtype,</span> <span class="pre">int</span> <span class="pre">root,</span> <span class="pre">MPI_Comm</span> <span class="pre">comm)</span></code></p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">*sendbuf</span></code>: pointer to the address on each process of the communicator, containing
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">*sendbuf</span></code>: pointer to the address on each process of the communicator, containing
 the array of data elements to be gathered.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">sendcount</span></code>: how many data elements from each process of the communicator to be sent
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">sendcount</span></code>: how many data elements from each process of the communicator to be sent
 back to the root process.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">*recvbuf</span></code>: pointer to the address on the root process where all gathered data
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">*recvbuf</span></code>: pointer to the address on the root process where all gathered data
 will be written.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">recvcount</span></code>: how many data elements to be received from each process of the
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">recvcount</span></code>: how many data elements to be received from each process of the
 communicator.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">root</span></code>: rank of the process from where the original data will be gathered.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">comm</span></code>: communicator (typically just used MPI_COMM_WORLD)</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">root</span></code>: rank of the process from where the original data will be gathered.</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">comm</span></code>: communicator (typically just used MPI_COMM_WORLD)</p></li>
 </ul>
 </li>
-<li><p>Inside <code class="docutils literal notranslate"><span class="pre">intro-mpi</span></code>, create a file named <code class="docutils literal notranslate"><span class="pre">gather.c</span></code> with the following
+<li><p class="sd-card-text">Inside <code class="docutils literal notranslate"><span class="pre">intro-mpi</span></code>, create a file named <code class="docutils literal notranslate"><span class="pre">gather.c</span></code> with the following
 contents</p></li>
 </ul>
 <script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=gather.c"></script>
 <ul class="simple">
-<li><p>Compile and run <code class="docutils literal notranslate"><span class="pre">gather.c</span></code>:</p></li>
+<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">gather.c</span></code>:</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mpicc -o gather gather.c
 $ mpirun -np 4 ./gather
 </pre></div>
 </div>
-<p>{: .language-bash}</p>
-<img src="../assets/figure/09-collectives/04.png" alt="compile and run gather.c" style="height:300px">
-</section>
-<p>{: .slide}</p>
+<p class="sd-card-text">{: .language-bash}</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/041.png"><img alt="compile and run gather.c" class="bg-primary mb-1 align-center" src="../_images/041.png" style="height: 300px;" /></a>
+</div>
+</details></section>
 <section id="hands-on-mpi-reduce">
 <h2>5. Hands-on: MPI_Reduce<a class="headerlink" href="#hands-on-mpi-reduce" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">MPI_Reduce(void</span> <span class="pre">*sendbuf,</span> <span class="pre">void</span> <span class="pre">*recvbuf,</span> <span class="pre">int</span> <span class="pre">count,</span> <span class="pre">MPI_Datatype</span> <span class="pre">datatype,</span> <span class="pre">MPI_OP</span> <span class="pre">op,int</span> <span class="pre">root,</span> <span class="pre">MPI_Comm</span> <span class="pre">comm)</span></code></p>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">MPI_Reduce(void</span> <span class="pre">*sendbuf,</span> <span class="pre">void</span> <span class="pre">*recvbuf,</span> <span class="pre">int</span> <span class="pre">count,</span> <span class="pre">MPI_Datatype</span> <span class="pre">datatype,</span> <span class="pre">MPI_OP</span> <span class="pre">op,int</span> <span class="pre">root,</span> <span class="pre">MPI_Comm</span> <span class="pre">comm)</span></code></p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">*sendbuf</span></code>: pointer to the address on each process of the communicator, containing
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">*sendbuf</span></code>: pointer to the address on each process of the communicator, containing
 the array of data elements to be reduced.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">*recvbuf</span></code>: pointer to the address on the root process where all final reduced
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">*recvbuf</span></code>: pointer to the address on the root process where all final reduced
 data will be written.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">count</span></code>: how many data elements to be received from each process of the communicator.
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">count</span></code>: how many data elements to be received from each process of the communicator.
 If count &gt; 1, then operation is performed element-wise.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">op</span></code>: may be MPI_MIN, MPI_MAX, MPI_SUM, MPI_PROD (twelve total). Programmer may add
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">op</span></code>: may be MPI_MIN, MPI_MAX, MPI_SUM, MPI_PROD (twelve total). Programmer may add
 operations, must be commutative and associative.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">root</span></code>: rank of the process from where the original data will be gathered.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">comm</span></code>: communicator (typically just used MPI_COMM_WORLD).</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">root</span></code>: rank of the process from where the original data will be gathered.</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">comm</span></code>: communicator (typically just used MPI_COMM_WORLD).</p></li>
 </ul>
 </li>
-<li><p>Inside <code class="docutils literal notranslate"><span class="pre">intro-mpi</span></code>, create a file named <code class="docutils literal notranslate"><span class="pre">gather.c</span></code> with the following
+<li><p class="sd-card-text">Inside <code class="docutils literal notranslate"><span class="pre">intro-mpi</span></code>, create a file named <code class="docutils literal notranslate"><span class="pre">gather.c</span></code> with the following
 contents</p></li>
 </ul>
 <script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=reduce.c"></script>
 <ul class="simple">
-<li><p>Compile and run <code class="docutils literal notranslate"><span class="pre">reduce.c</span></code>:</p></li>
+<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">reduce.c</span></code>:</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mpicc -o reduce reduce.c
 $ mpirun -np 4 ./reduce
 </pre></div>
 </div>
-<p>{: .language-bash}</p>
-<img src="../assets/figure/09-collectives/05.png" alt="compile and run reduce.c" style="height:300px">
-</section>
-<p>{: .slide}</p>
-<p>{% include <a class="reference external" href="http://links.md">links.md</a> %}</p>
+<p class="sd-card-text">{: .language-bash}</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/05.png"><img alt="compile and run reduce.c" class="bg-primary mb-1 align-center" src="../_images/05.png" style="height: 300px;" /></a>
+</div>
+</details></section>
 </section>
 
     <script type="text/x-thebe-config">
