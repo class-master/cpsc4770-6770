@@ -19,7 +19,13 @@ the other processes, therefore, ...
 `f`, the x-axis, and two vertical lines `x=a` and `x=b`. 
 - We can estimate this area by dividing it into infinitesimal trapezoids.
 
-<img src="../assets/figure/10-pleasantly/01.gif" alt="trapezoids" style="height:400px">
+:::{image} ../fig/pleasantly/01.gif
+:alt: trapezoids
+:class: bg-primary mb-1
+:height: 400px
+:align: center
+:::
+
 ```
 
 
@@ -32,7 +38,13 @@ the other processes, therefore, ...
 - The base `h` can be calculated as: 
   - `h` = (`b` - `a`) / `N` = 0.25
 
-<img src="../assets/figure/10-pleasantly/02.png" alt="trapezoids" style="height:400px">
+:::{image} ../fig/pleasantly/02.png
+:alt: trapezoids
+:class: bg-primary mb-1
+:height: 400px
+:align: center
+:::
+
 ```
 
 
@@ -43,7 +55,13 @@ the other processes, therefore, ...
   - Calculation workload assignment manually for each count of processes.
   - Generalize assignment for process i based on sample calculations.
 
-<img src="../assets/figure/10-pleasantly/02.png" alt="trapezoids" style="height:400px">
+:::{image} ../fig/pleasantly/02.png
+:alt: trapezoids
+:class: bg-primary mb-1
+:height: 400px
+:align: center
+:::
+
 ```
 
 
@@ -65,43 +83,19 @@ calculating one trapezoid and moving to another.
   - `local_a` for `P2`= 1 = 0 + 2 * 2 * 0.25
   - `local_a` for `P2`= 1.5 = 0 + 3 * 2 * 0.25
 
-<img src="../assets/figure/10-pleasantly/03.png" alt="trapezoids" style="height:400px">
+:::{image} ../fig/pleasantly/03.png
+:alt: trapezoids
+:class: bg-primary mb-1
+:height: 400px
+:align: center
+:::
+
 ```
 
 
 ## 6. Handson: integral estimation using the trapezoid method
 ```{dropdown}
-- Your account (login/password) will work on both `taz` and `submitty`. 
-- `USERNAME` represents the login name that you received in email.
-- To access `taz` from a terminal:
 
-~~~
-$ ssh USERNAME@taz.cs.wcupa.edu
-~~~
-{: .language-bash}
-
-- To access `submitty` from a terminal: 
-
-~~~
-$ ssh USERNAME@submitty.cs.wcupa.edu
-~~~
-{: .language-bash}
-
-- The environments on `taz` and `submitty` are similar to one another. 
-In the remainder of these lectures, example screenshots will be taken 
-from `submitty`, but all commands will work on `taz` as well. 
-
-- Change into `intro-mpi`
-
-~~~
-$ cd intro-mpi
-~~~
-{: .language-bash}
-
-- To create a file from terminal, run `nano -c file_name`. 
-- When finish editing, press `Ctrl-X` to select `Quit and Save`. 
-- Press `Y` to confirm that you want to save. 
-- Press `Enter` to confirm that you are saving to `file_name`. 
 - Inside `intro-mpi`, create a file named `trapezoid.c` with the following
 contents
 
@@ -116,9 +110,14 @@ $ mpirun -np 4 ./trapezoid 0 1 100
 $ mpirun -np 4 ./trapezoid 0 1 1000
 $ mpirun -np 4 ./trapezoid 0 1 10000
 ~~~
-{: .language-bash}
 
-<img src="../assets/figure/10-pleasantly/04.png" alt="trapezoids" style="height:200px">
+:::{image} ../fig/pleasantly/04.png
+:alt: trapezoids
+:class: bg-primary mb-1
+:height: 200px
+:align: center
+:::
+
 ```
 
 
@@ -136,13 +135,24 @@ to have the following contents
 $ mpicc -o trapezoid_static trapezoid_static.c
 $ mpirun -np 4 ./trapezoid_static 0 1 1000
 ~~~
-{: .language-bash}
 
-<img src="../assets/figure/10-pleasantly/05.png" alt="trapezoid static" style="height:200px">
+:::{image} ../fig/pleasantly/05.png
+:alt: trapezoid static
+:class: bg-primary mb-1
+:height: 200px
+:align: center
+:::
+
 
 - This is called `static workload assignment`. 
 
-<img src="../assets/figure/10-pleasantly/06.png" alt="mandelbrot static" style="height:400px">
+:::{image} ../fig/pleasantly/06.png
+:alt: mandelbrot static
+:class: bg-primary mb-1
+:height: 400px
+:align: center
+:::
+
 ```
 
 
@@ -159,13 +169,24 @@ to have the following contents
 $ mpicc -o trapezoid_cyclic trapezoid_cyclic.c
 $ mpirun -np 4 ./trapezoid_cyclic 0 1 1000
 ~~~
-{: .language-bash}
 
-<img src="../assets/figure/10-pleasantly/07.png" alt="trapezoid cyclic" style="height:200px">
+:::{image} ../fig/pleasantly/07.png
+:alt: trapezoid cyclic
+:class: bg-primary mb-1
+:height: 200px
+:align: center
+:::
+
 
 - This is called `cyclic workload assignment`. 
 
-<img src="../assets/figure/10-pleasantly/08.png" alt="mandelbrot cyclic" style="height:400px">
+:::{image} ../fig/pleasantly/08.png
+:alt: mandelbrot cyclic
+:class: bg-primary mb-1
+:height: 400px
+:align: center
+:::
+
 ```
 
 
@@ -185,11 +206,23 @@ $ mpirun -np 4 ./trapezoid_dynamic 0 1 1000
 ~~~
 {: .language-bash}
 
-<img src="../assets/figure/10-pleasantly/09.png" alt="trapezoid dynamic" style="height:300px">
+:::{image} ../fig/pleasantly/09.png
+:alt: trapezoid dynamic
+:class: bg-primary mb-1
+:height: 300px
+:align: center
+:::
+
 
 - This is called `dynamic workload assignment`. 
 
-<img src="../assets/figure/10-pleasantly/10.png" alt="mandelbrot dynamic" style="height:500px">
+:::{image} ../fig/pleasantly/10.png
+:alt: mandelbrot dynamic
+:class: bg-primary mb-1
+:height: 500px
+:align: center
+:::
+
 ```
 
 
