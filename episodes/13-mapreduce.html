@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Introduction to Big Data &#8212; Distributed and Cluster Computing</title>
+    <title>MapReduce Programming Paradigm &#8212; Distributed and Cluster Computing</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="MapReduce Programming Paradigm" href="12-mapreduce.html" />
-    <link rel="prev" title="MPI: pleasantly parallel and workload allocation" href="10-pleasantly-parallel.html" />
+    <link rel="next" title="Spark computing environment" href="14-spark.html" />
+    <link rel="prev" title="Introduction to Big Data" href="12-data-intensive-computing.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -169,38 +169,43 @@ const thebe_selector_output = ".output, .cell_output"
    MPI: pleasantly parallel and workload allocation
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Introduction to Big Data
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-divide-conquer.html">
+   Partitioning: Divide and Conquer
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="12-mapreduce.html">
+  <a class="reference internal" href="12-data-intensive-computing.html">
+   Introduction to Big Data
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    MapReduce Programming Paradigm
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="13-spark.html">
+  <a class="reference internal" href="14-spark.html">
    Spark computing environment
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="14-data-parallel.html">
+  <a class="reference internal" href="15-data-parallel.html">
    Data parallel computing with Spark
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="15-page-rank.html">
+  <a class="reference internal" href="16-page-rank.html">
    Page Rank
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="16-locality-sensitive-hashing.html">
+  <a class="reference internal" href="17-locality-sensitive-hashing.html">
    Locality Sensitive Hashing
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="17-frequent-itemsets.html">
+  <a class="reference internal" href="18-frequent-itemsets.html">
    Frequent Itemsets
   </a>
  </li>
@@ -277,7 +282,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/episodes/11-data-intensive-computing.md"
+        <a href="../_sources/episodes/13-mapreduce.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -337,48 +342,43 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#terminologies">
-   1. Terminologies
+  <a class="reference internal nav-link" href="#the-reality-of-working-with-big-data">
+   1. The reality of working with big data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#big-data-in-science-data-enabled-science">
-   2. Big Data in Science (Data-enabled Science)
+  <a class="reference internal nav-link" href="#the-reality-of-working-with-big-data-as-outlined-by-the-paper">
+   2. The reality of working with big data (as outlined by the paper)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#big-data-in-industry">
-   3. Big Data in Industry
+  <a class="reference internal nav-link" href="#mapreduce-in-a-nutshell">
+   3. MapReduce in a nutshell
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gartner-hype-cycle-2014">
-   Gartner Hype Cycle 2014
+  <a class="reference internal nav-link" href="#word-count-the-hello-world-of-big-data">
+   3. Word Count: the “Hello, World” of big data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gartner-hype-cycle-2019">
-   Gartner Hype Cycle 2019
+  <a class="reference internal nav-link" href="#word-count-mapreduce-workflow">
+   4. Word Count: MapReduce workflow
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gartner-hype-cycle-2020">
-   Gartner Hype Cycle 2020
+  <a class="reference internal nav-link" href="#word-count-mapreduce-workflow-what-do-you-really-do">
+   5. Word Count: MapReduce workflow - what do you really do
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-vs-of-big-data">
-   4. The Vs of Big Data
+  <a class="reference internal nav-link" href="#word-count-mapreduce-workflow-at-scale">
+   6. Word Count: MapReduce workflow at scale
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#programming-paradigm-for-big-data">
-   5. Programming paradigm for big data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-intensive-approach">
-   6. Data-intensive approach
+  <a class="reference internal nav-link" href="#applications-that-suit-well-with-mapreduce-programming-paradigm">
+   7. Applications that suit well with MapReduce programming paradigm
   </a>
  </li>
 </ul>
@@ -390,7 +390,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Introduction to Big Data</h1>
+                <h1>MapReduce Programming Paradigm</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -401,48 +401,43 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#terminologies">
-   1. Terminologies
+  <a class="reference internal nav-link" href="#the-reality-of-working-with-big-data">
+   1. The reality of working with big data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#big-data-in-science-data-enabled-science">
-   2. Big Data in Science (Data-enabled Science)
+  <a class="reference internal nav-link" href="#the-reality-of-working-with-big-data-as-outlined-by-the-paper">
+   2. The reality of working with big data (as outlined by the paper)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#big-data-in-industry">
-   3. Big Data in Industry
+  <a class="reference internal nav-link" href="#mapreduce-in-a-nutshell">
+   3. MapReduce in a nutshell
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gartner-hype-cycle-2014">
-   Gartner Hype Cycle 2014
+  <a class="reference internal nav-link" href="#word-count-the-hello-world-of-big-data">
+   3. Word Count: the “Hello, World” of big data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gartner-hype-cycle-2019">
-   Gartner Hype Cycle 2019
+  <a class="reference internal nav-link" href="#word-count-mapreduce-workflow">
+   4. Word Count: MapReduce workflow
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gartner-hype-cycle-2020">
-   Gartner Hype Cycle 2020
+  <a class="reference internal nav-link" href="#word-count-mapreduce-workflow-what-do-you-really-do">
+   5. Word Count: MapReduce workflow - what do you really do
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-vs-of-big-data">
-   4. The Vs of Big Data
+  <a class="reference internal nav-link" href="#word-count-mapreduce-workflow-at-scale">
+   6. Word Count: MapReduce workflow at scale
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#programming-paradigm-for-big-data">
-   5. Programming paradigm for big data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-intensive-approach">
-   6. Data-intensive approach
+  <a class="reference internal nav-link" href="#applications-that-suit-well-with-mapreduce-programming-paradigm">
+   7. Applications that suit well with MapReduce programming paradigm
   </a>
  </li>
 </ul>
@@ -455,188 +450,172 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-big-data">
-<h1>Introduction to Big Data<a class="headerlink" href="#introduction-to-big-data" title="Permalink to this headline">#</a></h1>
-<section id="terminologies">
-<h2>1. Terminologies<a class="headerlink" href="#terminologies" title="Permalink to this headline">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="mapreduce-programming-paradigm">
+<h1>MapReduce Programming Paradigm<a class="headerlink" href="#mapreduce-programming-paradigm" title="Permalink to this headline">#</a></h1>
+<section id="the-reality-of-working-with-big-data">
+<h2>1. The reality of working with big data<a class="headerlink" href="#the-reality-of-working-with-big-data" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
-<li><p>Big data problems: not only the processing power, but the size of the data is also the
-limiting factor in being able to find a timely solution. ​</p></li>
-<li><p>Big Data (Industry, Social Sciences)​</p>
+<li><p>Hundreds or thousands of machines to support big data.​</p>
 <ul>
-<li><p>Input data carry characteristics of Big Data (the 4V)​.</p></li>
-<li><p>Computational process is simple and straightforward, with minimal intermediate
-data being generated​.</p></li>
+<li><p>Distribute data for storage (<em>not within the scope of this class</em>).</p></li>
+<li><p>Parallelize data computation (MapReduce)​</p></li>
+<li><p>Handle failure (MapReduce)​</p></li>
 </ul>
 </li>
-<li><p>Data Intensive Computing (Natural Sciences)​</p>
-<ul>
-<li><p>Input data may or may not be big data​.</p></li>
-<li><p>Computational process produces massive and complex intermediate data that needs to be
-analyzed during the process.</p></li>
-</ul>
-</li>
+<li><p><strong>The paper</strong>: <a class="reference external" href="http://www.cs.amherst.edu/ccm/cs34/papers/p107-dean.pdf">MapReduce: simplified data processing on large clusters​</a></p></li>
 </ul>
 </section>
-<section id="big-data-in-science-data-enabled-science">
-<h2>2. Big Data in Science (Data-enabled Science)<a class="headerlink" href="#big-data-in-science-data-enabled-science" title="Permalink to this headline">#</a></h2>
-<img src="../fig/01-intro/01.png" alt="Scientific process" style="height:500px">
+<section id="the-reality-of-working-with-big-data-as-outlined-by-the-paper">
+<h2>2. The reality of working with big data (as outlined by the paper)<a class="headerlink" href="#the-reality-of-working-with-big-data-as-outlined-by-the-paper" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
-<li><p>Scientific process:</p>
+<li><p>Challenges:</p>
 <ul>
-<li><p>empirical</p></li>
-<li><p>theoretical</p></li>
-<li><p>computational</p></li>
-<li><p>data-enabled/data-intensive science (the fourth pillar of scientific discovery).</p></li>
+<li><p>input data is usually large</p></li>
+<li><p>the computations have to be distributed across hundreds or thousands of machines</p></li>
+<li><p>finish in a reasonable amount of time.</p></li>
 </ul>
 </li>
-<li><p>Big data analytics in science and engineering for data sets that are:</p>
+<li><p>Addressing these challenges causes the original simple computation to become <strong>obscured</strong> by
+large amounts of supporting complex codes.​</p></li>
+<li><p>What MapReduce does:</p>
 <ul>
-<li><p>Too big</p></li>
-<li><p>Too complex</p></li>
-<li><p>Too fast (streaming)</p></li>
-<li><p>Too noisy</p></li>
-<li><p>Too heterogeneous</p></li>
+<li><p>is a new abstraction</p></li>
+<li><p>expresses the simple core computations</p></li>
+<li><p>hides the messy details of parallelization, fault-tolerance, data distribution and
+load balancing in a library.</p></li>
+</ul>
+</li>
+<li><p>Why MapReduce?</p>
+<ul>
+<li><p>inspired by the <code class="docutils literal notranslate"><span class="pre">_map_</span></code> and <code class="docutils literal notranslate"><span class="pre">_reduce_</span></code> primitives present in Lisp and
+many other functional languages.</p></li>
+<li><p>Most data computations involve:</p>
+<ul>
+<li><p>applying a <code class="docutils literal notranslate"><span class="pre">_map_</span></code> operation to each logical <code class="docutils literal notranslate"><span class="pre">record</span></code> in our input in order to compute
+a set of intermediate <strong>key/value</strong> pairs, and then</p></li>
+<li><p>applying a <code class="docutils literal notranslate"><span class="pre">_reduce_</span></code> operation to all the values that shared the same key to combine
+the derived data appropriately.</p></li>
 </ul>
 </li>
 </ul>
-<img src="../fig/01-intro/02.png" alt="Examples of data analytic problems" style="height:500px">
+</li>
+</ul>
 </section>
-<section id="big-data-in-industry">
-<h2>3. Big Data in Industry<a class="headerlink" href="#big-data-in-industry" title="Permalink to this headline">#</a></h2>
+<section id="mapreduce-in-a-nutshell">
+<h2>3. MapReduce in a nutshell<a class="headerlink" href="#mapreduce-in-a-nutshell" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
-<li><p>Old statistics</p>
-<ul>
-<li><p>In 2008-2009:​</p>
-<ul>
-<li><p>Google processed 20PB a day.</p></li>
-<li><p>Facebook had 2.5PB of user data + 15TB/day​.</p></li>
-<li><p>eBay had 6.5PB of user data + 50TB/day​.</p></li>
+<li><p>What is <code class="docutils literal notranslate"><span class="pre">map</span></code>? A function/procedure that is applied to every individual elements of a
+collection/list/array/…​</p></li>
 </ul>
-</li>
-<li><p>In 2010-2011:​</p>
-<ul>
-<li><p>Facebook had 400M users / 125PB of user data​.</p></li>
-<li><p>eBay had 10PB of user data in 2010, expected to double this number in 2011​</p></li>
-</ul>
-</li>
-<li><p>In 2012-2013:​</p>
-<ul>
-<li><p>Facebook had 900M users​</p></li>
-<li><p>Twitter had 400M Tweets/day</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>We don’t see this kind of statistics collected anymore because it has become the norm.</p></li>
-<li><p>Newer (and different) statistics:</p>
-<ul>
-<li><p><a class="reference external" href="https://www.forbes.com/sites/louiscolumbus/2017/12/24/53-of-companies-are-adopting-big-data-analytics/?sh=6c6c70cb39a1">53% of companies are using big data analytics today</a></p>
-<ul>
-<li><p>Data warehouse optimization, customer/social analysis, predictive maintenance, clickstream
-analytics, fraud detectiton, and Internet of Things.</p></li>
-<li><p>Spark, MapReduce, and Yarn are among the most popular framework.</p></li>
-</ul>
-</li>
-<li><p><a class="reference external" href="https://towardsdatascience.com/5-industries-becoming-defined-by-big-data-and-analytics-e3e8cc0c0cf">Medicine, Retail, Construction, Banking, and Transportation are the new industries that are being defined by big data analytic capabilities</a></p></li>
-</ul>
-</li>
-<li><p>People don’t explicitly talk about Big Data anymore:</p></li>
-</ul>
-</section>
-<section id="gartner-hype-cycle-2014">
-<h2>Gartner Hype Cycle 2014<a class="headerlink" href="#gartner-hype-cycle-2014" title="Permalink to this headline">#</a></h2>
- <img src="../fig/01-intro/03.png" alt="Gartner Hype Cycle 2014" style="height:300px">
-</section>
-<section id="gartner-hype-cycle-2019">
-<h2>Gartner Hype Cycle 2019<a class="headerlink" href="#gartner-hype-cycle-2019" title="Permalink to this headline">#</a></h2>
- <img src="../fig/01-intro/04.png" alt="Gartner Hype Cycle 2019" style="height:400px">
-</section>
-<section id="gartner-hype-cycle-2020">
-<h2>Gartner Hype Cycle 2020<a class="headerlink" href="#gartner-hype-cycle-2020" title="Permalink to this headline">#</a></h2>
- <img src="../fig/01-intro/05.png" alt="Gartner Hype Cycle 2020" style="height:500px">
-</section>
-<section id="the-vs-of-big-data">
-<h2>4. The Vs of Big Data<a class="headerlink" href="#the-vs-of-big-data" title="Permalink to this headline">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>int square(x) { return x*x;}​
+map square [1,2,3,4] -&gt; [1,4,9,16]​
+</pre></div>
+</div>
 <ul class="simple">
-<li><p>Used to be four: Volume, Velocity, Variety, Veracity.</p></li>
-<li><p>Other Vs are added over time.</p></li>
-<li><p>Volume: the size of the files used to archive and spread data.</p></li>
-<li><p>Velocity: the speed with which data is generated and processed.</p></li>
-<li><p>Variety: formats and purposes of data, which may include objects as different as
-samples of animal tissue, free-text observations, humidity measurements, GPS coordinates,
-and the results of blood tests.</p></li>
-<li><p>Veracity: the extent to which the quality and reliability of big data can be guaranteed.
-Data with high volume, velocity and variety are at significant risk of containing
-inaccuracies, errors and unaccounted-for bias.</p></li>
-<li><p>Validity: the selection of appropriate data with respect to the intended use. The choice
-of a specific dataset as evidence base requires adequate and explicit justification,
-including recourse to relevant background knowledge to ground the identification of what counts
-as data in that context.</p></li>
-<li><p>Volatility: the extent to which data can be relied upon to remain available, accessible and
-re-interpretable despite changes in archival technologies. This is significant given the tendency
-of formats and tools used to generate and analyse data to become obsolete, and the efforts
-required to update data infrastructures so as to guarantee data access in the long term.</p></li>
-<li><p>Value: the multifaceted forms of significance attributed to big data by different sections
-of society, which depend as much on the intended use of the data as on historical, social and
-geographical circumstances.</p></li>
+<li><p>What is <code class="docutils literal notranslate"><span class="pre">reduce</span></code>? A function/procedure that performs an operation on a list. This operation
+will <em>fold/reduce</em> this list into a single value (or a smaller subset)​</p></li>
 </ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>reduce ([1,2,3,4]) using sum -&gt; 10​
+reduce ([1,2,3,4]) using multiply -&gt; 24​
+</pre></div>
+</div>
 </section>
-<section id="programming-paradigm-for-big-data">
-<h2>5. Programming paradigm for big data<a class="headerlink" href="#programming-paradigm-for-big-data" title="Permalink to this headline">#</a></h2>
+<section id="word-count-the-hello-world-of-big-data">
+<h2>3. Word Count: the “Hello, World” of big data<a class="headerlink" href="#word-count-the-hello-world-of-big-data" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
-<li><p>Multi-faceted challenges:​</p>
+<li><p>We have a large amount of text …</p>
 <ul>
-<li><p>Require not only parallel computation but also parallel data processing​.</p></li>
+<li><p>Could be stored in a single massive file.</p></li>
+<li><p>Could be stored in multiple files.</p></li>
 </ul>
 </li>
-<li><p>New computational tools and strategies​.</p></li>
-<li><p>New data intensive scalable architectures​.</p></li>
-<li><p>Science is moving increasingly from hypothesis-driven to data-driven discoveries​.</p></li>
-<li><p>Industry is at a stage where big data infrastructures are integrated and big data sets
-are beginning to be analyzed to produce business insights.</p></li>
-<li><p>Example general paradigm:</p></li>
-</ul>
-<img src="../fig/01-intro/07.png" alt="Data parallel programming" style="height:500px">
-<ul class="simple">
-<li><p>It is difficult to write parallel programs​</p>
+<li><p>We want to count the number of times each distinct word appears in the files</p></li>
+<li><p>Sample applications:</p>
 <ul>
-<li><p>Difficult in converting algorithms from serial to parallel​.</p></li>
-<li><p>Difficult in identifying different ways that the program can fail​.</p></li>
-<li><p>No reliable way to detect failure of a process​.</p></li>
+<li><p>Analyze web server logs to find popular URLs/keywords.</p></li>
+<li><p>Analyze security logs to find incidents. ​</p></li>
 </ul>
 </li>
-<li><p>It is even more difficult to write parallel programs at large scale​</p>
+<li><p>Standard parallel programming approach:​</p>
 <ul>
-<li><p>Same set of errors, but scale up with size​.</p></li>
-</ul>
-</li>
-<li><p>It is even more difficult to debug large scale parallel programs​</p>
-<ul>
-<li><p>What if the program doesn’t fail but only produce incorrect results?</p></li>
+<li><p>Count number of files​ or set up seek distances within a file.</p></li>
+<li><p>Set number of processes​</p></li>
+<li><p>Possibly setting up dynamic workload assignment​</p></li>
+<li><p>A lot of data transfer​</p></li>
+<li><p>Significant coding effort​​</p></li>
 </ul>
 </li>
 </ul>
 </section>
-<section id="data-intensive-approach">
-<h2>6. Data-intensive approach<a class="headerlink" href="#data-intensive-approach" title="Permalink to this headline">#</a></h2>
+<section id="word-count-mapreduce-workflow">
+<h2>4. Word Count: MapReduce workflow<a class="headerlink" href="#word-count-mapreduce-workflow" title="Permalink to this headline">#</a></h2>
+<img src="../fig/02-mapreduce/01.png" alt="MapReduce wordcount workflow" style="height:500px">
+</section>
+<section id="word-count-mapreduce-workflow-what-do-you-really-do">
+<h2>5. Word Count: MapReduce workflow - what do you really do<a class="headerlink" href="#word-count-mapreduce-workflow-what-do-you-really-do" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
-<li><p>Scale “out”, not “up”​</p>
+<li><p>Input: a set of key-value pairs</p></li>
+<li><p>Programmer specifies two methods:</p>
 <ul>
-<li><p>It is easier and cheaper to add nodes to an existing cluster than to build a faster cluster.​</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Map(k,</span> <span class="pre">v)</span> <span class="pre">-&gt;</span> <span class="pre">(k',</span> <span class="pre">v')</span></code>:</p>
+<ul>
+<li><p>Takes a key-value pair and outputs a set of key-value pairs.</p>
+<ul>
+<li><p>E.g., key is the filename, value is a single line in the file</p></li>
 </ul>
 </li>
-<li><p>Move computation to the data​</p>
-<ul>
-<li><p>Reduce data movement.​</p></li>
+<li><p>There is one Map call for every (k,v) pair</p></li>
 </ul>
 </li>
-<li><p>Sequential processing, avoid random access​</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">Reduce(k2,</span> <span class="pre">&lt;v'&gt;)</span> <span class="pre">-&gt;</span> <span class="pre">&lt;k’,</span> <span class="pre">v’’&gt;</span></code></p>
 <ul>
-<li><p>Reduce seek movement on disks.​</p></li>
+<li><p>All values <code class="docutils literal notranslate"><span class="pre">v'</span></code> with same key <code class="docutils literal notranslate"><span class="pre">k'</span></code> are reduced together and processed
+in <code class="docutils literal notranslate"><span class="pre">v'</span></code> order.</p></li>
+<li><p>There is one Reduce function call per unique key <code class="docutils literal notranslate"><span class="pre">k'</span></code>.
+<img src="../fig/02-mapreduce/02.png" alt="mapping and reducing" style="height:500px"></p></li>
 </ul>
 </li>
-<li><p>Seamless scalability</p></li>
+</ul>
+</li>
+<li><p>MapReduce environment takes care of:</p>
+<ul>
+<li><p>Partitioning the input data</p></li>
+<li><p>Scheduling the program’s execution across a set of machines</p></li>
+<li><p>Performing the group by key step</p></li>
+<li><p>Handling machine failures</p></li>
+<li><p>Managing required inter-machine communication</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="word-count-mapreduce-workflow-at-scale">
+<h2>6. Word Count: MapReduce workflow at scale<a class="headerlink" href="#word-count-mapreduce-workflow-at-scale" title="Permalink to this headline">#</a></h2>
+<img src="../fig/02-mapreduce/03.png" alt="at scale 1" style="height:500px">
+<img src="../fig/02-mapreduce/04.png" alt="at scale 2" style="height:500px">
+</section>
+<section id="applications-that-suit-well-with-mapreduce-programming-paradigm">
+<h2>7. Applications that suit well with MapReduce programming paradigm<a class="headerlink" href="#applications-that-suit-well-with-mapreduce-programming-paradigm" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Text tokenization, indexing, and search</p>
+<ul>
+<li><p>Web access log stats</p></li>
+<li><p>Inverted index construction</p></li>
+<li><p>Term-vector per host</p></li>
+<li><p>Distributed grep/sort</p></li>
+</ul>
+</li>
+<li><p>Graph creation</p>
+<ul>
+<li><p>Web link-graph reversal (Google’s PageRank)</p></li>
+</ul>
+</li>
+<li><p>Data Mining and machine learning</p>
+<ul>
+<li><p>Document clustering</p></li>
+<li><p>Machine learning</p></li>
+<li><p>Statistical machine translation</p></li>
+</ul>
+</li>
 </ul>
 <p>{% include <a class="reference external" href="http://links.md">links.md</a> %}</p>
 </section>
@@ -669,17 +648,17 @@ are beginning to be analyzed to produce business insights.</p></li>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="10-pleasantly-parallel.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="12-data-intensive-computing.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">MPI: pleasantly parallel and workload allocation</p>
+            <p class="prev-next-title">Introduction to Big Data</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="12-mapreduce.html" title="next page">
+    <a class='right-next' id="next-link" href="14-spark.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">MapReduce Programming Paradigm</p>
+        <p class="prev-next-title">Spark computing environment</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
