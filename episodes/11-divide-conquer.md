@@ -50,6 +50,17 @@ $ mpirun -np 8 divide
 
 ```
 
+```{dropdown} Challenge: divide array
+
+Create a copy of `divide.c` called `divide_array.c` that does the followings:
+- Process 0 generates an 8-element array with random value populated.  
+  - Print out the contents of the array on a single line. 
+- Utilizing the tree communication approach in `divide.c`, send the data out 
+to all remaining processes such as each process receives the value of the above array 
+from the index position corresponding to that process's rank. 
+
+```
+
 ```{dropdown} Conquer
 
 - Create a file called `conquer.c`
