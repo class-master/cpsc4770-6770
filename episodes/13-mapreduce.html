@@ -549,7 +549,7 @@ reduce ([1,2,3,4]) using multiply -&gt; 24​
 </section>
 <section id="word-count-mapreduce-workflow">
 <h2>4. Word Count: MapReduce workflow<a class="headerlink" href="#word-count-mapreduce-workflow" title="Permalink to this headline">#</a></h2>
-<img src="../fig/02-mapreduce/01.png" alt="MapReduce wordcount workflow" style="height:500px">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/014.png"><img alt="MapReduce wordcount workflow" class="bg-primary mb-1 align-center" src="../_images/014.png" style="height: 500px;" /></a>
 </section>
 <section id="word-count-mapreduce-workflow-what-do-you-really-do">
 <h2>5. Word Count: MapReduce workflow - what do you really do<a class="headerlink" href="#word-count-mapreduce-workflow-what-do-you-really-do" title="Permalink to this headline">#</a></h2>
@@ -571,12 +571,14 @@ reduce ([1,2,3,4]) using multiply -&gt; 24​
 <ul>
 <li><p>All values <code class="docutils literal notranslate"><span class="pre">v'</span></code> with same key <code class="docutils literal notranslate"><span class="pre">k'</span></code> are reduced together and processed
 in <code class="docutils literal notranslate"><span class="pre">v'</span></code> order.</p></li>
-<li><p>There is one Reduce function call per unique key <code class="docutils literal notranslate"><span class="pre">k'</span></code>.
-<img src="../fig/02-mapreduce/02.png" alt="mapping and reducing" style="height:500px"></p></li>
+<li><p>There is one Reduce function call per unique key <code class="docutils literal notranslate"><span class="pre">k'</span></code>.</p></li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/025.png"><img alt="mapping and reducing" class="bg-primary mb-1 align-center" src="../_images/025.png" style="height: 500px;" /></a>
+<ul class="simple">
 <li><p>MapReduce environment takes care of:</p>
 <ul>
 <li><p>Partitioning the input data</p></li>
@@ -590,8 +592,8 @@ in <code class="docutils literal notranslate"><span class="pre">v'</span></code>
 </section>
 <section id="word-count-mapreduce-workflow-at-scale">
 <h2>6. Word Count: MapReduce workflow at scale<a class="headerlink" href="#word-count-mapreduce-workflow-at-scale" title="Permalink to this headline">#</a></h2>
-<img src="../fig/02-mapreduce/03.png" alt="at scale 1" style="height:500px">
-<img src="../fig/02-mapreduce/04.png" alt="at scale 2" style="height:500px">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/035.png"><img alt="at scale 1" class="bg-primary mb-1 align-center" src="../_images/035.png" style="height: 500px;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/044.png"><img alt="at scale 2" class="bg-primary mb-1 align-center" src="../_images/044.png" style="height: 500px;" /></a>
 </section>
 <section id="applications-that-suit-well-with-mapreduce-programming-paradigm">
 <h2>7. Applications that suit well with MapReduce programming paradigm<a class="headerlink" href="#applications-that-suit-well-with-mapreduce-programming-paradigm" title="Permalink to this headline">#</a></h2>
@@ -617,7 +619,6 @@ in <code class="docutils literal notranslate"><span class="pre">v'</span></code>
 </ul>
 </li>
 </ul>
-<p>{% include <a class="reference external" href="http://links.md">links.md</a> %}</p>
 </section>
 </section>
 
