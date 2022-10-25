@@ -16,7 +16,12 @@ limiting factor in being able to find a timely solution. ​
 
 ## 2. Big Data in Science (Data-enabled Science)
 
-<img src="../fig/01-intro/01.png" alt="Scientific process" style="height:500px">
+:::{image} ../fig/01-intro/01.png
+:alt: Scientific process
+:class: bg-primary mb-1
+:height: 500px
+:align: center
+:::
 
 - Scientific process:
   - empirical
@@ -30,8 +35,12 @@ limiting factor in being able to find a timely solution. ​
   - Too noisy
   - Too heterogeneous
 
-<img src="../fig/01-intro/02.png" alt="Examples of data analytic problems" style="height:500px">
-
+:::{image} ../fig/01-intro/02.png
+:alt: Examples of data analytic problems
+:class: bg-primary mb-1
+:height: 500px
+:align: center
+:::
 
 
 
@@ -57,17 +66,33 @@ limiting factor in being able to find a timely solution. ​
   - [Medicine, Retail, Construction, Banking, and Transportation are the new industries that are being defined by big data analytic capabilities](https://towardsdatascience.com/5-industries-becoming-defined-by-big-data-and-analytics-e3e8cc0c0cf)
 - People don't explicitly talk about Big Data anymore:
 
- ## Gartner Hype Cycle 2014
- <img src="../fig/01-intro/03.png" alt="Gartner Hype Cycle 2014" style="height:300px">
+## Gartner Hype Cycle 2014
 
+:::{image} ../fig/01-intro/03.png
+:alt: Gartner Hype Cycle 2014
+:class: bg-primary mb-1
+:height: 500px
+:align: center
+:::
 
- ## Gartner Hype Cycle 2019
- <img src="../fig/01-intro/04.png" alt="Gartner Hype Cycle 2019" style="height:400px">
+## Gartner Hype Cycle 2019
+ 
+:::{image} ../fig/01-intro/04.png
+:alt: Gartner Hype Cycle 2019
+:class: bg-primary mb-1
+:height: 500px
+:align: center
+:::
+ 
 
+## Gartner Hype Cycle 2020
 
- ## Gartner Hype Cycle 2020
- <img src="../fig/01-intro/05.png" alt="Gartner Hype Cycle 2020" style="height:500px">
-
+:::{image} ../fig/01-intro/05.png
+:alt: Gartner Hype Cycle 2020
+:class: bg-primary mb-1
+:height: 500px
+:align: center
+:::
 
 
 
@@ -106,7 +131,13 @@ geographical circumstances.
 are beginning to be analyzed to produce business insights.
 - Example general paradigm:
 
-<img src="../fig/01-intro/07.png" alt="Data parallel programming" style="height:500px">
+:::{image} ../fig/01-intro/07.png
+:alt: Data parallel programming
+:class: bg-primary mb-1
+:height: 500px
+:align: center
+:::
+
 
 - It is difficult to write parallel programs​
   - Difficult in converting algorithms from serial to parallel​.
@@ -128,6 +159,4 @@ are beginning to be analyzed to produce business insights.
   - Reduce seek movement on disks.​
 - Seamless scalability
 
-
-{% include links.md %}
 

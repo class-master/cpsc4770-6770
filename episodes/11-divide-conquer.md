@@ -148,7 +148,7 @@ int MPI_Scatterv(
 
 ```{dropdown} Hands-on: Scatterv
 
-<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=divide.c"></script>
+<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=scatterv.c"></script>
 
 ~~~bash
 mpicc -o scatterv scatterv.c
@@ -200,7 +200,7 @@ int MPI_Gatherv(
 
 ```{dropdown} Hands-on: Gatherv
 
-<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=divide.c"></script>
+<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=gatherv.c"></script>
 
 
 ~~~bash

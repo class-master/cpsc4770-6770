@@ -78,8 +78,12 @@ reduce ([1,2,3,4]) using multiply -> 24​
 
 ## 4. Word Count: MapReduce workflow
 
-<img src="../fig/02-mapreduce/01.png" alt="MapReduce wordcount workflow" style="height:500px">
-
+:::{image} ../fig/02-mapreduce/01.png
+:alt: MapReduce wordcount workflow
+:class: bg-primary mb-1
+:height: 500px
+:align: center
+:::
 
 
 
@@ -96,7 +100,13 @@ reduce ([1,2,3,4]) using multiply -> 24​
     - All values `v'` with same key `k'` are reduced together and processed 
     in `v'` order.
     - There is one Reduce function call per unique key `k'`.
-<img src="../fig/02-mapreduce/02.png" alt="mapping and reducing" style="height:500px">
+
+:::{image} ../fig/02-mapreduce/02.png
+:alt: mapping and reducing
+:class: bg-primary mb-1
+:height: 500px
+:align: center
+:::
 
 - MapReduce environment takes care of:
   - Partitioning the input data
@@ -110,11 +120,19 @@ reduce ([1,2,3,4]) using multiply -> 24​
 
 ## 6. Word Count: MapReduce workflow at scale
 
-<img src="../fig/02-mapreduce/03.png" alt="at scale 1" style="height:500px">
+:::{image} ../fig/02-mapreduce/03.png
+:alt: at scale 1
+:class: bg-primary mb-1
+:height: 500px
+:align: center
+:::
 
-<img src="../fig/02-mapreduce/04.png" alt="at scale 2" style="height:500px">
-
-
+:::{image} ../fig/02-mapreduce/04.png
+:alt: at scale 2
+:class: bg-primary mb-1
+:height: 500px
+:align: center
+:::
 
 
 ## 7. Applications that suit well with MapReduce programming paradigm
@@ -133,5 +151,3 @@ reduce ([1,2,3,4]) using multiply -> 24​
 
 
 
-
-{% include links.md %}
