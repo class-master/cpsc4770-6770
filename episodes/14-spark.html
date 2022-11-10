@@ -394,18 +394,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solution">
-   Solution
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#challenge-2">
    Challenge 2
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   Solution
   </a>
  </li>
 </ul>
@@ -478,18 +468,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solution">
-   Solution
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#challenge-2">
    Challenge 2
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   Solution
   </a>
  </li>
 </ul>
@@ -506,172 +486,188 @@ title="Print to PDF"
 <h1>Spark computing environment<a class="headerlink" href="#spark-computing-environment" title="Permalink to this headline">#</a></h1>
 <section id="what-is-spark">
 <h2>1. What is Spark?<a class="headerlink" href="#what-is-spark" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p>A unified compute engine and a set of libraries for parallel
+<li><p class="sd-card-text">A unified compute engine and a set of libraries for parallel
 data processing on computer clusters.</p></li>
 </ul>
-<img src="../fig/03-spark/01.png" alt="Spark" style="height:400px">
-</section>
+<a class="bg-primary mb-1 reference internal image-reference" href="../fig/csc467/03-spark/01.png"><img alt="../fig/csc467/03-spark/01.png" class="bg-primary mb-1 align-center" src="../fig/csc467/03-spark/01.png" style="height: 400px;" /></a>
+</div>
+</details></section>
 <section id="design-philosophy">
 <h2>2. Design philosophy<a class="headerlink" href="#design-philosophy" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Unified</span></code>: Spark supports a wide range of data analytic tasks over the same
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">Unified</span></code>: Spark supports a wide range of data analytic tasks over the same
 computing engine and a consistent set of APIs.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Computing</span> <span class="pre">engine</span></code>: Spark handles loading data from storage systems and
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">Computing</span> <span class="pre">engine</span></code>: Spark handles loading data from storage systems and
 perform computation on the data (in memory) rather than on permanent storage.
 To adhere to the data locality principle, Spark relies on APIs to provide a
 transparent common interface with different storage systems for all applications.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Libraries</span></code>: Via its APIs, Spark supports a wide array of internal and
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">Libraries</span></code>: Via its APIs, Spark supports a wide array of internal and
 external libraries for complex data analytic tasks.</p></li>
 </ul>
-</section>
+</div>
+</details></section>
 <section id="a-brief-history-of-spark">
 <h2>3. A brief history of Spark<a class="headerlink" href="#a-brief-history-of-spark" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p>Research project at UC Berkeley AMP Lab in 2009 to address drawbacks of
+<li><p class="sd-card-text">Research project at UC Berkeley AMP Lab in 2009 to address drawbacks of
 Hadoop MapReduce.</p></li>
-<li><p>Paper published in 2010: <a class="reference external" href="https://static.usenix.org/events/hotcloud10/tech/full_papers/Zaharia.pdf">Spark: Cluster Computing with Working Sets</a></p></li>
-<li><p>Source code is contributed to Apache in 2013. The project had more than 100
+<li><p class="sd-card-text">Paper published in 2010: <a class="reference external" href="https://static.usenix.org/events/hotcloud10/tech/full_papers/Zaharia.pdf">Spark: Cluster Computing with Working Sets</a></p></li>
+<li><p class="sd-card-text">Source code is contributed to Apache in 2013. The project had more than 100
 contributors from more than 30 organizations outside UC Berkeley.</p></li>
-<li><p>Version 1.0 was released in 2014.</p></li>
-<li><p>Currently, Spark is being used extensively in academic and industry
+<li><p class="sd-card-text">Version 1.0 was released in 2014.</p></li>
+<li><p class="sd-card-text">Currently, Spark is being used extensively in academic and industry
 (NASA, CERN, Uber, Netflix …).</p></li>
 </ul>
-</section>
+</div>
+</details></section>
 <section id="spark-applications">
 <h2>4. Spark applications<a class="headerlink" href="#spark-applications" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p>Typically consists of a <code class="docutils literal notranslate"><span class="pre">driver</span></code> process and a set of <code class="docutils literal notranslate"><span class="pre">executor</span></code> processes.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">driver</span></code> runs the main function and is responsible for:</p>
+<li><p class="sd-card-text">Typically consists of a <code class="docutils literal notranslate"><span class="pre">driver</span></code> process and a set of <code class="docutils literal notranslate"><span class="pre">executor</span></code> processes.</p></li>
+<li><p class="sd-card-text">The <code class="docutils literal notranslate"><span class="pre">driver</span></code> runs the main function and is responsible for:</p>
 <ul>
-<li><p>maintaining information about the Spark application,</p></li>
-<li><p>responding to a user’s program or input, and</p></li>
-<li><p>analyzing, distributing, and scheduling work across the executors.</p></li>
+<li><p class="sd-card-text">maintaining information about the Spark application,</p></li>
+<li><p class="sd-card-text">responding to a user’s program or input, and</p></li>
+<li><p class="sd-card-text">analyzing, distributing, and scheduling work across the executors.</p></li>
 </ul>
 </li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">executors</span></code> carry out the actual work assigned to them by the <code class="docutils literal notranslate"><span class="pre">driver</span></code>.</p></li>
+<li><p class="sd-card-text">The <code class="docutils literal notranslate"><span class="pre">executors</span></code> carry out the actual work assigned to them by the <code class="docutils literal notranslate"><span class="pre">driver</span></code>.</p></li>
 </ul>
-<img src="../fig/03-spark/02.png" alt="Spark application architecture" style="height:400px">
+<a class="bg-primary mb-1 reference internal image-reference" href="../fig/csc467/03-spark/02.png"><img alt="../fig/csc467/03-spark/02.png" class="bg-primary mb-1 align-center" src="../fig/csc467/03-spark/02.png" style="height: 400px;" /></a>
 <ul class="simple">
-<li><p>Spark also has a local mode (what we are using for this class), where driver
+<li><p class="sd-card-text">Spark also has a local mode (what we are using for this class), where driver
 and executors are simply processes on the same machine.</p></li>
-<li><p>Spark application developed in local mode can be carried over almost <code class="docutils literal notranslate"><span class="pre">as-is</span></code>
+<li><p class="sd-card-text">Spark application developed in local mode can be carried over almost <code class="docutils literal notranslate"><span class="pre">as-is</span></code>
 to run in cluster mode (one of the attractiveness of Spark).</p></li>
-<li><p>Spark supports the following language APIs: Scala, Java, Python, SQL (ANSI SQL 2003 standard), and R.</p></li>
+<li><p class="sd-card-text">Spark supports the following language APIs: Scala, Java, Python, SQL (ANSI SQL 2003 standard), and R.</p></li>
 </ul>
-</section>
+</div>
+</details></section>
 <section id="hands-on-word-count-in-spark">
 <h2>5. Hands-on: Word Count in Spark<a class="headerlink" href="#hands-on-word-count-in-spark" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p>Open a terminal.</p></li>
-<li><p>Activate the <code class="docutils literal notranslate"><span class="pre">pyspark</span></code> conda environment, then launch Jupyter notebook</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda activate pyspark
-$ jupyter notebook
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Create a new notebook using the <code class="docutils literal notranslate"><span class="pre">pyspark</span></code> kernel, then change the notebook’s
-name to <code class="docutils literal notranslate"><span class="pre">spark-1</span></code>.</p></li>
-</ul>
-<img src="../fig/03-spark/03.png" style="height:250px">
-<ul class="simple">
-<li><p>Enter the following Python code into the first cell of <code class="docutils literal notranslate"><span class="pre">spark-1</span></code>, then run
+<li><p class="sd-card-text">Launch <code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">+</span> <span class="pre">Spark</span></code> on OpenOD.</p></li>
+<li><p class="sd-card-text">Launch a new Jupyter notebook</p></li>
+<li><p class="sd-card-text">Enter the following Python code into the first cell of <code class="docutils literal notranslate"><span class="pre">spark-1</span></code>, then run
 the cell.</p></li>
-<li><p>This code sets up the paths to Spark’s libraries and executables.</p></li>
+<li><p class="sd-card-text">This code sets up the paths to Spark’s libraries and executables.</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">spark_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;SPARK_HOME&#39;</span><span class="p">]</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">spark_path</span> <span class="o">+</span> <span class="s2">&quot;/bin&quot;</span><span class="p">)</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">spark_path</span> <span class="o">+</span> <span class="s2">&quot;/python&quot;</span><span class="p">)</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">spark_path</span> <span class="o">+</span> <span class="s2">&quot;/python/pyspark/&quot;</span><span class="p">)</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">spark_path</span> <span class="o">+</span> <span class="s2">&quot;/python/lib&quot;</span><span class="p">)</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">spark_path</span> <span class="o">+</span> <span class="s2">&quot;/python/lib/pyspark.zip&quot;</span><span class="p">)</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">spark_path</span> <span class="o">+</span> <span class="s2">&quot;/python/lib/py4j-0.10.9-src.zip&quot;</span><span class="p">)</span>
-
-<span class="kn">import</span> <span class="nn">findspark</span>
-<span class="n">findspark</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pyspark</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;SPARK_ROOT&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;SPARK_CONFIG_FILE&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;SPARK_ROOT&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;SPARK_MASTER_HOST&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;SPARK_MASTER_PORT&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
-<img src="../fig/03-spark/04.png" style="height:250px">
 <ul class="simple">
-<li><p>Enter the following Python code into the next cell, adjust <code class="docutils literal notranslate"><span class="pre">number_cores</span></code> and
-<code class="docutils literal notranslate"><span class="pre">memory_gb</span></code> based on your computer’s hardware, then run the cell.</p>
+<li><p class="sd-card-text">Enter the following Python code into the next cell.</p></li>
+<li><p class="sd-card-text">Pay attention to the strings inside <code class="docutils literal notranslate"><span class="pre">sc.textFile(&quot;A_STRING&quot;)</span></code> and <code class="docutils literal notranslate"><span class="pre">wordcount.saveAsTextFile(&quot;ANOTHER_STRING&quot;)</span></code>.</p>
 <ul>
-<li><p>This code sets up the configuration for the supporting Spark cluster (in
-local mode).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">number_cores</span></code> should be one less than the total number of cores on your
-computer.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">memory_gb</span></code> should be half the amount of memory that you have, or at least
-3GB less.</p></li>
-</ul>
-</li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">number_cores</span> <span class="o">=</span> <span class="mi">8</span>
-<span class="n">memory_gb</span> <span class="o">=</span> <span class="mi">16</span>
-<span class="n">conf</span> <span class="o">=</span> <span class="p">(</span><span class="n">pyspark</span><span class="o">.</span><span class="n">SparkConf</span><span class="p">()</span><span class="o">.</span><span class="n">setMaster</span><span class="p">(</span><span class="s1">&#39;local[</span><span class="si">{}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">number_cores</span><span class="p">))</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;spark.driver.memory&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">g&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">memory_gb</span><span class="p">)))</span>
-<span class="n">sc</span> <span class="o">=</span> <span class="n">pyspark</span><span class="o">.</span><span class="n">SparkContext</span><span class="p">(</span><span class="n">conf</span><span class="o">=</span><span class="n">conf</span><span class="p">)</span>
-</pre></div>
-</div>
-<img src="../fig/03-spark/05.png" style="height:250px">
-<ul class="simple">
-<li><p>At this point, if you visit <code class="docutils literal notranslate"><span class="pre">127.0.0.1:4040</span></code> in another browser tab,
-you should also see the local Spark cluster up and running (with no job).</p></li>
-</ul>
-<img src="../fig/03-spark/06.png" style="height:250px">
-<ul class="simple">
-<li><p>Enter the following Python code into the third cell.</p></li>
-<li><p>Pay attention to the strings inside <code class="docutils literal notranslate"><span class="pre">sc.textFile(&quot;A_STRING&quot;)</span></code> and <code class="docutils literal notranslate"><span class="pre">wordcount.saveAsTextFile(&quot;ANOTHER_STRING&quot;)</span></code>.</p>
-<ul>
-<li><p>These strings represent the path to where the original data is located
+<li><p class="sd-card-text">These strings represent the path to where the original data is located
 (<code class="docutils literal notranslate"><span class="pre">sc.textFile</span></code>) and where the output directory to be saved
 (<code class="docutils literal notranslate"><span class="pre">wordcount.saveAsTextFile</span></code>).</p></li>
-<li><p>Take your time here to organize the directories properly.</p></li>
+<li><p class="sd-card-text">Take your time here to organize the directories properly.</p></li>
 </ul>
 </li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">textFile</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">textFile</span><span class="p">(</span><span class="s2">&quot;../data/shakespeare/shakespeare-complete.txt&quot;</span><span class="p">)</span>
-<span class="n">wordcount</span> <span class="o">=</span> <span class="n">textFile</span><span class="o">.</span><span class="n">flatMap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">line</span><span class="p">:</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">))</span> \
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">textFile</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">textFile</span><span class="p">(</span><span class="s2">&quot;/zfs/citi/complete-shakespeare.txt&quot;</span><span class="p">)</span>
+<span class="o">%%</span><span class="n">time</span>
+<span class="n">textFile</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wordcount</span> <span class="o">=</span> <span class="n">textFile</span><span class="o">.</span><span class="n">flatMap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">line</span><span class="p">:</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">))</span> \
             <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">word</span><span class="p">:</span> <span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> \
             <span class="o">.</span><span class="n">reduceByKey</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
-<span class="n">wordcount</span><span class="o">.</span><span class="n">saveAsTextFile</span><span class="p">(</span><span class="s2">&quot;../data/output/output-wordcount-01&quot;</span><span class="p">)</span>
+<span class="n">wordcount</span><span class="o">.</span><span class="n">saveAsTextFile</span><span class="p">(</span><span class="s2">&quot;output-wordcount-01&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>A successful run will generate the resulting output directory
+<li><p class="sd-card-text">A successful run will generate the resulting output directory
 that contain <code class="docutils literal notranslate"><span class="pre">_SUCCESS</span></code> flag file (size 0).</p></li>
 </ul>
-<img src="../fig/03-spark/07.png" style="height:250px">
-</section>
+</div>
+</details></section>
 <section id="data-distribution-in-spark">
 <h2>6. Data distribution in Spark<a class="headerlink" href="#data-distribution-in-spark" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p>Data in spark are managed as <code class="docutils literal notranslate"><span class="pre">distributed</span> <span class="pre">collection</span></code>: when running on a
+<li><p class="sd-card-text">Data in spark are managed as <code class="docutils literal notranslate"><span class="pre">distributed</span> <span class="pre">collection</span></code>: when running on a
 cluster, parts of the data are distributed across different machines and are
 manipulated by different executors.</p></li>
-<li><p>To allow executor to perform work in parallel breaks up data into chunks
+<li><p class="sd-card-text">To allow executor to perform work in parallel breaks up data into chunks
 called <code class="docutils literal notranslate"><span class="pre">partitions</span></code>.</p></li>
-<li><p>Run the following code in a cell on <code class="docutils literal notranslate"><span class="pre">spark-1</span></code></p></li>
+<li><p class="sd-card-text">Run the following code in a cell on <code class="docutils literal notranslate"><span class="pre">spark-1</span></code></p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">textFile</span><span class="o">.</span><span class="n">getNumPartitions</span><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../fig/03-spark/08.png" style="height:200px">
-</section>
+</div>
+</details></section>
 <section id="transformation">
 <h2>7. Transformation<a class="headerlink" href="#transformation" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p>In Spark, the core data structures are <code class="docutils literal notranslate"><span class="pre">immutable</span></code>, meaning they cannot
+<li><p class="sd-card-text">In Spark, the core data structures are <code class="docutils literal notranslate"><span class="pre">immutable</span></code>, meaning they cannot
 be changed after creation.</p></li>
-<li><p>To <code class="docutils literal notranslate"><span class="pre">change</span></code> a data collection means to <code class="docutils literal notranslate"><span class="pre">create</span></code> a new data collection that
+<li><p class="sd-card-text">To <code class="docutils literal notranslate"><span class="pre">change</span></code> a data collection means to <code class="docutils literal notranslate"><span class="pre">create</span></code> a new data collection that
 is a <code class="docutils literal notranslate"><span class="pre">transformation</span></code> from the old one.</p></li>
-<li><p><a class="reference external" href="https://spark.apache.org/docs/latest/rdd-programming-guide.html#transformations">List of common Spark’s transformations</a></p></li>
-<li><p>There are two types of transformation:</p>
+<li><p class="sd-card-text"><a class="reference external" href="https://spark.apache.org/docs/latest/rdd-programming-guide.html#transformations">List of common Spark’s transformations</a></p></li>
+<li><p class="sd-card-text">There are two types of transformation:</p>
 <ul>
-<li><p>Narrow dependencies (1-to-1 transformation).</p></li>
-<li><p>Wide dependencies (1-to-N transformation).
+<li><p class="sd-card-text">Narrow dependencies (1-to-1 transformation).</p></li>
+<li><p class="sd-card-text">Wide dependencies (1-to-N transformation).
 |                                   | MULTICS | UNIX       |<br />
 | ——————————— | ——- | ———- |
 | process abstraction               | yes     | yes        |<br />
@@ -684,38 +680,43 @@ is a <code class="docutils literal notranslate"><span class="pre">transformation
 | machine costs                     | M<span class="math notranslate nohighlight">\(      | K\)</span>         |</p></li>
 </ul>
 </li>
-<li><p>We can make a copy of our <code class="docutils literal notranslate"><span class="pre">textFile</span></code> that is distributed across more
+<li><p class="sd-card-text">We can make a copy of our <code class="docutils literal notranslate"><span class="pre">textFile</span></code> that is distributed across more
 partitions. This is still a <code class="docutils literal notranslate"><span class="pre">narrow</span> <span class="pre">dependencies</span></code> transformation.</p></li>
-<li><p>Run the following code in a cell on <code class="docutils literal notranslate"><span class="pre">spark-1</span></code></p></li>
+<li><p class="sd-card-text">Run the following code in a cell</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">textFile_4</span> <span class="o">=</span> <span class="n">textFile</span><span class="o">.</span><span class="n">repartition</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 <span class="n">textFile_4</span><span class="o">.</span><span class="n">getNumPartitions</span><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../fig/03-spark/09.png" style="height:100px">
 <ul class="simple">
-<li><p>Run the following code in a cell on <code class="docutils literal notranslate"><span class="pre">spark-1</span></code></p></li>
+<li><p class="sd-card-text">Run the following code in a cell</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wordcount</span> <span class="o">=</span> <span class="n">textFile_4</span><span class="o">.</span><span class="n">flatMap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">line</span><span class="p">:</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">))</span> \
             <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">word</span><span class="p">:</span> <span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> \
             <span class="o">.</span><span class="n">reduceByKey</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
-<span class="n">wordcount</span><span class="o">.</span><span class="n">saveAsTextFile</span><span class="p">(</span><span class="s2">&quot;../data/output/output-wordcount-02&quot;</span><span class="p">)</span>
+<span class="n">wordcount</span><span class="o">.</span><span class="n">saveAsTextFile</span><span class="p">(</span><span class="s2">&quot;output-wordcount-02&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../fig/03-spark/10.png" style="height:200px">
 <ul class="simple">
-<li><p>There are now four resulting output files:</p></li>
+<li><p class="sd-card-text">There are now four resulting output files:</p></li>
 </ul>
-<img src="../fig/03-spark/11.png" style="height:300px">
-</section>
+</div>
+</details></section>
 <section id="lazy-evaluation-and-actions">
 <h2>8. Lazy evaluation and actions<a class="headerlink" href="#lazy-evaluation-and-actions" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Transformations</span></code>are logical plan only.</p></li>
-<li><p>Spark will wait until the very last moment to execute the graph of
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">Transformations</span></code>are logical plan only.</p></li>
+<li><p class="sd-card-text">Spark will wait until the very last moment to execute the graph of
 computation instructions (the logical plan).</p></li>
-<li><p>To trigger the computation, we run an <code class="docutils literal notranslate"><span class="pre">action</span></code>.</p></li>
-<li><p><a class="reference external" href="https://spark.apache.org/docs/latest/rdd-programming-guide.html#actions">List of common Spark actions</a></p></li>
+<li><p class="sd-card-text">To trigger the computation, we run an <code class="docutils literal notranslate"><span class="pre">action</span></code>.</p></li>
+<li><p class="sd-card-text"><a class="reference external" href="https://spark.apache.org/docs/latest/rdd-programming-guide.html#actions">List of common Spark actions</a></p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wordcount</span> <span class="o">=</span> <span class="n">textFile_4</span><span class="o">.</span><span class="n">flatMap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">line</span><span class="p">:</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">))</span> \
             <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">word</span><span class="p">:</span> <span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> \
@@ -723,13 +724,12 @@ computation instructions (the logical plan).</p></li>
 <span class="nb">print</span><span class="p">(</span><span class="n">wordcount</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../fig/03-spark/12.png" style="height:150px">
 <ul class="simple">
-<li><p>There are three kind of actions:</p>
+<li><p class="sd-card-text">There are three kind of actions:</p>
 <ul>
-<li><p>Actions to view data in the console (e.g., <code class="docutils literal notranslate"><span class="pre">take</span></code>).</p></li>
-<li><p>Action to collect data to native objects (e.g., <code class="docutils literal notranslate"><span class="pre">collect</span></code>).</p></li>
-<li><p>Action to write to output data sources (e.g., <code class="docutils literal notranslate"><span class="pre">saveAsTextFile</span></code>).</p></li>
+<li><p class="sd-card-text">Actions to view data in the console (e.g., <code class="docutils literal notranslate"><span class="pre">take</span></code>).</p></li>
+<li><p class="sd-card-text">Action to collect data to native objects (e.g., <code class="docutils literal notranslate"><span class="pre">collect</span></code>).</p></li>
+<li><p class="sd-card-text">Action to write to output data sources (e.g., <code class="docutils literal notranslate"><span class="pre">saveAsTextFile</span></code>).</p></li>
 </ul>
 </li>
 </ul>
@@ -740,19 +740,26 @@ computation instructions (the logical plan).</p></li>
 <span class="nb">print</span><span class="p">(</span><span class="n">local_words</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span>
 </pre></div>
 </div>
-<img src="../fig/03-spark/13.png" style="height:500px">
-</section>
+</div>
+</details></section>
 <section id="hands-on-word-count-workflow-breakdown">
 <h2>9. Hands on: Word Count workflow breakdown<a class="headerlink" href="#hands-on-word-count-workflow-breakdown" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p>Run each of the following segments of Python code in a separate cell.</p></li>
-<li><p>RDD of text file has a single item per row of collection.</p></li>
+<li><p class="sd-card-text">Run each of the following segments of Python code in a separate cell.</p></li>
+<li><p class="sd-card-text">RDD of text file has a single item per row of collection.</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">textFile_4</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">flatMap</span></code> breaks lines into lists of words, and concatenate these lists
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">flatMap</span></code> breaks lines into lists of words, and concatenate these lists
 into a single new RDD.</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wordcount_1</span> <span class="o">=</span> <span class="n">textFile_4</span><span class="o">.</span><span class="n">flatMap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">line</span><span class="p">:</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">))</span>
@@ -760,7 +767,7 @@ into a single new RDD.</p></li>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Each item in this new RDD is turned into a (key/value) pair, with
+<li><p class="sd-card-text">Each item in this new RDD is turned into a (key/value) pair, with
 key is a word, and value is `.</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wordcount_2</span> <span class="o">=</span> <span class="n">wordcount_1</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">word</span><span class="p">:</span> <span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
@@ -768,25 +775,36 @@ key is a word, and value is `.</p></li>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>All pairs with the same key are <code class="docutils literal notranslate"><span class="pre">reduced</span></code> together using pairwise
+<li><p class="sd-card-text">All pairs with the same key are <code class="docutils literal notranslate"><span class="pre">reduced</span></code> together using pairwise
 summation to get the final count of each key.</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wordcount_3</span> <span class="o">=</span> <span class="n">wordcount_2</span><span class="o">.</span><span class="n">reduceByKey</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
 <span class="n">wordcount_3</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../fig/03-spark/14.png" style="height:800px">
-</section>
+</div>
+</details></section>
 <section id="challenge-1">
 <h2>Challenge 1<a class="headerlink" href="#challenge-1" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p>Augment the mapping process of WordCount with a function to filter out
+<li><p class="sd-card-text">Augment the mapping process of WordCount with a function to filter out
 punctuations and capitalization from the unique words</p></li>
-<li><p>Hint: The string module is helpful for removing punctuation.</p></li>
+<li><p class="sd-card-text">Hint: The string module is helpful for removing punctuation.</p></li>
 </ul>
-</section>
-<section id="solution">
-<h2>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">string</span>
 <span class="n">translator</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">)</span>
 <span class="n">wordcount_enhanced</span> <span class="o">=</span> <span class="n">textFile</span><span class="o">.</span><span class="n">flatMap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">line</span><span class="p">:</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">))</span> \
@@ -795,26 +813,47 @@ punctuations and capitalization from the unique words</p></li>
 <span class="n">wordcount_enhanced</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>{: .solution}
-{: .challenge}</p>
-</section>
+</div>
+</details><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</details></section>
 <section id="challenge-2">
 <h2>Challenge 2<a class="headerlink" href="#challenge-2" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p>Look up the <a class="reference external" href="https://spark.apache.org/docs/latest/api/python/pyspark.html?highlight=filter#pyspark.RDD.filter">Spark Python API for filter</a>.</p></li>
-<li><p>Augment the results from Challenge 1 to remove the empty spaces (<code class="docutils literal notranslate"><span class="pre">''</span></code>).</p></li>
+<li><p class="sd-card-text">Look up the <a class="reference external" href="https://spark.apache.org/docs/latest/api/python/pyspark.html?highlight=filter#pyspark.RDD.filter">Spark Python API for filter</a>.</p></li>
+<li><p class="sd-card-text">Augment the results from Challenge 1 to remove the empty spaces (<code class="docutils literal notranslate"><span class="pre">''</span></code>).</p></li>
 </ul>
-</section>
-<section id="id1">
-<h2>Solution<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">string</span>
+<span class="n">translator</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">)</span>
+<span class="n">wordcount_enhanced</span> <span class="o">=</span> <span class="n">textFile</span><span class="o">.</span><span class="n">flatMap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">line</span><span class="p">:</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">))</span> \
+           <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">word</span><span class="p">:</span> <span class="p">(</span><span class="n">word</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">translator</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="mi">1</span><span class="p">))</span> \
+           <span class="o">.</span><span class="n">reduceByKey</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">wordcount_enhanced</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wordcount_filtered</span> <span class="o">=</span> <span class="n">wordcount_enhanced</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="n">wordcount_filtered</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>{: .solution}
-{: .challenge}</p>
-<p>{% include <a class="reference external" href="http://links.md">links.md</a> %}</p>
-</section>
+</div>
+</details></div>
+</details></section>
 </section>
 
     <script type="text/x-thebe-config">
