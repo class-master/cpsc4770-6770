@@ -140,16 +140,6 @@ is a `transformation` from the old one.
 - There are two types of transformation:
   - Narrow dependencies (1-to-1 transformation). 
   - Wide dependencies (1-to-N transformation). 
-|                                   | MULTICS | UNIX       |  
-| --------------------------------- | ------- | ---------- | 
-| process abstraction               | yes     | yes        |  
-| virtual memory                    | yes     | not really |  
-| dynamic linking                   | yes     | not really |  
-| hierarchical file system          | yes     | yes        |  
-| programmed in high-level language | PL/1    | Assembly   |  
-| multilevel security               | no      | later      |  
-| online reconfiguration            | yes     | reboot     |  
-| machine costs                     | M$      | K$         |
 
 - We can make a copy of our `textFile` that is distributed across more 
 partitions. This is still a `narrow dependencies` transformation. 

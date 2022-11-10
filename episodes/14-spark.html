@@ -50,8 +50,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Data parallel computing with Spark" href="15-data-parallel.html" />
@@ -667,17 +665,7 @@ is a <code class="docutils literal notranslate"><span class="pre">transformation
 <li><p class="sd-card-text">There are two types of transformation:</p>
 <ul>
 <li><p class="sd-card-text">Narrow dependencies (1-to-1 transformation).</p></li>
-<li><p class="sd-card-text">Wide dependencies (1-to-N transformation).
-|                                   | MULTICS | UNIX       |<br />
-| ——————————— | ——- | ———- |
-| process abstraction               | yes     | yes        |<br />
-| virtual memory                    | yes     | not really |<br />
-| dynamic linking                   | yes     | not really |<br />
-| hierarchical file system          | yes     | yes        |<br />
-| programmed in high-level language | PL/1    | Assembly   |<br />
-| multilevel security               | no      | later      |<br />
-| online reconfiguration            | yes     | reboot     |<br />
-| machine costs                     | M<span class="math notranslate nohighlight">\(      | K\)</span>         |</p></li>
+<li><p class="sd-card-text">Wide dependencies (1-to-N transformation).</p></li>
 </ul>
 </li>
 <li><p class="sd-card-text">We can make a copy of our <code class="docutils literal notranslate"><span class="pre">textFile</span></code> that is distributed across more
