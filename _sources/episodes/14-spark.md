@@ -5,7 +5,7 @@
 - A unified compute engine and a set of libraries for parallel
 data processing on computer clusters. 
 
-:::{image} ../../fig/csc467/03-spark/01.png
+:::{image} ../../fig/03-spark/01.png
 :class: bg-primary mb-1
 :height: 400px
 :align: center
@@ -49,7 +49,7 @@ contributors from more than 30 organizations outside UC Berkeley.
   - analyzing, distributing, and scheduling work across the executors. 
 - The `executors` carry out the actual work assigned to them by the `driver`. 
 
-:::{image} ../../fig/csc467/03-spark/02.png
+:::{image} ../fig/03-spark/02.png
 :class: bg-primary mb-1
 :height: 400px
 :align: center
