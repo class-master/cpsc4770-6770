@@ -5,7 +5,7 @@
 - A unified compute engine and a set of libraries for parallel
 data processing on computer clusters. 
 
-:::{image} ../../fig/03-spark/01.png
+:::{image} ../fig/03-spark/01.png
 :class: bg-primary mb-1
 :height: 400px
 :align: center
