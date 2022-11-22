@@ -18,7 +18,3 @@ $ jupyter notebook
 name to `spark-2`. 
 - Copy the code from `spark-1` to setup and launch a Spark application. 
 
-
-
-
-{% include links.md %}
