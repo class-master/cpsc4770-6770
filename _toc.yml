@@ -21,9 +21,9 @@ parts:
     - file: episodes/13-mapreduce.md
     - file: episodes/14-spark.md
     - file: episodes/15-data-parallel.md
-    - file: episodes/16-page-rank.md
-    - file: episodes/17-locality-sensitive-hashing.md
-    - file: episodes/18-frequent-itemsets.md
+    - file: episodes/16-large-scale-machine-learning.md
+    - file: episodes/17-page-rank.md
+    - file: episodes/18-locality-sensitive-hashing.md
 #- caption: Appendix
 #  chapters:
 #    - file: extras/setup.md
