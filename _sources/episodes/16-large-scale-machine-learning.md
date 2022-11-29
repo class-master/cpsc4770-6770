@@ -251,4 +251,3 @@ w<sub>j</sub> is a real number such that:
 :::
 
 ```
-
