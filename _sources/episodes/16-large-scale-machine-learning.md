@@ -252,26 +252,3 @@ w<sub>j</sub> is a real number such that:
 
 ```
 
-## 9. Hands-on: SVM
-```{dropdown}
-- Download the set of inaugural speeches from https://www.cs.wcupa.edu/lngo/data/bank.csv
-- Activate the `pyspark` conda environment, install `pandas`, then launch Jupyter notebook
-
-~~~
-$ conda activate pyspark
-$ conda install -y pandas
-$ jupyter notebook
-~~~ 
-
-
-- Documentation:
-  - [SVM example](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html?highlight=svm#pyspark.mllib.classification.SVMModel)
-  - [Data format](https://spark.apache.org/docs/2.2.0/mllib-data-types.html#labeled-point)
-  - [Split data frame for training and testing](http://spark.apache.org/docs/latest/api/python/pyspark.sql.html?highlight=randomsplit#pyspark.sql.DataFrame.randomSplit)
-
-- Question: Can you predict whether a client will subscribe to a term deposit (feature `deposit`)?
-- Problems:
-  - What data should the bank data be converted to?
-  - How to handle categorical data?
-
-```
