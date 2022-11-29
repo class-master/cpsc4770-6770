@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>MPI: pleasantly parallel and workload allocation &#8212; Distributed and Cluster Computing</title>
+    <title>Distributed machine learning with Spark &#8212; Distributed and Cluster Computing</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Partitioning: Divide and Conquer" href="11-divide-conquer.html" />
-    <link rel="prev" title="MPI: Functional parallelism and collectives" href="09-functional-collectives.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -118,7 +116,7 @@ const thebe_selector_output = ".output, .cell_output"
   Lectures
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01-computational-demand.html">
    The demand for computational speed
@@ -164,8 +162,8 @@ const thebe_selector_output = ".output, .cell_output"
    MPI: Functional parallelism and collectives
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-pleasantly-parallel.html">
    MPI: pleasantly parallel and workload allocation
   </a>
  </li>
@@ -267,7 +265,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/episodes/10-pleasantly-parallel.md"
+        <a href="../_sources/episodes/16-large-scale-machine-learning.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -327,48 +325,48 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#definition">
-   1. Definition
+  <a class="reference internal nav-link" href="#application-spam-filtering">
+   1. Application: Spam Filtering
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-integral-estimation-using-the-trapezoid-method">
-   2. Example: integral estimation using the trapezoid method
+  <a class="reference internal nav-link" href="#linear-models-for-classification">
+   2. Linear models for classification
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   3. Example: integral estimation using the trapezoid method
+  <a class="reference internal nav-link" href="#linear-classifiers">
+   3. Linear classifiers
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   4. Example: integral estimation using the trapezoid method
+  <a class="reference internal nav-link" href="#support-vector-machine">
+   4. Support Vector Machine
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   5. Example: integral estimation using the trapezoid method
+  <a class="reference internal nav-link" href="#support-vector-machine-largest-margin">
+   5. Support Vector Machine: largest margin
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#handson-integral-estimation-using-the-trapezoid-method">
-   6. Handson: integral estimation using the trapezoid method
+  <a class="reference internal nav-link" href="#support-vector-machine-what-is-the-margin">
+   6. Support Vector Machine: what is the margin?
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hands-on-static-workload-assignment">
-   7. Hands-on: static workload assignment
+  <a class="reference internal nav-link" href="#some-more-math">
+   7. Some more math …
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hands-on-cyclic-workload-assignment">
-   8. Hands-on: cyclic workload assignment
+  <a class="reference internal nav-link" href="#svm-non-linearly-separable-data">
+   8. SVM: Non-linearly separable data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hands-on-dynamic-workload-assignment">
-   9. Hands-on: dynamic workload assignment
+  <a class="reference internal nav-link" href="#hands-on-svm">
+   9. Hands-on: SVM
   </a>
  </li>
 </ul>
@@ -380,7 +378,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>MPI: pleasantly parallel and workload allocation</h1>
+                <h1>Distributed machine learning with Spark</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -391,48 +389,48 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#definition">
-   1. Definition
+  <a class="reference internal nav-link" href="#application-spam-filtering">
+   1. Application: Spam Filtering
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-integral-estimation-using-the-trapezoid-method">
-   2. Example: integral estimation using the trapezoid method
+  <a class="reference internal nav-link" href="#linear-models-for-classification">
+   2. Linear models for classification
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   3. Example: integral estimation using the trapezoid method
+  <a class="reference internal nav-link" href="#linear-classifiers">
+   3. Linear classifiers
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   4. Example: integral estimation using the trapezoid method
+  <a class="reference internal nav-link" href="#support-vector-machine">
+   4. Support Vector Machine
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   5. Example: integral estimation using the trapezoid method
+  <a class="reference internal nav-link" href="#support-vector-machine-largest-margin">
+   5. Support Vector Machine: largest margin
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#handson-integral-estimation-using-the-trapezoid-method">
-   6. Handson: integral estimation using the trapezoid method
+  <a class="reference internal nav-link" href="#support-vector-machine-what-is-the-margin">
+   6. Support Vector Machine: what is the margin?
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hands-on-static-workload-assignment">
-   7. Hands-on: static workload assignment
+  <a class="reference internal nav-link" href="#some-more-math">
+   7. Some more math …
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hands-on-cyclic-workload-assignment">
-   8. Hands-on: cyclic workload assignment
+  <a class="reference internal nav-link" href="#svm-non-linearly-separable-data">
+   8. SVM: Non-linearly separable data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hands-on-dynamic-workload-assignment">
-   9. Hands-on: dynamic workload assignment
+  <a class="reference internal nav-link" href="#hands-on-svm">
+   9. Hands-on: SVM
   </a>
  </li>
 </ul>
@@ -445,10 +443,10 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="mpi-pleasantly-parallel-and-workload-allocation">
-<h1>MPI: pleasantly parallel and workload allocation<a class="headerlink" href="#mpi-pleasantly-parallel-and-workload-allocation" title="Permalink to this headline">#</a></h1>
-<section id="definition">
-<h2>1. Definition<a class="headerlink" href="#definition" title="Permalink to this headline">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="distributed-machine-learning-with-spark">
+<h1>Distributed machine learning with Spark<a class="headerlink" href="#distributed-machine-learning-with-spark" title="Permalink to this headline">#</a></h1>
+<section id="application-spam-filtering">
+<h2>1. Application: Spam Filtering<a class="headerlink" href="#application-spam-filtering" title="Permalink to this headline">#</a></h2>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
@@ -456,22 +454,62 @@ title="Print to PDF"
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text"></p></th>
+<th class="head"><p class="sd-card-text">viagra</p></th>
+<th class="head"><p class="sd-card-text">learning</p></th>
+<th class="head"><p class="sd-card-text">the</p></th>
+<th class="head"><p class="sd-card-text">dating</p></th>
+<th class="head"><p class="sd-card-text">nigeria</p></th>
+<th class="head"><p class="sd-card-text"><b>spam?</b></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text">X1</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">y<sub>1</sub> = 1</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">X2</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">Y<sub>2</sub> = -1</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">X3</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">y<sub>3</sub> = 1</p></td>
+</tr>
+</tbody>
+</table>
 <ul class="simple">
-<li><p class="sd-card-text">Embarrassingly/naturally/pleasantly parallel.</p></li>
-<li><p class="sd-card-text">A computation that can obviously be divided into a
-number of completely different parts, each of which can be
-executed by a separate process.</p></li>
-<li><p class="sd-card-text">Each process can do its tasks without any interaction with
-the other processes, therefore, …</p>
+<li><p class="sd-card-text">Instance spaces X1, X2, X3 belong to set X (data points)</p>
 <ul>
-<li><p class="sd-card-text">No communication or very little communication among the processes.</p></li>
+<li><p class="sd-card-text">Binary or real-valued feature vector X of word occurrences</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">d</span></code> features (words and other things, d is approximately 100,000)</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Class Y</p>
+<ul>
+<li><p class="sd-card-text">Spam = 1</p></li>
+<li><p class="sd-card-text">Ham = -1</p></li>
 </ul>
 </li>
 </ul>
 </div>
 </details></section>
-<section id="example-integral-estimation-using-the-trapezoid-method">
-<h2>2. Example: integral estimation using the trapezoid method<a class="headerlink" href="#example-integral-estimation-using-the-trapezoid-method" title="Permalink to this headline">#</a></h2>
+<section id="linear-models-for-classification">
+<h2>2. Linear models for classification<a class="headerlink" href="#linear-models-for-classification" title="Permalink to this headline">#</a></h2>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
@@ -479,17 +517,30 @@ the other processes, therefore, …</p>
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/csc467/10-svm/01.png"><img alt="fig/csc467/10-svm/01.png" class="bg-primary mb-1 align-center" src="fig/csc467/10-svm/01.png" style="height: 50px;" /></a>
 <ul class="simple">
-<li><p class="sd-card-text">A technique to approximate the integral of a function <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p></li>
-<li><p class="sd-card-text">Integral is defined as the area of the region bounded by the graph
-<code class="docutils literal notranslate"><span class="pre">f</span></code>, the x-axis, and two vertical lines <code class="docutils literal notranslate"><span class="pre">x=a</span></code> and <code class="docutils literal notranslate"><span class="pre">x=b</span></code>.</p></li>
-<li><p class="sd-card-text">We can estimate this area by dividing it into infinitesimal trapezoids.</p></li>
+<li><p class="sd-card-text">Vector X<sub>j</sub> contains real values</p>
+<ul>
+<li><p class="sd-card-text">The <a class="reference external" href="https://en.wikipedia.org/wiki/Norm_(mathematics)#Euclidean_norm">Euclidean norm</a> is <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+<li><p class="sd-card-text">Each vector has a label y<sub>j</sub></p></li>
 </ul>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/01.gif"><img alt="trapezoids" class="bg-primary mb-1 align-center" src="../_images/01.gif" style="height: 400px;" /></a>
+</li>
+<li><p class="sd-card-text">The goal is to find a vector W = (w<sub>1</sub>, w<sub>2</sub>, …, w<sub>d</sub>) with
+w<sub>j</sub> is a real number such that:</p>
+<ul>
+<li><p class="sd-card-text">The labeled points are clearly separated by a line:</p></li>
+</ul>
+</li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/csc467/10-svm/02.png"><img alt="fig/csc467/10-svm/02.png" class="bg-primary mb-1 align-center" src="fig/csc467/10-svm/02.png" style="height: 30px;" /></a>
+<ul class="simple">
+<li><p class="sd-card-text">Dot is spam, minus is ham!</p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/csc467/10-svm/03.png"><img alt="fig/csc467/10-svm/03.png" class="bg-primary mb-1 align-center" src="fig/csc467/10-svm/03.png" style="height: 300px;" /></a>
 </div>
 </details></section>
-<section id="id1">
-<h2>3. Example: integral estimation using the trapezoid method<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<section id="linear-classifiers">
+<h2>3. Linear classifiers<a class="headerlink" href="#linear-classifiers" title="Permalink to this headline">#</a></h2>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
@@ -498,24 +549,23 @@ the other processes, therefore, …</p>
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p class="sd-card-text">Divide the area under the curve into 8 trapezoids with equal base <code class="docutils literal notranslate"><span class="pre">h</span></code>.</p>
+<li><p class="sd-card-text">Each feature <code class="docutils literal notranslate"><span class="pre">i</span></code> as a weight w<sub>i</sub></p></li>
+<li><p class="sd-card-text">Prediction is based on the weighted sum:</p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/csc467/10-svm/04.png"><img alt="fig/csc467/10-svm/04.png" class="bg-primary mb-1 align-center" src="fig/csc467/10-svm/04.png" style="height: 50px;" /></a>
+<ul class="simple">
+<li><p class="sd-card-text">If f(x) is:</p>
 <ul>
-<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">N</span></code> = 8</p></li>
-<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">a</span></code> = 0</p></li>
-<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">b</span></code> = 2</p></li>
+<li><p class="sd-card-text">Positive: predict +1</p></li>
+<li><p class="sd-card-text">Negative: predict -1</p></li>
 </ul>
 </li>
-<li><p class="sd-card-text">The base <code class="docutils literal notranslate"><span class="pre">h</span></code> can be calculated as:</p>
-<ul>
-<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">h</span></code> = (<code class="docutils literal notranslate"><span class="pre">b</span></code> - <code class="docutils literal notranslate"><span class="pre">a</span></code>) / <code class="docutils literal notranslate"><span class="pre">N</span></code> = 0.25</p></li>
 </ul>
-</li>
-</ul>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/023.png"><img alt="trapezoids" class="bg-primary mb-1 align-center" src="../_images/023.png" style="height: 400px;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/csc467/10-svm/05.png"><img alt="fig/csc467/10-svm/05.png" class="bg-primary mb-1 align-center" src="fig/csc467/10-svm/05.png" style="height: 200px;" /></a>
 </div>
 </details></section>
-<section id="id2">
-<h2>4. Example: integral estimation using the trapezoid method<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<section id="support-vector-machine">
+<h2>4. Support Vector Machine<a class="headerlink" href="#support-vector-machine" title="Permalink to this headline">#</a></h2>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
@@ -524,19 +574,33 @@ the other processes, therefore, …</p>
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p class="sd-card-text">Which trapezoid (workload/task) goes to which process?</p>
+<li><p class="sd-card-text">Originally developed by Vapnik and collaborators as a linear classifier.</p></li>
+<li><p class="sd-card-text">Could be modified to support non-linear classification by mapping into high-dimensional spaces.</p></li>
+<li><p class="sd-card-text">Problem statement:</p>
 <ul>
-<li><p class="sd-card-text">Start with small number of processes.</p></li>
-<li><p class="sd-card-text">Calculation workload assignment manually for each count of processes.</p></li>
-<li><p class="sd-card-text">Generalize assignment for process i based on sample calculations.</p></li>
+<li><p class="sd-card-text">We want to separate <code class="docutils literal notranslate"><span class="pre">+</span></code> from <code class="docutils literal notranslate"><span class="pre">-</span></code> using a line.</p></li>
+<li><p class="sd-card-text">Training examples:</p></li>
 </ul>
 </li>
 </ul>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/023.png"><img alt="trapezoids" class="bg-primary mb-1 align-center" src="../_images/023.png" style="height: 400px;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/csc467/10-svm/06.png"><img alt="fig/csc467/10-svm/06.png" class="bg-primary mb-1 align-center" src="fig/csc467/10-svm/06.png" style="height: 30px;" /></a>
+<ul class="simple">
+<li><p class="sd-card-text">Each example <code class="docutils literal notranslate"><span class="pre">i</span></code>:</p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/csc467/10-svm/07.png"><img alt="fig/csc467/10-svm/07.png" class="bg-primary mb-1 align-center" src="fig/csc467/10-svm/07.png" style="height: 30px;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/csc467/10-svm/08.png"><img alt="fig/csc467/10-svm/08.png" class="bg-primary mb-1 align-center" src="fig/csc467/10-svm/08.png" style="height: 30px;" /></a>
+<ul class="simple">
+<li><p class="sd-card-text">Inner product:</p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/csc467/10-svm/09.png"><img alt="fig/csc467/10-svm/09.png" class="bg-primary mb-1 align-center" src="fig/csc467/10-svm/09.png" style="height: 100px;" /></a>
+<ul class="simple">
+<li><p class="sd-card-text">Which is the best linear separate defined by w?</p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/csc467/10-svm/10.png"><img alt="fig/csc467/10-svm/10.png" class="bg-primary mb-1 align-center" src="fig/csc467/10-svm/10.png" style="height: 200px;" /></a>
 </div>
 </details></section>
-<section id="id3">
-<h2>5. Example: integral estimation using the trapezoid method<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<section id="support-vector-machine-largest-margin">
+<h2>5. Support Vector Machine: largest margin<a class="headerlink" href="#support-vector-machine-largest-margin" title="Permalink to this headline">#</a></h2>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
@@ -545,36 +609,27 @@ the other processes, therefore, …</p>
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p class="sd-card-text">4 processes: <code class="docutils literal notranslate"><span class="pre">P0</span></code>, <code class="docutils literal notranslate"><span class="pre">P1</span></code>, <code class="docutils literal notranslate"><span class="pre">P2</span></code>, <code class="docutils literal notranslate"><span class="pre">P3</span></code>: <code class="docutils literal notranslate"><span class="pre">size</span></code> = 4</p></li>
-<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">N</span></code> = 8</p></li>
-<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">a</span></code> = 0</p></li>
-<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">b</span></code> = 2</p></li>
-<li><p class="sd-card-text">The height <code class="docutils literal notranslate"><span class="pre">h</span></code> can be calculated as:</p>
-<ul>
-<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">h</span></code> = (<code class="docutils literal notranslate"><span class="pre">b</span></code> - <code class="docutils literal notranslate"><span class="pre">a</span></code>) / <code class="docutils literal notranslate"><span class="pre">N</span></code> = 0.25</p></li>
+<li><p class="sd-card-text">Distance from the separating line corresponds to the <strong>confidence</strong> of the prediction.</p></li>
+<li><p class="sd-card-text">For example, we are more sure about the class of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> than of <code class="docutils literal notranslate"><span class="pre">C</span></code>.</p></li>
 </ul>
-</li>
-<li><p class="sd-card-text">The amount of trapezoid per process:</p>
-<ul>
-<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">local_n</span></code> = <code class="docutils literal notranslate"><span class="pre">N</span></code> / <code class="docutils literal notranslate"><span class="pre">size</span></code> = 2;</p></li>
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/csc467/10-svm/11.png"><img alt="fig/csc467/10-svm/11.png" class="bg-primary mb-1 align-center" src="fig/csc467/10-svm/11.png" style="height: 500px;" /></a>
+<ul class="simple">
+<li><p class="sd-card-text">Margin definition:</p></li>
 </ul>
-</li>
-<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">local_a</span></code>: variable represent the starting point of the local interval
-for each process. Variable <code class="docutils literal notranslate"><span class="pre">local_a</span></code> will change as processes finish
-calculating one trapezoid and moving to another.</p>
-<ul>
-<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">local_a</span></code> for <code class="docutils literal notranslate"><span class="pre">P0</span></code>= 0 = 0 + 0 * 2 * 0.25</p></li>
-<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">local_a</span></code> for <code class="docutils literal notranslate"><span class="pre">P1</span></code>= 0.5 = 0 + 1 * 2 * 0.25</p></li>
-<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">local_a</span></code> for <code class="docutils literal notranslate"><span class="pre">P2</span></code>= 1 = 0 + 2 * 2 * 0.25</p></li>
-<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">local_a</span></code> for <code class="docutils literal notranslate"><span class="pre">P2</span></code>= 1.5 = 0 + 3 * 2 * 0.25</p></li>
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/csc467/10-svm/12.png"><img alt="fig/csc467/10-svm/12.png" class="bg-primary mb-1 align-center" src="fig/csc467/10-svm/12.png" style="height: 30px;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/csc467/10-svm/13.png"><img alt="fig/csc467/10-svm/13.png" class="bg-primary mb-1 align-center" src="fig/csc467/10-svm/13.png" style="height: 300px;" /></a>
+<ul class="simple">
+<li><p class="sd-card-text">Maximizing the margin while identifying <code class="docutils literal notranslate"><span class="pre">w</span></code> is good according to intuition, theory, and practice.</p></li>
 </ul>
-</li>
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/csc467/10-svm/14.png"><img alt="fig/csc467/10-svm/14.png" class="bg-primary mb-1 align-center" src="fig/csc467/10-svm/14.png" style="height: 300px;" /></a>
+<ul class="simple">
+<li><p class="sd-card-text">A math question: how do you narrate this equation?</p></li>
 </ul>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/033.png"><img alt="trapezoids" class="bg-primary mb-1 align-center" src="../_images/033.png" style="height: 400px;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/csc467/10-svm/15.png"><img alt="fig/csc467/10-svm/15.png" class="bg-primary mb-1 align-center" src="fig/csc467/10-svm/15.png" style="height: 100px;" /></a>
 </div>
 </details></section>
-<section id="handson-integral-estimation-using-the-trapezoid-method">
-<h2>6. Handson: integral estimation using the trapezoid method<a class="headerlink" href="#handson-integral-estimation-using-the-trapezoid-method" title="Permalink to this headline">#</a></h2>
+<section id="support-vector-machine-what-is-the-margin">
+<h2>6. Support Vector Machine: what is the margin?<a class="headerlink" href="#support-vector-machine-what-is-the-margin" title="Permalink to this headline">#</a></h2>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
@@ -583,108 +638,103 @@ calculating one trapezoid and moving to another.</p>
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p class="sd-card-text">Inside <code class="docutils literal notranslate"><span class="pre">intro-mpi</span></code>, create a file named <code class="docutils literal notranslate"><span class="pre">trapezoid.c</span></code> with the following
-contents</p></li>
+<li><p class="sd-card-text">Slide from the book</p></li>
 </ul>
-<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=trapezoid.c"></script>
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/csc467/10-svm/16.png"><img alt="fig/csc467/10-svm/16.png" class="bg-primary mb-1 align-center" src="fig/csc467/10-svm/16.png" style="height: 500px;" /></a>
 <ul class="simple">
-<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">trapezoid.c</span></code>:</p></li>
+<li><p class="sd-card-text">Notation:</p>
+<ul>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">Gamma</span></code> is the distance from point A to the linear separator L: <code class="docutils literal notranslate"><span class="pre">d(A,L)</span> <span class="pre">=</span> <span class="pre">|AH|</span></code></p></li>
+<li><p class="sd-card-text">If we select a random point M on line L, then d(A,L) is the projection of AM onto vector <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p></li>
+<li><p class="sd-card-text"><a class="reference external" href="https://mathworld.wolfram.com/Projection.html">Project</a></p></li>
+<li><p class="sd-card-text">If we assume the normalized Euclidean value of <code class="docutils literal notranslate"><span class="pre">w</span></code>, <code class="docutils literal notranslate"><span class="pre">|w|</span></code>, is equal to one, that bring us to
+the result in the slide.</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mpicc -o trapezoid trapezoid.c
-$ mpirun -np 4 ./trapezoid 0 1 10
-$ mpirun -np 4 ./trapezoid 0 1 100
-$ mpirun -np 4 ./trapezoid 0 1 1000
-$ mpirun -np 4 ./trapezoid 0 1 10000
+</li>
+<li><p class="sd-card-text">In other words, maximizing the margin is directly related to how <code class="docutils literal notranslate"><span class="pre">w</span></code> is chosen.</p></li>
+<li><p class="sd-card-text">For the <em>i<sup>th</sup></em> data point:</p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/csc467/10-svm/17.png"><img alt="fig/csc467/10-svm/17.png" class="bg-primary mb-1 align-center" src="fig/csc467/10-svm/17.png" style="height: 50px;" /></a>
+</div>
+</details></section>
+<section id="some-more-math">
+<h2>7. Some more math …<a class="headerlink" href="#some-more-math" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/csc467/10-svm/18.png"><img alt="fig/csc467/10-svm/18.png" class="bg-primary mb-1 align-center" src="fig/csc467/10-svm/18.png" style="height: 500px;" /></a>
+<ul class="simple">
+<li><p class="sd-card-text">After some more mathematical manipulations:</p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/csc467/10-svm/19.png"><img alt="fig/csc467/10-svm/19.png" class="bg-primary mb-1 align-center" src="fig/csc467/10-svm/19.png" style="height: 200px;" /></a>
+<ul class="simple">
+<li><p class="sd-card-text">Everything comes back to an optimization problem on <code class="docutils literal notranslate"><span class="pre">w</span></code>:</p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/csc467/10-svm/20.png"><img alt="fig/csc467/10-svm/20.png" class="bg-primary mb-1 align-center" src="fig/csc467/10-svm/20.png" style="height: 200px;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/csc467/10-svm/21.png"><img alt="fig/csc467/10-svm/21.png" class="bg-primary mb-1 align-center" src="fig/csc467/10-svm/21.png" style="height: 200px;" /></a>
+</div>
+</details></section>
+<section id="svm-non-linearly-separable-data">
+<h2>8. SVM: Non-linearly separable data<a class="headerlink" href="#svm-non-linearly-separable-data" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/csc467/10-svm/22.png"><img alt="fig/csc467/10-svm/22.png" class="bg-primary mb-1 align-center" src="fig/csc467/10-svm/22.png" style="height: 500px;" /></a>
+<ul class="simple">
+<li><p class="sd-card-text">For each data point:</p>
+<ul>
+<li><p class="sd-card-text">If margin greater than 1, don’t care.</p></li>
+<li><p class="sd-card-text">If margin is less than 1, pay linear penalty.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Introducing slack variables:</p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/csc467/10-svm/23.png"><img alt="fig/csc467/10-svm/23.png" class="bg-primary mb-1 align-center" src="fig/csc467/10-svm/23.png" style="height: 200px;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="fig/csc467/10-svm/24.png"><img alt="fig/csc467/10-svm/24.png" class="bg-primary mb-1 align-center" src="fig/csc467/10-svm/24.png" style="height: 30px;" /></a>
+</div>
+</details></section>
+<section id="hands-on-svm">
+<h2>9. Hands-on: SVM<a class="headerlink" href="#hands-on-svm" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Download the set of inaugural speeches from <a class="reference external" href="https://www.cs.wcupa.edu/lngo/data/bank.csv">https://www.cs.wcupa.edu/lngo/data/bank.csv</a></p></li>
+<li><p class="sd-card-text">Activate the <code class="docutils literal notranslate"><span class="pre">pyspark</span></code> conda environment, install <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, then launch Jupyter notebook</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda activate pyspark
+$ conda install -y pandas
+$ jupyter notebook
 </pre></div>
 </div>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/042.png"><img alt="trapezoids" class="bg-primary mb-1 align-center" src="../_images/042.png" style="height: 200px;" /></a>
-</div>
-</details></section>
-<section id="hands-on-static-workload-assignment">
-<h2>7. Hands-on: static workload assignment<a class="headerlink" href="#hands-on-static-workload-assignment" title="Permalink to this headline">#</a></h2>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p class="sd-card-text">Is this fair?</p></li>
-<li><p class="sd-card-text">Create a copy of <code class="docutils literal notranslate"><span class="pre">trapezoid.c</span></code> called <code class="docutils literal notranslate"><span class="pre">trapezoid_static.c</span></code> and modify <code class="docutils literal notranslate"><span class="pre">trapezoid_static.c</span></code>
-to have the following contents</p></li>
+<li><p class="sd-card-text">Documentation:</p>
+<ul>
+<li><p class="sd-card-text"><a class="reference external" href="https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html?highlight=svm#pyspark.mllib.classification.SVMModel">SVM example</a></p></li>
+<li><p class="sd-card-text"><a class="reference external" href="https://spark.apache.org/docs/2.2.0/mllib-data-types.html#labeled-point">Data format</a></p></li>
+<li><p class="sd-card-text"><a class="reference external" href="http://spark.apache.org/docs/latest/api/python/pyspark.sql.html?highlight=randomsplit#pyspark.sql.DataFrame.randomSplit">Split data frame for training and testing</a></p></li>
 </ul>
-<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=trapezoid_static.c"></script>
-<ul class="simple">
-<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">trapezoid_static.c</span></code>:</p></li>
+</li>
+<li><p class="sd-card-text">Question: Can you predict whether a client will subscribe to a term deposit (feature <code class="docutils literal notranslate"><span class="pre">deposit</span></code>)?</p></li>
+<li><p class="sd-card-text">Problems:</p>
+<ul>
+<li><p class="sd-card-text">What data should the bank data be converted to?</p></li>
+<li><p class="sd-card-text">How to handle categorical data?</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mpicc -o trapezoid_static trapezoid_static.c
-$ mpirun -np 4 ./trapezoid_static 0 1 1000
-</pre></div>
-</div>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/051.png"><img alt="trapezoid static" class="bg-primary mb-1 align-center" src="../_images/051.png" style="height: 200px;" /></a>
-<ul class="simple">
-<li><p class="sd-card-text">This is called <code class="docutils literal notranslate"><span class="pre">static</span> <span class="pre">workload</span> <span class="pre">assignment</span></code>.</p></li>
+</li>
 </ul>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/061.png"><img alt="mandelbrot static" class="bg-primary mb-1 align-center" src="../_images/061.png" style="height: 400px;" /></a>
-</div>
-</details></section>
-<section id="hands-on-cyclic-workload-assignment">
-<h2>8. Hands-on: cyclic workload assignment<a class="headerlink" href="#hands-on-cyclic-workload-assignment" title="Permalink to this headline">#</a></h2>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<ul class="simple">
-<li><p class="sd-card-text">Create a copy of <code class="docutils literal notranslate"><span class="pre">trapezoid_static.c</span></code> called <code class="docutils literal notranslate"><span class="pre">trapezoid_cyclic.c</span></code> and modify <code class="docutils literal notranslate"><span class="pre">trapezoid_cyclic.c</span></code>
-to have the following contents</p></li>
-</ul>
-<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=trapezoid_cyclic.c"></script>
-<ul class="simple">
-<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">trapezoid_cyclic.c</span></code>:</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mpicc -o trapezoid_cyclic trapezoid_cyclic.c
-$ mpirun -np 4 ./trapezoid_cyclic 0 1 1000
-</pre></div>
-</div>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/07.png"><img alt="trapezoid cyclic" class="bg-primary mb-1 align-center" src="../_images/07.png" style="height: 200px;" /></a>
-<ul class="simple">
-<li><p class="sd-card-text">This is called <code class="docutils literal notranslate"><span class="pre">cyclic</span> <span class="pre">workload</span> <span class="pre">assignment</span></code>.</p></li>
-</ul>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/081.png"><img alt="mandelbrot cyclic" class="bg-primary mb-1 align-center" src="../_images/081.png" style="height: 400px;" /></a>
-</div>
-</details></section>
-<section id="hands-on-dynamic-workload-assignment">
-<h2>9. Hands-on: dynamic workload assignment<a class="headerlink" href="#hands-on-dynamic-workload-assignment" title="Permalink to this headline">#</a></h2>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<ul class="simple">
-<li><p class="sd-card-text">Create a file called <code class="docutils literal notranslate"><span class="pre">trapezoid_dynamic_.c</span></code> with the following contents:</p></li>
-</ul>
-<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=trapezoid_dynamic.c"></script>
-<ul class="simple">
-<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">trapezoid_dynamic.c</span></code>:</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mpicc -o trapezoid_dynamic trapezoid_dynamic.c
-$ mpirun -np 4 ./trapezoid_dynamic 0 1 1000
-$ mpirun -np 4 ./trapezoid_dynamic 0 1 1000
-$ mpirun -np 4 ./trapezoid_dynamic 0 1 1000
-</pre></div>
-</div>
-<p class="sd-card-text">{: .language-bash}</p>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/091.png"><img alt="trapezoid dynamic" class="bg-primary mb-1 align-center" src="../_images/091.png" style="height: 300px;" /></a>
-<ul class="simple">
-<li><p class="sd-card-text">This is called <code class="docutils literal notranslate"><span class="pre">dynamic</span> <span class="pre">workload</span> <span class="pre">assignment</span></code>.</p></li>
-</ul>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/101.png"><img alt="mandelbrot dynamic" class="bg-primary mb-1 align-center" src="../_images/101.png" style="height: 500px;" /></a>
 </div>
 </details></section>
 </section>
@@ -716,20 +766,6 @@ $ mpirun -np 4 ./trapezoid_dynamic 0 1 1000
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="09-functional-collectives.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">MPI: Functional parallelism and collectives</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="11-divide-conquer.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Partitioning: Divide and Conquer</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
 </div>
             </footer>
         </div>
