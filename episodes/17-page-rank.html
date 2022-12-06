@@ -377,18 +377,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solution">
-   Solution:
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#challenge-6-2-does-it-converge-to-what-we-want">
    Challenge 6.2: Does it converge to what we want?:
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   Solution:
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -456,18 +446,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solution">
-   Solution:
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#challenge-6-2-does-it-converge-to-what-we-want">
    Challenge 6.2: Does it converge to what we want?:
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   Solution:
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -494,255 +474,334 @@ title="Print to PDF"
 <h1>Page Rank<a class="headerlink" href="#page-rank" title="Permalink to this headline">#</a></h1>
 <section id="web-page-organization-in-the-past">
 <h2>1. Web page organization in the past<a class="headerlink" href="#web-page-organization-in-the-past" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p>Web pages were manually curated and organized.</p></li>
-<li><p>Does not scale.</p></li>
+<li><p class="sd-card-text">Web pages were manually curated and organized.</p></li>
+<li><p class="sd-card-text">Does not scale.</p></li>
 </ul>
-<img src="../fig/05-pagerank/01.jpg" style="height:500px">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/011.jpg"><img alt="../_images/011.jpg" class="bg-primary mb-1 align-center" src="../_images/011.jpg" style="height: 500px;" /></a>
 <ul class="simple">
-<li><p>Next, web search engines were developed: information retrieval</p></li>
-<li><p>Information retrieval focuses on finding documents from a trusted set.</p></li>
+<li><p class="sd-card-text">Next, web search engines were developed: information retrieval</p></li>
+<li><p class="sd-card-text">Information retrieval focuses on finding documents from a trusted set.</p></li>
 </ul>
-<img src="../fig/05-pagerank/02.jpg" style="height:500px">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/021.jpg"><img alt="../_images/021.jpg" class="bg-primary mb-1 align-center" src="../_images/021.jpg" style="height: 500px;" /></a>
 <ul class="simple">
-<li><p>Challenges for web search:</p>
+<li><p class="sd-card-text">Challenges for web search:</p>
 <ul>
-<li><p>Who to trust given the massive variety of information sources?</p>
+<li><p class="sd-card-text">Who to trust given the massive variety of information sources?</p>
 <ul>
-<li><p>Trustworthy pages may point to each other.</p></li>
+<li><p class="sd-card-text">Trustworthy pages may point to each other.</p></li>
 </ul>
 </li>
-<li><p>What is the best answer to a keyword search (given a context)?</p>
+<li><p class="sd-card-text">What is the best answer to a keyword search (given a context)?</p>
 <ul>
-<li><p>Pages using the keyword in the same contexts tend to point to each other.</p></li>
+<li><p class="sd-card-text">Pages using the keyword in the same contexts tend to point to each other.</p></li>
 </ul>
 </li>
-<li><p>All pages are not equally important.</p></li>
+<li><p class="sd-card-text">All pages are not equally important.</p></li>
 </ul>
 </li>
-<li><p>Web pages/sites on the Internet can be represented as a graph:</p>
+<li><p class="sd-card-text">Web pages/sites on the Internet can be represented as a graph:</p>
 <ul>
-<li><p>Web pages/sites are nodes on the graph.</p></li>
-<li><p>Links from one page to another represents the incoming/outgoing
+<li><p class="sd-card-text">Web pages/sites are nodes on the graph.</p></li>
+<li><p class="sd-card-text">Links from one page to another represents the incoming/outgoing
 connections between nodes.</p></li>
-<li><p>We can compute the importance of nodes in this graph based on
+<li><p class="sd-card-text">We can compute the importance of nodes in this graph based on
 the distribution/intensity of these links.</p></li>
 </ul>
 </li>
 </ul>
-</section>
+</div>
+</details></section>
 <section id="pagerank-initial-formulation">
 <h2>2. PageRank: initial formulation<a class="headerlink" href="#pagerank-initial-formulation" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p>Link as votes:</p>
+<li><p class="sd-card-text">Link as votes:</p>
 <ul>
-<li><p>A page (node) is more important if it has more links.</p>
+<li><p class="sd-card-text">A page (node) is more important if it has more links.</p>
 <ul>
-<li><p>Incoming or outgoing?</p></li>
+<li><p class="sd-card-text">Incoming or outgoing?</p></li>
 </ul>
 </li>
-<li><p>Think of incoming links as votes.</p></li>
+<li><p class="sd-card-text">Think of incoming links as votes.</p></li>
 </ul>
 </li>
-<li><p>Are all incoming links equals?</p>
+<li><p class="sd-card-text">Are all incoming links equals?</p>
 <ul>
-<li><p>Links from important pages count more.</p></li>
+<li><p class="sd-card-text">Links from important pages count more.</p></li>
 </ul>
 </li>
 </ul>
-<img src="../fig/05-pagerank/03.png" style="height:400px">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/037.png"><img alt="../_images/037.png" class="bg-primary mb-1 align-center" src="../_images/037.png" style="height: 400px;" /></a>
 <ul class="simple">
-<li><p>Each link’s vote is proportional to the <strong>importance</strong> of its
+<li><p class="sd-card-text">Each link’s vote is proportional to the <strong>importance</strong> of its
 source page.</p></li>
-<li><p>If page <em>j</em> with importance <strong>r<sub>j</sub></strong> has <strong>n</strong> outgoing links,
+<li><p class="sd-card-text">If page <em>j</em> with importance <strong>r<sub>j</sub></strong> has <strong>n</strong> outgoing links,
 each outgoing link has <strong>r<sub>j</sub>/n</strong> votes.</p></li>
-<li><p>The importance of page <strong>j</strong> is the sum of the votes on its incoming links.</p></li>
+<li><p class="sd-card-text">The importance of page <strong>j</strong> is the sum of the votes on its incoming links.</p></li>
 </ul>
-<img src="../fig/05-pagerank/04.png" style="height:300px">
-</section>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/046.png"><img alt="../_images/046.png" class="bg-primary mb-1 align-center" src="../_images/046.png" style="height: 300px;" /></a>
+</div>
+</details></section>
 <section id="pagerank-the-flow-model">
 <h2>3. PageRank: the flow model<a class="headerlink" href="#pagerank-the-flow-model" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p>Summary:</p>
+<li><p class="sd-card-text">Summary:</p>
 <ul>
-<li><p>A <code class="docutils literal notranslate"><span class="pre">vote</span></code> from an important page is worth more.</p></li>
-<li><p>A page is important if it is linked to by other important pages.</p></li>
+<li><p class="sd-card-text">A <code class="docutils literal notranslate"><span class="pre">vote</span></code> from an important page is worth more.</p></li>
+<li><p class="sd-card-text">A page is important if it is linked to by other important pages.</p></li>
 </ul>
 </li>
 </ul>
-<img src="../fig/05-pagerank/05.png" style="height:250px">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/054.png"><img alt="../_images/054.png" class="bg-primary mb-1 align-center" src="../_images/054.png" style="height: 250px;" /></a>
 <ul class="simple">
-<li><p>Flow equations:</p>
+<li><p class="sd-card-text">Flow equations:</p>
 <ul>
-<li><p>r<sub>y</sub> = r<sub>y</sub>/2 + r<sub>a</sub>/2</p></li>
-<li><p>r<sub>a</sub> = r<sub>y</sub>/2 + r<sub>m</sub></p></li>
-<li><p>r<sub>m</sub> = r<sub>a</sub>/2</p></li>
+<li><p class="sd-card-text">r<sub>y</sub> = r<sub>y</sub>/2 + r<sub>a</sub>/2</p></li>
+<li><p class="sd-card-text">r<sub>a</sub> = r<sub>y</sub>/2 + r<sub>m</sub></p></li>
+<li><p class="sd-card-text">r<sub>m</sub> = r<sub>a</sub>/2</p></li>
 </ul>
 </li>
-<li><p>General equation for calculating rank <em>r<sub>j</sub></em> for page j:</p></li>
+<li><p class="sd-card-text">General equation for calculating rank <em>r<sub>j</sub></em> for page j:</p></li>
 </ul>
-<img src="../fig/05-pagerank/06.png" style="height:200px">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/063.png"><img alt="../_images/063.png" class="bg-primary mb-1 align-center" src="../_images/063.png" style="height: 200px;" /></a>
 <ul class="simple">
-<li><p>Three equations (actually two), three unknown.</p>
+<li><p class="sd-card-text">Three equations (actually two), three unknown.</p>
 <ul>
-<li><p>No unique solutions</p></li>
+<li><p class="sd-card-text">No unique solutions</p></li>
 </ul>
 </li>
-<li><p>Additional constraint to force uniqueness:</p>
+<li><p class="sd-card-text">Additional constraint to force uniqueness:</p>
 <ul>
-<li><p>r<sub>y</sub> + r<sub>a</sub> + r<sub>m</sub> = 1</p></li>
+<li><p class="sd-card-text">r<sub>y</sub> + r<sub>a</sub> + r<sub>m</sub> = 1</p></li>
 </ul>
 </li>
-<li><p>Gaussian elimination:</p>
+<li><p class="sd-card-text">Gaussian elimination:</p>
 <ul>
-<li><p>r<sub>y</sub> = 2/5, r<sub>a</sub> = 2/5, r<sub>m</sub> = 1/5</p></li>
+<li><p class="sd-card-text">r<sub>y</sub> = 2/5, r<sub>a</sub> = 2/5, r<sub>m</sub> = 1/5</p></li>
 </ul>
 </li>
-<li><p><strong>Does not scale to Internet-size!</strong></p></li>
+<li><p class="sd-card-text"><strong>Does not scale to Internet-size!</strong></p></li>
 </ul>
-</section>
+</div>
+</details></section>
 <section id="pagerank-matrix-formulation">
 <h2>4. PageRank: matrix formulation<a class="headerlink" href="#pagerank-matrix-formulation" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p>Setup the flow equations as a stochastic adjacency matrix M</p></li>
-<li><p>Matrix M of size N: N is the number of nodes in the graph
+<li><p class="sd-card-text">Setup the flow equations as a stochastic adjacency matrix M</p></li>
+<li><p class="sd-card-text">Matrix M of size N: N is the number of nodes in the graph
 (web pages on the Internet).</p>
 <ul>
-<li><p>Let page <em>i</em> has *d<sub>i</sub> outgoing links.</p></li>
-<li><p>If there is an outgoing link from <em>i</em> to <em>j</em>, then</p>
+<li><p class="sd-card-text">Let page <em>i</em> has *d<sub>i</sub> outgoing links.</p></li>
+<li><p class="sd-card-text">If there is an outgoing link from <em>i</em> to <em>j</em>, then</p>
 <ul>
-<li><p><strong>M<sub>ij</sub> = 1/d<sub>i</sub></strong></p></li>
-<li><p>else <strong>M<sub>ij</sub> = 0</strong></p></li>
+<li><p class="sd-card-text"><strong>M<sub>ij</sub> = 1/d<sub>i</sub></strong></p></li>
+<li><p class="sd-card-text">else <strong>M<sub>ij</sub> = 0</strong></p></li>
 </ul>
 </li>
-<li><p>Stochastic: sum of all values in a column of M is equal to 1.</p></li>
-<li><p>Adjacency: non-zero value indicates the availability of a link.</p></li>
+<li><p class="sd-card-text">Stochastic: sum of all values in a column of M is equal to 1.</p></li>
+<li><p class="sd-card-text">Adjacency: non-zero value indicates the availability of a link.</p></li>
 </ul>
 </li>
-<li><p>Rank vector r: A vector with an entry per page.</p>
+<li><p class="sd-card-text">Rank vector r: A vector with an entry per page.</p>
 <ul>
-<li><p>The order of pages in the rank vector should be the same as the
-order of pages in rows and columns of <strong>M</strong>.
-<img src="../fig/05-pagerank/05.png" style="height:250px"></p></li>
+<li><p class="sd-card-text">The order of pages in the rank vector should be the same as the
+order of pages in rows and columns of <strong>M</strong>.</p></li>
 </ul>
 </li>
-<li><p>Flow equations:</p>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/054.png"><img alt="../_images/054.png" class="bg-primary mb-1 align-center" src="../_images/054.png" style="height: 250px;" /></a>
+<ul class="simple">
+<li><p class="sd-card-text">Flow equations:</p>
 <ul>
-<li><p>r<sub>y</sub> = r<sub>y</sub>/2 + r<sub>a</sub>/2</p></li>
-<li><p>r<sub>a</sub> = r<sub>y</sub>/2 + r<sub>m</sub></p></li>
-<li><p>r<sub>m</sub> = r<sub>a</sub>/2</p></li>
+<li><p class="sd-card-text">r<sub>y</sub> = r<sub>y</sub>/2 + r<sub>a</sub>/2</p></li>
+<li><p class="sd-card-text">r<sub>a</sub> = r<sub>y</sub>/2 + r<sub>m</sub></p></li>
+<li><p class="sd-card-text">r<sub>m</sub> = r<sub>a</sub>/2</p></li>
 </ul>
 </li>
-<li><p>General equation for calculating rank <em>r<sub>j</sub></em> for page j
+<li><p class="sd-card-text">General equation for calculating rank <em>r<sub>j</sub></em> for page j
 with regard to <strong>all</strong> pages:</p></li>
 </ul>
-<img src="../fig/05-pagerank/07.png" style="height:50px">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/073.png"><img alt="../_images/073.png" class="bg-primary mb-1 align-center" src="../_images/073.png" style="height: 50px;" /></a>
 <ul class="simple">
-<li><p>This can be rewritten in matrix form:</p></li>
+<li><p class="sd-card-text">This can be rewritten in matrix form:</p></li>
 </ul>
-<img src="../fig/05-pagerank/08.png" style="height:20px">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/083.png"><img alt="../_images/083.png" class="bg-primary mb-1 align-center" src="../_images/083.png" style="height: 20px;" /></a>
 <ul class="simple">
-<li><p>Visualization:</p>
+<li><p class="sd-card-text">Visualization:</p>
 <ul>
-<li><p>Suppose page <em>i</em> has importance *r<sub>i</sub> and has outgoing links
+<li><p class="sd-card-text">Suppose page <em>i</em> has importance *r<sub>i</sub> and has outgoing links
 to three other pages, including page <em>j</em>.</p></li>
 </ul>
 </li>
 </ul>
-<img src="../fig/05-pagerank/09.png" style="height:200px">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/093.png"><img alt="../_images/093.png" class="bg-primary mb-1 align-center" src="../_images/093.png" style="height: 200px;" /></a>
 <ul class="simple">
-<li><p>Final perspective:</p>
+<li><p class="sd-card-text">Final perspective:</p>
 <ul>
-<li><p>Also, this is why we need to study advanced math …</p></li>
+<li><p class="sd-card-text">Also, this is why we need to study advanced math …</p></li>
 </ul>
 </li>
 </ul>
-<img src="../fig/05-pagerank/10.png" style="height:400px">
-</section>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/103.png"><img alt="../_images/103.png" class="bg-primary mb-1 align-center" src="../_images/103.png" style="height: 400px;" /></a>
+</div>
+</details></section>
 <section id="pagerank-power-iteration">
 <h2>5. PageRank: power iteration<a class="headerlink" href="#pagerank-power-iteration" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p>We want to find the page rank value <em>r</em></p></li>
-<li><p>Power method: an iterative scheme.</p>
+<li><p class="sd-card-text">We want to find the page rank value <em>r</em></p></li>
+<li><p class="sd-card-text">Power method: an iterative scheme.</p>
 <ul>
-<li><p>Support there are <code class="docutils literal notranslate"><span class="pre">N</span></code> web pages on the Internet.</p></li>
-<li><p>All web pages start out with same importance: <code class="docutils literal notranslate"><span class="pre">1/N</span></code>.</p></li>
-<li><p>Rank vector r: r<sup>(0)</sup> = [1/N, …,1/N]<sup>T</sup></p></li>
-<li><p>Iterate: r<sup>(t+1)</sup> = M • r</p></li>
-<li><p>Stopping condition: r<sup>(t+1)</sup> -  r<sup>(t)</sup> &lt; some small positive error threshold e.</p></li>
+<li><p class="sd-card-text">Support there are <code class="docutils literal notranslate"><span class="pre">N</span></code> web pages on the Internet.</p></li>
+<li><p class="sd-card-text">All web pages start out with same importance: <code class="docutils literal notranslate"><span class="pre">1/N</span></code>.</p></li>
+<li><p class="sd-card-text">Rank vector r: r<sup>(0)</sup> = [1/N, …,1/N]<sup>T</sup></p></li>
+<li><p class="sd-card-text">Iterate: r<sup>(t+1)</sup> = M • r</p></li>
+<li><p class="sd-card-text">Stopping condition: r<sup>(t+1)</sup> -  r<sup>(t)</sup> &lt; some small positive error threshold e.</p></li>
 </ul>
 </li>
-<li><p>Example:
-<img src="../fig/05-pagerank/10.png" style="height:400px">
-<img src="../fig/05-pagerank/11.png" style="height:100px"></p></li>
+<li><p class="sd-card-text">Example:</p></li>
 </ul>
-</section>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/103.png"><img alt="../_images/103.png" class="bg-primary mb-1 align-center" src="../_images/103.png" style="height: 400px;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/112.png"><img alt="../_images/112.png" class="bg-primary mb-1 align-center" src="../_images/112.png" style="height: 100px;" /></a>
+</div>
+</details></section>
 <section id="pagerank-the-google-formulation">
 <h2>6. PageRank: the Google formulation<a class="headerlink" href="#pagerank-the-google-formulation" title="Permalink to this headline">#</a></h2>
-<img src="../fig/05-pagerank/07.png" style="height:50px">
-<img src="../fig/05-pagerank/08.png" style="height:20px">
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/073.png"><img alt="../_images/073.png" class="bg-primary mb-1 align-center" src="../_images/073.png" style="height: 50px;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/083.png"><img alt="../_images/083.png" class="bg-primary mb-1 align-center" src="../_images/083.png" style="height: 20px;" /></a>
 <ul class="simple">
-<li><p>The three questions</p>
+<li><p class="sd-card-text">The three questions</p>
 <ul>
-<li><p>Does the above equation converge?</p></li>
-<li><p>Does it converge to what we want?.</p></li>
-<li><p>Are the results reasonable?</p></li>
+<li><p class="sd-card-text">Does the above equation converge?</p></li>
+<li><p class="sd-card-text">Does it converge to what we want?.</p></li>
+<li><p class="sd-card-text">Are the results reasonable?</p></li>
 </ul>
 </li>
 </ul>
-</section>
+</div>
+</details></section>
 <section id="challenge-6-1-does-it-converge">
 <h2>Challenge 6.1: Does it converge:<a class="headerlink" href="#challenge-6-1-does-it-converge" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p>The <code class="docutils literal notranslate"><span class="pre">spider</span> <span class="pre">trap</span></code> problem</p></li>
-<li><p>Build the stochastic adjacency matrix for the following:
+<li><p class="sd-card-text">The <code class="docutils literal notranslate"><span class="pre">spider</span> <span class="pre">trap</span></code> problem</p></li>
+<li><p class="sd-card-text">Build the stochastic adjacency matrix for the following:
 graph and calculate the ranking for <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>.</p></li>
 </ul>
- <img src="../fig/05-pagerank/12.png" style="height:100px">
-<p>{: .solution}
-{: .challenge}</p>
-</section>
-<section id="solution">
-<h2>Solution:<a class="headerlink" href="#solution" title="Permalink to this headline">#</a></h2>
-<img src="../fig/05-pagerank/13.png" style="height:100px">
-</section>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/122.png"><img alt="../_images/122.png" class="bg-primary mb-1 align-center" src="../_images/122.png" style="height: 100px;" /></a>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/131.png"><img alt="../_images/131.png" class="bg-primary mb-1 align-center" src="../_images/131.png" style="height: 100px;" /></a>
+</div>
+</details></div>
+</details></section>
 <section id="challenge-6-2-does-it-converge-to-what-we-want">
 <h2>Challenge 6.2: Does it converge to what we want?:<a class="headerlink" href="#challenge-6-2-does-it-converge-to-what-we-want" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p>The <code class="docutils literal notranslate"><span class="pre">dead</span> <span class="pre">end</span></code> problem</p></li>
-<li><p>Build the stochastic adjacency matrix for the following:
+<li><p class="sd-card-text">The <code class="docutils literal notranslate"><span class="pre">dead</span> <span class="pre">end</span></code> problem</p></li>
+<li><p class="sd-card-text">Build the stochastic adjacency matrix for the following:
 graph and calculate the ranking for <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>.</p></li>
 </ul>
- <img src="../fig/05-pagerank/14.png" style="height:100px">
-<p>{: .solution}
-{: .challenge}</p>
-<ul class="simple">
-<li><p>The solution: random teleport.</p></li>
-<li><p>At each time step, the random surfer has two options:</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/141.png"><img alt="../_images/141.png" class="bg-primary mb-1 align-center" src="../_images/141.png" style="height: 100px;" /></a>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/151.png"><img alt="../_images/151.png" class="bg-primary mb-1 align-center" src="../_images/151.png" style="height: 100px;" /></a>
+</div>
+</details><ul class="simple">
+<li><p class="sd-card-text">The solution: random teleport.</p></li>
+<li><p class="sd-card-text">At each time step, the random surfer has two options:</p>
 <ul>
-<li><p>A probably of β to follow an out-going link at random.</p></li>
-<li><p>A probably of 1 - β to jump to some random page.</p></li>
-<li><p>The value of β are between 0.8 to 0.9.</p></li>
+<li><p class="sd-card-text">A probably of β to follow an out-going link at random.</p></li>
+<li><p class="sd-card-text">A probably of 1 - β to jump to some random page.</p></li>
+<li><p class="sd-card-text">The value of β are between 0.8 to 0.9.</p></li>
 </ul>
 </li>
-<li><p>The surfer will teleport out of the spider trap within a few
+<li><p class="sd-card-text">The surfer will teleport out of the spider trap within a few
 time steps.</p></li>
-<li><p>The surfer will definitely teleport out of the dead-end.</p></li>
+<li><p class="sd-card-text">The surfer will definitely teleport out of the dead-end.</p></li>
 </ul>
-<img src="../fig/05-pagerank/16.png" style="height:200px">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/161.png"><img alt="../_images/161.png" class="bg-primary mb-1 align-center" src="../_images/161.png" style="height: 200px;" /></a>
 <ul class="simple">
-<li><p>Final equation for PageRank:</p></li>
+<li><p class="sd-card-text">Final equation for PageRank:</p></li>
 </ul>
-<img src="../fig/05-pagerank/16.png" style="height:200px">
-</section>
-<section id="id1">
-<h2>Solution:<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
-<img src="../fig/05-pagerank/15.png" style="height:100px">
-</section>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/171.png"><img alt="../_images/171.png" class="bg-primary mb-1 align-center" src="../_images/171.png" style="height: 200px;" /></a>
+</div>
+</details></section>
 <section id="hands-on-page-rank-in-spark">
 <h2>7. Hands-on: Page Rank in Spark<a class="headerlink" href="#hands-on-page-rank-in-spark" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p>Create a file called <code class="docutils literal notranslate"><span class="pre">small_graph.dat</span></code> with the following contents:</p></li>
+<li><p class="sd-card-text">Create a file called <code class="docutils literal notranslate"><span class="pre">small_graph.dat</span></code> with the following contents:</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="n">y</span>
 <span class="n">y</span> <span class="n">a</span>
@@ -752,30 +811,31 @@ time steps.</p></li>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>This data file describes the graph in the easlier slides.</p></li>
-<li><p>Open a terminal.</p></li>
-<li><p>Activate the <code class="docutils literal notranslate"><span class="pre">pyspark</span></code> conda environment, then launch Jupyter notebook</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda activate pyspark
-$ conda install -y psutil
-$ jupyter notebook
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Create a new notebook using the <code class="docutils literal notranslate"><span class="pre">pyspark</span></code> kernel, then change the notebook’s
+<li><p class="sd-card-text">This data file describes the graph in the easlier slides.</p></li>
+<li><p class="sd-card-text">Open a terminal.</p></li>
+<li><p class="sd-card-text">Activate the <code class="docutils literal notranslate"><span class="pre">pyspark</span></code> conda environment, then launch Jupyter notebook</p></li>
+<li><p class="sd-card-text">Create a new notebook using the <code class="docutils literal notranslate"><span class="pre">pyspark</span></code> kernel, then change the notebook’s
 name to <code class="docutils literal notranslate"><span class="pre">spark-3</span></code>.</p></li>
-<li><p>Copy the code from <code class="docutils literal notranslate"><span class="pre">spark-1</span></code> to setup and launch a Spark application.</p></li>
+<li><p class="sd-card-text">Copy the code from <code class="docutils literal notranslate"><span class="pre">spark-1</span></code> to setup and launch a Spark application.</p></li>
 </ul>
-</section>
+</div>
+</details></section>
 <section id="hands-on-page-rank-in-spark-hollins-dataset">
 <h2>8. Hands-on: Page Rank in Spark - Hollins dataset<a class="headerlink" href="#hands-on-page-rank-in-spark-hollins-dataset" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-kebab-horizontal" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M6 12a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 11-4 0 2 2 0 014 0zm6 2a2 2 0 100-4 2 2 0 000 4z"></path></svg><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <ul class="simple">
-<li><p>Download <a class="reference external" href="https://www.cs.wcupa.edu/lngo/data/hollins.dat">the Hollins dataset</a></p></li>
-<li><p>Hollins University webbot crawl in 2004.</p></li>
-<li><p>Which page is most important (internally).</p></li>
+<li><p class="sd-card-text">Download <a class="reference external" href="https://www.cs.wcupa.edu/lngo/data/hollins.dat">the Hollins dataset</a></p></li>
+<li><p class="sd-card-text">Hollins University webbot crawl in 2004.</p></li>
+<li><p class="sd-card-text">Which page is most important (internally).</p></li>
 </ul>
-<p>{% include <a class="reference external" href="http://links.md">links.md</a> %}</p>
-</section>
+</div>
+</details></section>
 </section>
 
     <script type="text/x-thebe-config">
