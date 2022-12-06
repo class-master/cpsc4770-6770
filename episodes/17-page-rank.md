@@ -1,16 +1,26 @@
 # Page Rank
 
 ## 1. Web page organization in the past
-
+```{dropdown}
 - Web pages were manually curated and organized. 
 - Does not scale. 
 
-<img src="../fig/05-pagerank/01.jpg" style="height:500px">
+:::{image} ../fig/17-pagerank/01.jpg
+:class: bg-primary mb-1
+:height: 500px
+:align: center
+:::
+
 
 - Next, web search engines were developed: information retrieval
 - Information retrieval focuses on finding documents from a trusted set. 
 
-<img src="../fig/05-pagerank/02.jpg" style="height:500px">
+:::{image} ../fig/17-pagerank/02.jpg
+:class: bg-primary mb-1
+:height: 500px
+:align: center
+:::
+
 
 - Challenges for web search:
   - Who to trust given the massive variety of information sources?
@@ -25,11 +35,11 @@
   - We can compute the importance of nodes in this graph based on 
   the distribution/intensity of these links. 
 
-
+```
 
 
 ## 2. PageRank: initial formulation
-
+```{dropdown}
 - Link as votes:
   - A page (node) is more important if it has more links. 
     - Incoming or outgoing?
@@ -37,7 +47,12 @@
 - Are all incoming links equals?
   - Links from important pages count more. 
 
-<img src="../fig/05-pagerank/03.png" style="height:400px">
+:::{image} ../fig/17-pagerank/03.png
+:class: bg-primary mb-1
+:height: 400px
+:align: center
+:::
+
 
 - Each link's vote is proportional to the **importance** of its
 source page. 
@@ -45,17 +60,25 @@ source page.
 each outgoing link has **r<sub>j</sub>/n** votes. 
 - The importance of page **j** is the sum of the votes on its incoming links. 
 
-<img src="../fig/05-pagerank/04.png" style="height:300px">
+:::{image} ../fig/17-pagerank/04.png
+:class: bg-primary mb-1
+:height: 300px
+:align: center
+:::
 
-
+```
 
 ## 3. PageRank: the flow model
-
+```{dropdown}
 - Summary:
   - A `vote` from an important page is worth more. 
   - A page is important if it is linked to by other important pages.  
 
-<img src="../fig/05-pagerank/05.png" style="height:250px">
+:::{image} ../fig/17-pagerank/05.png
+:class: bg-primary mb-1
+:height: 250px
+:align: center
+:::
 
 - Flow equations:
   - r<sub>y</sub> = r<sub>y</sub>/2 + r<sub>a</sub>/2
@@ -64,7 +87,11 @@ each outgoing link has **r<sub>j</sub>/n** votes.
 
 - General equation for calculating rank *r<sub>j</sub>* for page j:
 
-<img src="../fig/05-pagerank/06.png" style="height:200px">
+:::{image} ../fig/17-pagerank/06.png
+:class: bg-primary mb-1
+:height: 200px
+:align: center
+:::
 
 - Three equations (actually two), three unknown. 
   - No unique solutions
@@ -74,10 +101,10 @@ each outgoing link has **r<sub>j</sub>/n** votes.
   - r<sub>y</sub> = 2/5, r<sub>a</sub> = 2/5, r<sub>m</sub> = 1/5
 - **Does not scale to Internet-size!**
 
-
+```
 
 ## 4. PageRank: matrix formulation
-
+```{dropdown}
 - Setup the flow equations as a stochastic adjacency matrix M
 - Matrix M of size N: N is the number of nodes in the graph 
 (web pages on the Internet).
@@ -90,7 +117,12 @@ each outgoing link has **r<sub>j</sub>/n** votes.
  - Rank vector r: A vector with an entry per page. 
    - The order of pages in the rank vector should be the same as the 
    order of pages in rows and columns of **M**. 
-<img src="../fig/05-pagerank/05.png" style="height:250px">
+
+:::{image} ../fig/17-pagerank/05.png
+:class: bg-primary mb-1
+:height: 250px
+:align: center
+:::
 
 - Flow equations:
   - r<sub>y</sub> = r<sub>y</sub>/2 + r<sub>a</sub>/2
@@ -100,28 +132,44 @@ each outgoing link has **r<sub>j</sub>/n** votes.
 - General equation for calculating rank *r<sub>j</sub>* for page j 
 with regard to **all** pages:
 
-<img src="../fig/05-pagerank/07.png" style="height:50px">
+:::{image} ../fig/17-pagerank/07.png
+:class: bg-primary mb-1
+:height: 50px
+:align: center
+:::
 
 - This can be rewritten in matrix form:
 
-<img src="../fig/05-pagerank/08.png" style="height:20px">
+:::{image} ../fig/17-pagerank/08.png
+:class: bg-primary mb-1
+:height: 20px
+:align: center
+:::
 
 - Visualization:
   - Suppose page *i* has importance *r<sub>i</sub> and has outgoing links
   to three other pages, including page *j*. 
 
-<img src="../fig/05-pagerank/09.png" style="height:200px">
+:::{image} ../fig/17-pagerank/09.png
+:class: bg-primary mb-1
+:height: 200px
+:align: center
+:::
 
 - Final perspective:
   - Also, this is why we need to study advanced math ...
 
-<img src="../fig/05-pagerank/10.png" style="height:400px">
+:::{image} ../fig/17-pagerank/10.png
+:class: bg-primary mb-1
+:height: 400px
+:align: center
+:::
 
-
+```
 
 
 ## 5. PageRank: power iteration
-
+```{dropdown}
 - We want to find the page rank value *r*
 - Power method: an iterative scheme.  
   - Support there are `N` web pages on the Internet. 
@@ -130,45 +178,90 @@ with regard to **all** pages:
   - Iterate: r<sup>(t+1)</sup> = M • r 
   - Stopping condition: r<sup>(t+1)</sup> -  r<sup>(t)</sup> < some small positive error threshold e.
 - Example:
-<img src="../fig/05-pagerank/10.png" style="height:400px">
-<img src="../fig/05-pagerank/11.png" style="height:100px">
 
+:::{image} ../fig/17-pagerank/10.png
+:class: bg-primary mb-1
+:height: 400px
+:align: center
+:::
 
+:::{image} ../fig/17-pagerank/11.png
+:class: bg-primary mb-1
+:height: 100px
+:align: center
+:::
+
+```
 
 
 ## 6. PageRank: the Google formulation
+```{dropdown}
 
-<img src="../fig/05-pagerank/07.png" style="height:50px">
-<img src="../fig/05-pagerank/08.png" style="height:20px">
+:::{image} ../fig/17-pagerank/07.png
+:class: bg-primary mb-1
+:height: 50px
+:align: center
+:::
+
+:::{image} ../fig/17-pagerank/08.png
+:class: bg-primary mb-1
+:height: 20px
+:align: center
+:::
 
 - The three questions
   - Does the above equation converge?
   - Does it converge to what we want?. 
   - Are the results reasonable? 
 
+```
+
  ## Challenge 6.1: Does it converge: 
+ ```{dropdown}
+
  - The `spider trap` problem
  - Build the stochastic adjacency matrix for the following:
  graph and calculate the ranking for `a` and `b`.  
 
- <img src="../fig/05-pagerank/12.png" style="height:100px">
+:::{image} ../fig/17-pagerank/12.png
+:class: bg-primary mb-1
+:height: 100px
+:align: center
+:::
 
- > ## Solution:
- > <img src="../fig/05-pagerank/13.png" style="height:100px">
- {: .solution}
-{: .challenge}  
+::::{dropdown} Solution
 
- ## Challenge 6.2: Does it converge to what we want?: 
+:::{image} ../fig/17-pagerank/13.png
+:class: bg-primary mb-1
+:height: 100px
+:align: center
+:::
+
+::::
+```
+
+## Challenge 6.2: Does it converge to what we want?: 
+```{dropdown}
  - The `dead end` problem
  - Build the stochastic adjacency matrix for the following:
  graph and calculate the ranking for `a` and `b`.  
 
- <img src="../fig/05-pagerank/14.png" style="height:100px">
+:::{image} ../fig/17-pagerank/14.png
+:class: bg-primary mb-1
+:height: 100px
+:align: center
+:::
 
- > ## Solution:
- > <img src="../fig/05-pagerank/15.png" style="height:100px">
- {: .solution}
-{: .challenge}  
+::::{dropdown} Solution
+
+:::{image} ../fig/17-pagerank/15.png
+:class: bg-primary mb-1
+:height: 100px
+:align: center
+:::
+
+::::
+
 
 - The solution: random teleport. 
 - At each time step, the random surfer has two options:
@@ -179,17 +272,25 @@ with regard to **all** pages:
 time steps. 
 - The surfer will definitely teleport out of the dead-end. 
 
-<img src="../fig/05-pagerank/16.png" style="height:200px">
+:::{image} ../fig/17-pagerank/16.png
+:class: bg-primary mb-1
+:height: 200px
+:align: center
+:::
 
 - Final equation for PageRank:
 
-<img src="../fig/05-pagerank/16.png" style="height:200px">
+:::{image} ../fig/17-pagerank/17.png
+:class: bg-primary mb-1
+:height: 200px
+:align: center
+:::
 
-
+```
 
 
 ## 7. Hands-on: Page Rank in Spark
-
+```{dropdown}
 - Create a file called `small_graph.dat` with the following contents:
 
 ~~~
@@ -202,30 +303,18 @@ m a
 
 
 - This data file describes the graph in the easlier slides. 
-- Open a terminal. 
-- Activate the `pyspark` conda environment, then launch Jupyter notebook
 
-~~~
-$ conda activate pyspark
-$ conda install -y psutil
-$ jupyter notebook
-~~~ 
-
-
-- Create a new notebook using the `pyspark` kernel, then change the notebook's 
-name to `spark-3`. 
-- Copy the code from `spark-1` to setup and launch a Spark application. 
-
-
+```
 
 
 ## 8. Hands-on: Page Rank in Spark - Hollins dataset
 
-- Download [the Hollins dataset](https://www.cs.wcupa.edu/lngo/data/hollins.dat)
+```{dropdown}
+- Import [the Hollins dataset](https://www.kaggle.com/datasets/linhbngo/hollins-dataset) 
+into your Kaggle.
 - Hollins University webbot crawl in 2004. 
 - Which page is most important (internally). 
 
+```
 
 
-
-{% include links.md %}
