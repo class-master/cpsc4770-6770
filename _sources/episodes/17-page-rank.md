@@ -303,18 +303,15 @@ m a
 
 
 - This data file describes the graph in the easlier slides. 
-- Open a terminal. 
-- Activate the `pyspark` conda environment, then launch Jupyter notebook
-- Create a new notebook using the `pyspark` kernel, then change the notebook's 
-name to `spark-3`. 
-- Copy the code from `spark-1` to setup and launch a Spark application. 
 
 ```
 
 
 ## 8. Hands-on: Page Rank in Spark - Hollins dataset
+
 ```{dropdown}
-- Download [the Hollins dataset](https://www.cs.wcupa.edu/lngo/data/hollins.dat)
+- Import [the Hollins dataset](https://www.kaggle.com/datasets/linhbngo/hollins-dataset) 
+into your Kaggle.
 - Hollins University webbot crawl in 2004. 
 - Which page is most important (internally). 
 
