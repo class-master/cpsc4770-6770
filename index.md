@@ -60,9 +60,9 @@ will also be listed and/or embedded in the slides.
 
 | Percentage | Tasks |
 | ---------- | ----- |
-| 35% | 5 Assignments |
-| 15% | 3 Labs |
-| 20% | 5 Quizzes |
+| 35% | Assignments |
+| 15% | Labs |
+| 20% | Quizzes |
 | 15% | Midterm Exam |
 | 15% | Final Exam |
 
