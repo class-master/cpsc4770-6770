@@ -8,7 +8,7 @@ parts:
   chapters:
     - file: episodes/01-computational-demand.md
     - file: episodes/02-intro-to-parallel-distributed-computing.md
-    - file: episodes/03-intro-to-c.md
+    - file: episodes/03-intrinsic-programming.md
     - file: episodes/04-intro-openmp.md
     - file: episodes/05-loop-parallelism.md
     - file: episodes/06-works-sharing.md
@@ -24,6 +24,7 @@ parts:
     - file: episodes/16-large-scale-machine-learning.md
     - file: episodes/17-page-rank.md
     - file: episodes/18-locality-sensitive-hashing.md
+    - file: episodes/20-intro-to-c.md
 #- caption: Appendix
 #  chapters:
 #    - file: extras/setup.md
