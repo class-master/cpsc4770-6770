@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>MapReduce Programming Paradigm &#8212; Distributed and Cluster Computing</title>
+    <title>Intrinsic programming &#8212; Distributed and Cluster Computing</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Spark computing environment" href="14-spark.html" />
-    <link rel="prev" title="Introduction to Big Data" href="12-data-intensive-computing.html" />
+    <link rel="next" title="Introduction to OpenMP" href="04-intro-openmp.html" />
+    <link rel="prev" title="Introduction to paralel and distributed computing" href="02-intro-to-parallel-distributed-computing.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -129,8 +129,8 @@ const thebe_selector_output = ".output, .cell_output"
    Introduction to paralel and distributed computing
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03-intrinsic-programming.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Intrinsic programming
   </a>
  </li>
@@ -179,8 +179,8 @@ const thebe_selector_output = ".output, .cell_output"
    Introduction to Big Data
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-mapreduce.html">
    MapReduce Programming Paradigm
   </a>
  </li>
@@ -287,7 +287,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/episodes/13-mapreduce.md"
+        <a href="../_sources/episodes/03-intrinsic-programming.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -347,43 +347,18 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-reality-of-working-with-big-data">
-   1. The reality of working with big data
+  <a class="reference internal nav-link" href="#simd">
+   1. SIMD
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-reality-of-working-with-big-data-as-outlined-by-the-paper">
-   2. The reality of working with big data (as outlined by the paper)
+  <a class="reference internal nav-link" href="#simd-in-practice">
+   2. SIMD in practice
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#mapreduce-in-a-nutshell">
-   3. MapReduce in a nutshell
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#word-count-the-hello-world-of-big-data">
-   3. Word Count: the “Hello, World” of big data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#word-count-mapreduce-workflow">
-   4. Word Count: MapReduce workflow
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#word-count-mapreduce-workflow-what-do-you-really-do">
-   5. Word Count: MapReduce workflow - what do you really do
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#word-count-mapreduce-workflow-at-scale">
-   6. Word Count: MapReduce workflow at scale
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#applications-that-suit-well-with-mapreduce-programming-paradigm">
-   7. Applications that suit well with MapReduce programming paradigm
+  <a class="reference internal nav-link" href="#hands-on">
+   3. Hands-on
   </a>
  </li>
 </ul>
@@ -395,7 +370,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>MapReduce Programming Paradigm</h1>
+                <h1>Intrinsic programming</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -406,43 +381,18 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-reality-of-working-with-big-data">
-   1. The reality of working with big data
+  <a class="reference internal nav-link" href="#simd">
+   1. SIMD
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-reality-of-working-with-big-data-as-outlined-by-the-paper">
-   2. The reality of working with big data (as outlined by the paper)
+  <a class="reference internal nav-link" href="#simd-in-practice">
+   2. SIMD in practice
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#mapreduce-in-a-nutshell">
-   3. MapReduce in a nutshell
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#word-count-the-hello-world-of-big-data">
-   3. Word Count: the “Hello, World” of big data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#word-count-mapreduce-workflow">
-   4. Word Count: MapReduce workflow
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#word-count-mapreduce-workflow-what-do-you-really-do">
-   5. Word Count: MapReduce workflow - what do you really do
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#word-count-mapreduce-workflow-at-scale">
-   6. Word Count: MapReduce workflow at scale
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#applications-that-suit-well-with-mapreduce-programming-paradigm">
-   7. Applications that suit well with MapReduce programming paradigm
+  <a class="reference internal nav-link" href="#hands-on">
+   3. Hands-on
   </a>
  </li>
 </ul>
@@ -455,175 +405,150 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="mapreduce-programming-paradigm">
-<h1>MapReduce Programming Paradigm<a class="headerlink" href="#mapreduce-programming-paradigm" title="Permalink to this headline">#</a></h1>
-<section id="the-reality-of-working-with-big-data">
-<h2>1. The reality of working with big data<a class="headerlink" href="#the-reality-of-working-with-big-data" title="Permalink to this headline">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="intrinsic-programming">
+<h1>Intrinsic programming<a class="headerlink" href="#intrinsic-programming" title="Permalink to this headline">#</a></h1>
+<section id="simd">
+<h2>1. SIMD<a class="headerlink" href="#simd" title="Permalink to this headline">#</a></h2>
+<div class="dropdown admonition">
+<p class="admonition-title">Overview</p>
 <ul class="simple">
-<li><p>Hundreds or thousands of machines to support big data.​</p>
+<li><p>Modern CPUs rely on parallelism to improve performance</p>
 <ul>
-<li><p>Distribute data for storage (<em>not within the scope of this class</em>).</p></li>
-<li><p>Parallelize data computation (MapReduce)​</p></li>
-<li><p>Handle failure (MapReduce)​</p></li>
+<li><p>Task parallelism: multicores and hyperthreadings</p></li>
+<li><p>Instruction paralellism: mutliple instructions are executed concurrently
+by a single CPU.</p></li>
 </ul>
 </li>
-<li><p><strong>The paper</strong>: <a class="reference external" href="http://www.cs.amherst.edu/ccm/cs34/papers/p107-dean.pdf">MapReduce: simplified data processing on large clusters​</a></p></li>
+<li><p>Older CPUs (Pentium)</p>
+<ul>
+<li><p>Instructions are executed via a pipeline fashion</p></li>
 </ul>
+</li>
+<li><p>Recent CPUs</p>
+<ul>
+<li><p>Vector operations</p></li>
+<li><p>Instructions operate on 4 to 8 inputs, yielding 4 or 8 results in a single clock cycle</p></li>
+<li><p>Single Instruction, Multiple Data</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">SIMD concepts</p>
+<ul class="simple">
+<li><p>CPU uses registers to store data to operate on</p></li>
+<li><p>Basic registers:</p>
+<ul>
+<li><p>32-bit and 64-bit</p></li>
+<li><p>Each register holds a single scalar value</p></li>
+</ul>
+</li>
+<li><p>Vector registers:</p>
+<ul>
+<li><p>Stores 4 (SSE) or 8 (AVX) scalar values.</p></li>
+<li><p>An instruction can be applied on an entire vector register.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">SSE and AVX</p>
+<ul class="simple">
+<li><p>SSE: Streaming SIMD Extensions</p>
+<ul>
+<li><p>Single instruction, multiple data (SIMD instruction set)</p></li>
+</ul>
+</li>
+<li><p>Advanced Vector Extensions SIMD</p></li>
+</ul>
+<p><img alt="SSE and AVX overview" src="../_images/01.png" /></p>
+</div>
 </section>
-<section id="the-reality-of-working-with-big-data-as-outlined-by-the-paper">
-<h2>2. The reality of working with big data (as outlined by the paper)<a class="headerlink" href="#the-reality-of-working-with-big-data-as-outlined-by-the-paper" title="Permalink to this headline">#</a></h2>
+<section id="simd-in-practice">
+<h2>2. SIMD in practice<a class="headerlink" href="#simd-in-practice" title="Permalink to this headline">#</a></h2>
+<div class="dropdown admonition">
+<p class="admonition-title">Key concept</p>
 <ul class="simple">
-<li><p>Challenges:</p>
-<ul>
-<li><p>input data is usually large</p></li>
-<li><p>the computations have to be distributed across hundreds or thousands of machines</p></li>
-<li><p>finish in a reasonable amount of time.</p></li>
+<li><p>Adjacent values in memory that can be operated in parallel.</p></li>
 </ul>
-</li>
-<li><p>Addressing these challenges causes the original simple computation to become <strong>obscured</strong> by
-large amounts of supporting complex codes.​</p></li>
-<li><p>What MapReduce does:</p>
-<ul>
-<li><p>is a new abstraction</p></li>
-<li><p>expresses the simple core computations</p></li>
-<li><p>hides the messy details of parallelization, fault-tolerance, data distribution and
-load balancing in a library.</p></li>
-</ul>
-</li>
-<li><p>Why MapReduce?</p>
-<ul>
-<li><p>inspired by the <code class="docutils literal notranslate"><span class="pre">_map_</span></code> and <code class="docutils literal notranslate"><span class="pre">_reduce_</span></code> primitives present in Lisp and
-many other functional languages.</p></li>
-<li><p>Most data computations involve:</p>
-<ul>
-<li><p>applying a <code class="docutils literal notranslate"><span class="pre">_map_</span></code> operation to each logical <code class="docutils literal notranslate"><span class="pre">record</span></code> in our input in order to compute
-a set of intermediate <strong>key/value</strong> pairs, and then</p></li>
-<li><p>applying a <code class="docutils literal notranslate"><span class="pre">_reduce_</span></code> operation to all the values that shared the same key to combine
-the derived data appropriately.</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</section>
-<section id="mapreduce-in-a-nutshell">
-<h2>3. MapReduce in a nutshell<a class="headerlink" href="#mapreduce-in-a-nutshell" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Loop unrolling</p>
 <ul class="simple">
-<li><p>What is <code class="docutils literal notranslate"><span class="pre">map</span></code>? A function/procedure that is applied to every individual elements of a
-collection/list/array/…​</p></li>
+<li><p>Recalling CSC 231: Data locality</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>int square(x) { return x*x;}​
-map square [1,2,3,4] -&gt; [1,4,9,16]​
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">s</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>What is <code class="docutils literal notranslate"><span class="pre">reduce</span></code>? A function/procedure that performs an operation on a list. This operation
-will <em>fold/reduce</em> this list into a single value (or a smaller subset)​</p></li>
+<li><p>Given the cache size, successive instructions can be carried out
+without significant cache misses</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>reduce ([1,2,3,4]) using sum -&gt; 10​
-reduce ([1,2,3,4]) using multiply -&gt; 24​
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">996</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="mi">-4</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">s</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">s</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">s</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">s</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-</section>
-<section id="word-count-the-hello-world-of-big-data">
-<h2>3. Word Count: the “Hello, World” of big data<a class="headerlink" href="#word-count-the-hello-world-of-big-data" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Intel SSE Instrinsics</p>
 <ul class="simple">
-<li><p>We have a large amount of text …</p>
-<ul>
-<li><p>Could be stored in a single massive file.</p></li>
-<li><p>Could be stored in multiple files.</p></li>
+<li><p>The instructions in the unrolled loop can be packed into
+SSE/AVX registers so that they can be carried out in parallel.</p></li>
 </ul>
-</li>
-<li><p>We want to count the number of times each distinct word appears in the files</p></li>
-<li><p>Sample applications:</p>
-<ul>
-<li><p>Analyze web server logs to find popular URLs/keywords.</p></li>
-<li><p>Analyze security logs to find incidents. ​</p></li>
-</ul>
-</li>
-<li><p>Standard parallel programming approach:​</p>
-<ul>
-<li><p>Count number of files​ or set up seek distances within a file.</p></li>
-<li><p>Set number of processes​</p></li>
-<li><p>Possibly setting up dynamic workload assignment​</p></li>
-<li><p>A lot of data transfer​</p></li>
-<li><p>Significant coding effort​​</p></li>
-</ul>
-</li>
-</ul>
+</div>
 </section>
-<section id="word-count-mapreduce-workflow">
-<h2>4. Word Count: MapReduce workflow<a class="headerlink" href="#word-count-mapreduce-workflow" title="Permalink to this headline">#</a></h2>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/015.png"><img alt="MapReduce wordcount workflow" class="bg-primary mb-1 align-center" src="../_images/015.png" style="height: 500px;" /></a>
-</section>
-<section id="word-count-mapreduce-workflow-what-do-you-really-do">
-<h2>5. Word Count: MapReduce workflow - what do you really do<a class="headerlink" href="#word-count-mapreduce-workflow-what-do-you-really-do" title="Permalink to this headline">#</a></h2>
+<section id="hands-on">
+<h2>3. Hands-on<a class="headerlink" href="#hands-on" title="Permalink to this headline">#</a></h2>
+<div class="dropdown admonition">
+<p class="admonition-title">Unrolled loop</p>
+<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=unrolled.c"></script>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">SSE example 1</p>
 <ul class="simple">
-<li><p>Input: a set of key-value pairs</p></li>
-<li><p>Programmer specifies two methods:</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">Map(k,</span> <span class="pre">v)</span> <span class="pre">-&gt;</span> <span class="pre">(k',</span> <span class="pre">v')</span></code>:</p>
-<ul>
-<li><p>Takes a key-value pair and outputs a set of key-value pairs.</p>
-<ul>
-<li><p>E.g., key is the filename, value is a single line in the file</p></li>
+<li><p><a class="reference external" href="https://www.intel.com/content/www/us/en/develop/documentation/cpp-compiler-developer-guide-and-reference/top/compiler-reference/intrinsics/details-about-intrinsics.html">__m128</a>: Represents the contents of a SSE register used by the Intel Streaming SIMD.</p></li>
+<li><p><a class="reference external" href="https://www.intel.com/content/www/us/en/develop/documentation/cpp-compiler-developer-guide-and-reference/top/compiler-reference/intrinsics/intrinsics-for-sse/load-intrinsics-2.html">__mm_loadu_ps</a>: Loads four SP FP values in reverse order. The address <code class="docutils literal notranslate"><span class="pre">p</span></code> need not be
+16-byte aligned.</p></li>
+<li><p><a class="reference external" href="https://www.intel.com/content/www/us/en/develop/documentation/cpp-compiler-developer-guide-and-reference/top/compiler-reference/intrinsics/intrinsics-for-sse/set-intrinsics-2.html">__mm_set1_ps</a>: Sets four SP FP values to <code class="docutils literal notranslate"><span class="pre">w</span></code>.</p></li>
+<li><p><a class="reference external" href="https://www.intel.com/content/www/us/en/develop/documentation/cpp-compiler-developer-guide-and-reference/top/compiler-reference/intrinsics/intrinsics-for-sse/arithmetic-intrinsics-2.html">__mm_mul_ps</a>: Multiply fource single-precision FP values of <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>.</p></li>
 </ul>
-</li>
-<li><p>There is one Map call for every (k,v) pair</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Reduce(k2,</span> <span class="pre">&lt;v'&gt;)</span> <span class="pre">-&gt;</span> <span class="pre">&lt;k’,</span> <span class="pre">v’’&gt;</span></code></p>
-<ul>
-<li><p>All values <code class="docutils literal notranslate"><span class="pre">v'</span></code> with same key <code class="docutils literal notranslate"><span class="pre">k'</span></code> are reduced together and processed
-in <code class="docutils literal notranslate"><span class="pre">v'</span></code> order.</p></li>
-<li><p>There is one Reduce function call per unique key <code class="docutils literal notranslate"><span class="pre">k'</span></code>.</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/024.png"><img alt="mapping and reducing" class="bg-primary mb-1 align-center" src="../_images/024.png" style="height: 500px;" /></a>
+<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=unroll_sse.c"></script>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">SSE example 2</p>
+<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=unroll_sse_2.c"></script>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Challenge: Loop unrolling</p>
+<p>Modify the below source code with the followings:</p>
 <ul class="simple">
-<li><p>MapReduce environment takes care of:</p>
-<ul>
-<li><p>Partitioning the input data</p></li>
-<li><p>Scheduling the program’s execution across a set of machines</p></li>
-<li><p>Performing the group by key step</p></li>
-<li><p>Handling machine failures</p></li>
-<li><p>Managing required inter-machine communication</p></li>
+<li><p>Add another function to carry out matrix multiplication with the two
+inner loops unrolled.</p></li>
+<li><p>In the main function, create another matrix variable
+called <strong>unrolled_result[2][2]</strong>. Call the new function and the
+<strong>display</strong> function on this variable
+and confirm that you have the same results.</p></li>
 </ul>
-</li>
-</ul>
-</section>
-<section id="word-count-mapreduce-workflow-at-scale">
-<h2>6. Word Count: MapReduce workflow at scale<a class="headerlink" href="#word-count-mapreduce-workflow-at-scale" title="Permalink to this headline">#</a></h2>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/034.png"><img alt="at scale 1" class="bg-primary mb-1 align-center" src="../_images/034.png" style="height: 500px;" /></a>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/043.png"><img alt="at scale 2" class="bg-primary mb-1 align-center" src="../_images/043.png" style="height: 500px;" /></a>
-</section>
-<section id="applications-that-suit-well-with-mapreduce-programming-paradigm">
-<h2>7. Applications that suit well with MapReduce programming paradigm<a class="headerlink" href="#applications-that-suit-well-with-mapreduce-programming-paradigm" title="Permalink to this headline">#</a></h2>
+<script src="https://gist.github.com/linhbngo/05955842d2a7ce40c9723292a2ded118.js?file=matrix.c"></script>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Challenge: SSE</p>
+<p>Continue modifying the source code from the above challenge as followed:</p>
 <ul class="simple">
-<li><p>Text tokenization, indexing, and search</p>
-<ul>
-<li><p>Web access log stats</p></li>
-<li><p>Inverted index construction</p></li>
-<li><p>Term-vector per host</p></li>
-<li><p>Distributed grep/sort</p></li>
+<li><p>Add yet another function to carry out matrix multiplication. This function
+should be based on the previous unrolled multiplication and utilize intrinsic
+programming to carry out multiple integer operations at the same time.</p></li>
+<li><p>In the main function, create another matrix variable
+called <strong>sse_result[2][2]</strong>. Call the new function and the
+<strong>display</strong> function on this variable
+and confirm that you have the same results.</p></li>
 </ul>
-</li>
-<li><p>Graph creation</p>
-<ul>
-<li><p>Web link-graph reversal (Google’s PageRank)</p></li>
-</ul>
-</li>
-<li><p>Data Mining and machine learning</p>
-<ul>
-<li><p>Document clustering</p></li>
-<li><p>Machine learning</p></li>
-<li><p>Statistical machine translation</p></li>
-</ul>
-</li>
-</ul>
+</div>
 </section>
 </section>
 
@@ -654,17 +579,17 @@ in <code class="docutils literal notranslate"><span class="pre">v'</span></code>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="12-data-intensive-computing.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="02-intro-to-parallel-distributed-computing.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Introduction to Big Data</p>
+            <p class="prev-next-title">Introduction to paralel and distributed computing</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="14-spark.html" title="next page">
+    <a class='right-next' id="next-link" href="04-intro-openmp.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Spark computing environment</p>
+        <p class="prev-next-title">Introduction to OpenMP</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
