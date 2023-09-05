@@ -549,6 +549,23 @@ called <strong>sse_result[2][2]</strong>. Call the new function and the
 and confirm that you have the same results.</p></li>
 </ul>
 </div>
+<div class="dropdown admonition">
+<p class="admonition-title">Challenge: Scaling up and SSE</p>
+<p>Continue modifying the source code from the above challenge as followed:</p>
+<ul class="simple">
+<li><p>Modify so that the program multiplies two 8x8 matrices.</p></li>
+<li><p>Reimplement the unrolling/intrinsic multiplication:</p>
+<ul>
+<li><p><strong>Palmetto</strong> has different phases with different CPU generations, supporting from
+sse up to avx512.</p></li>
+<li><p>Provide implementations for sse/avx/avx512, and confirm that it works on different
+Palmetto allocation request.</p></li>
+</ul>
+</li>
+<li><p>Call the new function and the <strong>display</strong> function on this variable
+and confirm that you have the same results.</p></li>
+</ul>
+</div>
 </section>
 </section>
 
