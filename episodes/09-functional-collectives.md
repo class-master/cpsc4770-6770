@@ -45,8 +45,8 @@ contents
 - Compile and run `bcast.c`:
 
 ~~~bash
-$ mpicc -o bcast bcast.c
-$ mpirun -np 4 ./bcast
+mpicc -o bcast bcast.c
+mpirun -np 4 ./bcast
 ~~~
 
 
@@ -79,8 +79,8 @@ contents
 - Compile and run `scatter.c`:
 
 ~~~bash
-$ mpicc -o scatter scatter.c
-$ mpirun -np 4 ./scatter
+mpicc -o scatter scatter.c
+mpirun -np 4 ./scatter
 ~~~
 
 
@@ -90,6 +90,19 @@ $ mpirun -np 4 ./scatter
 :height: 300px
 :align: center
 :::
+
+**Challenge**
+
+Modify `scatter.c` based on the following scenarios and answer the following questions
+
+- Modify `scatter.c` so that process 2 is now the root process for MPI_Scatter. Does that 
+make a difference in the results?
+- Modify `sendbuf` so that it is declared/initialized only inside process 0, the root process for 
+MPI_Scatter. Does that make a difference in the results?
+- Modify MPI_Scatter so that we are sending out/receving 6 data elements per process. How 
+does that make a difference?
+
+
 
 ```
 
