@@ -578,6 +578,14 @@ mpirun -np <span class="m">4</span> ./gather
 </pre></div>
 </div>
 <a class="bg-primary mb-1 reference internal image-reference" href="../_images/04.png"><img alt="compile and run gather.c" class="bg-primary mb-1 align-center" src="../_images/04.png" style="height: 300px;" /></a>
+<p class="sd-card-text"><strong>Challenge</strong></p>
+<p class="sd-card-text">Modify <code class="docutils literal notranslate"><span class="pre">gather.c</span></code> based on the following scenarios and answer the following questions</p>
+<ul class="simple">
+<li><p class="sd-card-text">Modify <code class="docutils literal notranslate"><span class="pre">recvbuf</span></code> so that it is declared/initialized only inside process 0, the root process for
+MPI_Gather. Does that make a difference in the results?</p></li>
+<li><p class="sd-card-text">Modify MPI_Gather so that we are gathering 6 data elements per process. How
+does that make a difference?</p></li>
+</ul>
 </div>
 </details></section>
 <section id="hands-on-mpi-reduce">
