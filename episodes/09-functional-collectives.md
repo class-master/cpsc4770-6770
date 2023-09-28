@@ -140,6 +140,15 @@ mpirun -np 4 ./gather
 :align: center
 :::
 
+**Challenge**
+
+Modify `gather.c` based on the following scenarios and answer the following questions
+
+- Modify `recvbuf` so that it is declared/initialized only inside process 0, the root process for 
+MPI_Gather. Does that make a difference in the results?
+- Modify MPI_Gather so that we are gathering 6 data elements per process. How 
+does that make a difference?
+
 ```
 
 
