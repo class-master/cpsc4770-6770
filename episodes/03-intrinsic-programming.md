@@ -140,5 +140,20 @@ called **sse_result[2][2]**. Call the new function and the
 **display** function on this variable 
 and confirm that you have the same results. 
 
+```
+
+
+```{admonition} Challenge: Scaling up and SSE
+:class: dropdown
+
+Continue modifying the source code from the above challenge as followed:
+- Modify so that the program multiplies two 8x8 matrices. 
+- Reimplement the unrolling/intrinsic multiplication: 
+  - **Palmetto** has different phases with different CPU generations, supporting from 
+  sse up to avx512. 
+  - Provide implementations for sse/avx/avx512, and confirm that it works on different 
+  Palmetto allocation request.  
+- Call the new function and the **display** function on this variable 
+and confirm that you have the same results. 
 
 ```
