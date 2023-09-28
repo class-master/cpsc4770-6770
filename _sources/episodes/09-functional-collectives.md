@@ -44,11 +44,11 @@ contents
 
 - Compile and run `bcast.c`:
 
-~~~
+~~~bash
 $ mpicc -o bcast bcast.c
 $ mpirun -np 4 ./bcast
 ~~~
-{: .language-bash}
+
 
 :::{image} ../fig/collectives/02.png
 :alt: compile and run bcast.c
@@ -78,11 +78,11 @@ contents
 
 - Compile and run `scatter.c`:
 
-~~~
+~~~bash
 $ mpicc -o scatter scatter.c
 $ mpirun -np 4 ./scatter
 ~~~
-{: .language-bash}
+
 
 :::{image} ../fig/collectives/03.png
 :alt: compile and run scatter.c
@@ -114,11 +114,11 @@ contents
 
 - Compile and run `gather.c`:
 
+~~~bash
+mpicc -o gather gather.c
+mpirun -np 4 ./gather
 ~~~
-$ mpicc -o gather gather.c
-$ mpirun -np 4 ./gather
-~~~
-{: .language-bash}
+
 
 :::{image} ../fig/collectives/04.png
 :alt: compile and run gather.c
@@ -150,11 +150,10 @@ contents
 
 - Compile and run `reduce.c`:
 
+~~~bash
+mpicc -o reduce reduce.c
+mpirun -np 4 ./reduce
 ~~~
-$ mpicc -o reduce reduce.c
-$ mpirun -np 4 ./reduce
-~~~
-{: .language-bash}
 
 :::{image} ../fig/collectives/05.png
 :alt: compile and run reduce.c
