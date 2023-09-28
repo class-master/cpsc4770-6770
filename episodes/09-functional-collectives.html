@@ -489,8 +489,8 @@ contents</p></li>
 <ul class="simple">
 <li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">bcast.c</span></code>:</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mpicc -o bcast bcast.c
-$ mpirun -np <span class="m">4</span> ./bcast
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpicc -o bcast bcast.c
+mpirun -np <span class="m">4</span> ./bcast
 </pre></div>
 </div>
 <a class="bg-primary mb-1 reference internal image-reference" href="../_images/021.png"><img alt="compile and run bcast.c" class="bg-primary mb-1 align-center" src="../_images/021.png" style="height: 300px;" /></a>
@@ -525,11 +525,21 @@ contents</p></li>
 <ul class="simple">
 <li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">scatter.c</span></code>:</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mpicc -o scatter scatter.c
-$ mpirun -np <span class="m">4</span> ./scatter
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpicc -o scatter scatter.c
+mpirun -np <span class="m">4</span> ./scatter
 </pre></div>
 </div>
 <a class="bg-primary mb-1 reference internal image-reference" href="../_images/031.png"><img alt="compile and run scatter.c" class="bg-primary mb-1 align-center" src="../_images/031.png" style="height: 300px;" /></a>
+<p class="sd-card-text"><strong>Challenge</strong></p>
+<p class="sd-card-text">Modify <code class="docutils literal notranslate"><span class="pre">scatter.c</span></code> based on the following scenarios and answer the following questions</p>
+<ul class="simple">
+<li><p class="sd-card-text">Modify <code class="docutils literal notranslate"><span class="pre">scatter.c</span></code> so that process 2 is now the root process for MPI_Scatter. Does that
+make a difference in the results?</p></li>
+<li><p class="sd-card-text">Modify <code class="docutils literal notranslate"><span class="pre">sendbuf</span></code> so that it is declared/initialized only inside process 0, the root process for
+MPI_Scatter. Does that make a difference in the results?</p></li>
+<li><p class="sd-card-text">Modify MPI_Scatter so that we are sending out/receving 6 data elements per process. How
+does that make a difference?</p></li>
+</ul>
 </div>
 </details></section>
 <section id="hands-on-mpi-gather">
