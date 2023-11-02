@@ -268,7 +268,7 @@ punctuations and capitalization from the unique words
 
 ## Challenge 2
 ```{dropdown}
-- Look up the [Spark Python API for filter](https://spark.apache.org/docs/latest/api/python/pyspark.html?highlight=filter#pyspark.RDD.filter).
+- Look up the [Spark Python API for filter](https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.RDD.filter.html?highlight=filter#pyspark.RDD.filter).
 - Augment the results from Challenge 1 to remove the empty spaces (`''`).
 
  ~~~
