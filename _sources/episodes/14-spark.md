@@ -290,3 +290,12 @@ punctuations and capitalization from the unique words
 
 ```
 
+## Challenge 3
+```{dropdown}
+- Examing NLTK library: https://www.nltk.org/howto/stem.html
+- Use the NLTK library to augment the results from Challenge 2 to:
+  - convert all words to their original root form
+  - remove all stop-words
+
+```
+
