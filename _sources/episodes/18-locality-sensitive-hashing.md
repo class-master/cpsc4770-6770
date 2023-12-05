@@ -35,8 +35,7 @@ similarity.
 - Locality sensitive hashing : focus on pairs of signatures likely to be 
 similar.
 
-<img src="../fig/06-locality/01.png" style="height:300px">
-
+![LSH](../fig/06-locality/01.png)
 
 
 
@@ -59,7 +58,7 @@ characters that appears in the document.
 - The `Jaccard similiarity` of two sets is the size of their intersection divided by 
 the size of their union.
 
-<img src="../fig/06-locality/02.png" style="height:300px">
+![LSH](../fig/06-locality/02.png)
 
 - Convert from sets to boolean matrices.
   - Rows: elements of the universal set. In other words, all elements in the union.
@@ -72,7 +71,7 @@ the size of their union.
 - This gives you another way to calculate similarity: column similarity = Jaccard 
 similarity. 
 
-<img src="../fig/06-locality/03.png" style="height:300px">
+![LSH](../fig/06-locality/03.png)
 
 - Generally speaking, given two columns, rows maybe classified as:
   - a: 1 1
@@ -95,8 +94,7 @@ for each column.
   - its columns represent the sets and 
   - the rows represent the `minhash` values, in order for that column.
 
-<img src="../fig/06-locality/04.png" style="height:400px">
-
+![LSH](../fig/06-locality/04.png)
 
 
 ## 6. Minhashing: surprising property
@@ -107,8 +105,7 @@ for each column.
 - The expected similarity of two signatures equals the Jaccard similarity of the columns. 
   - The longer the signatures, the smaller the expected error will be. 
 
-<img src="../fig/06-locality/05.png" style="height:400px">
-
+![LSH](../fig/06-locality/05.png)
 
 
 ## 8. Hands-on Minhashing: implementation
@@ -123,9 +120,7 @@ for each column.
     - Maintain a variable M(i,c) which will maintain the smallest value
     value of h<sub>i</sub>(r) for which column *c* has 1 in row *r*.
 
-<img src="../fig/06-locality/06.png" style="height:500px">
-
-
+![LSH](../fig/06-locality/06.png)
 
 
 ## 9. Minhashing: 
@@ -154,7 +149,7 @@ same bucket candidate pairs.
 only similar columns are likely to hash to the same bucket. 
 - Reality: we don't need to study the entire column. 
 
-<img src="../fig/06-locality/07.png" style="height:300px">
+![LSH](../fig/06-locality/07.png)
 
 - Divide matrix M into `b` bands of `r` rows each. 
 - For each band, hash its portion of each column to a hash table with `k` buckets, 
@@ -168,10 +163,6 @@ band.
 
 ## 12. Hands on LSH
 - Download the set of inaugural speeches from https://www.cs.wcupa.edu/lngo/data/inaugural_speeches.zip. 
-- Launch a Spark notebook called `spark-6.ipynb` and create the two initial setup cells. 
+- Launch a Spark notebook and create the two initial setup cells. 
 
 
-
-
-
-{% include links.md %}

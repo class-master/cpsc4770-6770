@@ -535,7 +535,7 @@ similarity.</p></li>
 <li><p>Locality sensitive hashing : focus on pairs of signatures likely to be
 similar.</p></li>
 </ul>
-<img src="../fig/06-locality/01.png" style="height:300px">
+<p><img alt="LSH" src="../_images/018.png" /></p>
 </section>
 <section id="shingles">
 <h2>4. Shingles<a class="headerlink" href="#shingles" title="Permalink to this headline">#</a></h2>
@@ -560,7 +560,7 @@ characters that appears in the document.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">Jaccard</span> <span class="pre">similiarity</span></code> of two sets is the size of their intersection divided by
 the size of their union.</p></li>
 </ul>
-<img src="../fig/06-locality/02.png" style="height:300px">
+<p><img alt="LSH" src="../_images/027.png" /></p>
 <ul class="simple">
 <li><p>Convert from sets to boolean matrices.</p>
 <ul>
@@ -576,7 +576,7 @@ the value of <code class="docutils literal notranslate"><span class="pre">1</spa
 <li><p>This gives you another way to calculate similarity: column similarity = Jaccard
 similarity.</p></li>
 </ul>
-<img src="../fig/06-locality/03.png" style="height:300px">
+<p><img alt="LSH" src="../_images/037.png" /></p>
 <ul class="simple">
 <li><p>Generally speaking, given two columns, rows maybe classified as:</p>
 <ul>
@@ -604,7 +604,7 @@ for each column.</p></li>
 </ul>
 </li>
 </ul>
-<img src="../fig/06-locality/04.png" style="height:400px">
+<p><img alt="LSH" src="../_images/046.png" /></p>
 </section>
 <section id="minhashing-surprising-property">
 <h2>6. Minhashing: surprising property<a class="headerlink" href="#minhashing-surprising-property" title="Permalink to this headline">#</a></h2>
@@ -618,7 +618,7 @@ for each column.</p></li>
 </ul>
 </li>
 </ul>
-<img src="../fig/06-locality/05.png" style="height:400px">
+<p><img alt="LSH" src="../_images/055.png" /></p>
 </section>
 <section id="hands-on-minhashing-implementation">
 <h2>8. Hands-on Minhashing: implementation<a class="headerlink" href="#hands-on-minhashing-implementation" title="Permalink to this headline">#</a></h2>
@@ -642,7 +642,7 @@ value of h<sub>i</sub>(r) for which column <em>c</em> has 1 in row <em>r</em>.</
 </ul>
 </li>
 </ul>
-<img src="../fig/06-locality/06.png" style="height:500px">
+<p><img alt="LSH" src="../_images/064.png" /></p>
 </section>
 <section id="id1">
 <h2>9. Minhashing:<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
@@ -675,7 +675,7 @@ of the rows.</p></li>
 only similar columns are likely to hash to the same bucket.</p></li>
 <li><p>Reality: we don’t need to study the entire column.</p></li>
 </ul>
-<img src="../fig/06-locality/07.png" style="height:300px">
+<p><img alt="LSH" src="../_images/074.png" /></p>
 <ul class="simple">
 <li><p>Divide matrix M into <code class="docutils literal notranslate"><span class="pre">b</span></code> bands of <code class="docutils literal notranslate"><span class="pre">r</span></code> rows each.</p></li>
 <li><p>For each band, hash its portion of each column to a hash table with <code class="docutils literal notranslate"><span class="pre">k</span></code> buckets,
@@ -690,9 +690,8 @@ band.</p></li>
 <h2>12. Hands on LSH<a class="headerlink" href="#hands-on-lsh" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Download the set of inaugural speeches from <a class="reference external" href="https://www.cs.wcupa.edu/lngo/data/inaugural_speeches.zip">https://www.cs.wcupa.edu/lngo/data/inaugural_speeches.zip</a>.</p></li>
-<li><p>Launch a Spark notebook called <code class="docutils literal notranslate"><span class="pre">spark-6.ipynb</span></code> and create the two initial setup cells.</p></li>
+<li><p>Launch a Spark notebook and create the two initial setup cells.</p></li>
 </ul>
-<p>{% include <a class="reference external" href="http://links.md">links.md</a> %}</p>
 </section>
 </section>
 
